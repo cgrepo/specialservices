@@ -11,3 +11,7 @@ body { padding-top: 60px; }
 @import "bootswatch/cerulean/bootswatch";
 // Whatever application styles you have go last
 //@import "base";
+h1 {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  feeding: 1.5
+  rent: 1.5
+  electricity: 1.5
+  water: 1.5
+  fuel: 1.5
+  education: 1.5
+  other: MyString
+  benefit: MyString
+
+two:
+  feeding: 1.5
+  rent: 1.5
+  electricity: 1.5
+  water: 1.5
+  fuel: 1.5
+  education: 1.5
+  other: MyString
+  benefit: MyString
