@@ -11,16 +11,19 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 #---------ADDED
-gem 'will_paginate', '~> 3.0.6'  # pagination
-gem 'bootstrap-sass', '~> 3.3.6' # bootstrap support 
-gem 'bootstrap_form' # forms with splified bootstrap support
-gem 'will_paginate-bootstrap' # pagination with bootstrap
-gem 'jquery-ui-rails' # date displays
-gem 'jquery-turbolinks'
-
-gem 'carrierwave', '~> 1.0' # upload files and pictures
-gem 'prawn' # pdf creation 
-gem 'pry' # debugging
+  gem 'will_paginate', '~> 3.0.6'  # pagination
+  gem 'bootstrap-sass', '~> 3.3.6' # bootstrap support 
+  gem 'bootstrap_form' # forms with splified bootstrap support
+  gem 'will_paginate-bootstrap' # pagination with bootstrap
+  gem 'jquery-ui-rails' # date displays
+  gem 'jquery-turbolinks'
+  
+  gem 'carrierwave', '~> 1.0' # upload files and pictures
+  gem 'prawn' # pdf creation 
+  gem 'pry' # debugging
+  
+  #-------TESTING THIS GEMS
+    gem 'bootswatch-rails'
 #gem 'octicons_helper' # add svg icons not used in this stage
 #gem 'spinjs-rails' # spinners it seems it is alreay contained in jquery-turbolinks
 
