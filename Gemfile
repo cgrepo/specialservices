@@ -17,7 +17,7 @@ gem 'bcrypt', '~> 3.1.7'
   gem 'will_paginate-bootstrap' # pagination with bootstrap
   gem 'jquery-ui-rails' # date displays
   gem 'jquery-turbolinks'
-  
+  gem 'ionicons-rails'
   gem 'carrierwave', '~> 1.0' # upload files and pictures
   gem 'prawn' # pdf creation 
   gem 'pry' # debugging

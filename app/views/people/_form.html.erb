@@ -1,77 +1,82 @@
-<%= form_for(@person) do |f| %>
-  <% if @person.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
-
-      <ul>
-      <% @person.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= bootstrap_form_for(@person ) do |f| %>
+  <div class='row be-round_ligth_gray'>
+    <div class='container'>
+        <div class='row'>
+          <div class='col-xs col-md-6'>
+          <% if @person.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@person.errors.count, "error") %> no se pudo guardar la informacion!:</h2>
+              <ul>
+              <% @person.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>      
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class='row be-round_ligth_gray'>
+    <div class='col-xs col-md-2'>
+      <%= f.select_with_bootstrap :kind, [['Solicitante'],['Responsable'],['Familiar']] ,label:'Tipo' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :kind %><br>
-    <%= f.text_field :kind %>
+    <div class='col-xs col-md-4'>
+      <%= f.text_field_with_bootstrap :name, label:'Nombre' %>
+    </div>
+    <div class='col-xs col-md-1'>
+      <%= f.number_field_with_bootstrap :age, label:'Edad' %>
+    </div>
+    <div class='col-xs col-md-1'>
+      <%= f.select_with_bootstrap :gender, [['M'],['F']] ,label:'SEXO' %>
+    </div>
+    <div class='col-xs col-md-2'>
+      <%= f.select_with_bootstrap :civil_status,[['SOLTERO'],['CASADO'],['VIUDO(A)'],['UNION LIBRE'],['MS'],['OTRO'] ],label:'Edo. civil' %>
+    </div>
+    <div class='col-xs col-md-2'>
+      <%= f.text_field_with_bootstrap :salary, prepend:'$' ,label:'Salario', append:'.00' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class='row be-round_ligth_gray'>
+    <div class='col-xs col-md-2'>
+      <%= f.select_with_bootstrap :scolarship,[['PRIMARIA'],['SECUNDARIA'],['PREPARATORIA'],['UNIVERSIDAD'],['OTRO']]  ,label:'Escolaridad' %>
+    </div>
+    <div class='col-xs col-md-2'>
+      <%= f.text_field_with_bootstrap :relationship, label:'Parentesco' %>
+    </div>
+    <div class='col-xs col-md-2'>
+      <%= f.text_field_with_bootstrap :phone, label:'Telefono' %>
+    </div>
+    <div class='col-xs col-md-2'>
+      <%= f.text_field_with_bootstrap :admission_date, label:'Fecha admision', class:'xdate' %>
+    </div>
+    <div class='col-xs col-md-2'>
+      <%= f.text_field_with_bootstrap :birth_date, label:'Fecha nacimiento' %>
+    </div>
+    <div class='col-xs col-md-2'>
+      <%= f.select_with_bootstrap :transportation,[['PUBLICO'],['PRIVADO'],['OTRO']] ,label:'Transporte' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :age %><br>
-    <%= f.number_field :age %>
+  <div class='row be-round_ligth_gray'>
+    <div class='col-xs col-md-6'>
+      <%= f.text_field_with_bootstrap :address, label:'Direccion' %>
+    </div>
+    <div class='col-xs col-md-6'>
+      <%= f.text_field_with_bootstrap :current_residence, label:'Residencia actual' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :civil_status %><br>
-    <%= f.text_field :civil_status %>
+  <div class='row be-round_ligth_gray'>
+    <div class='col-xs col-md-6'>
+      <%= f.text_field_with_bootstrap :occupation, label:'Ocupacion' %>
+    </div>
+    <div class='col-xs col-md-6'>
+      <%= f.text_field_with_bootstrap :workplace, label:'Lugar de Trabajo' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :occupation %><br>
-    <%= f.text_field :occupation %>
-  </div>
-  <div class="field">
-    <%= f.label :salary %><br>
-    <%= f.text_field :salary %>
-  </div>
-  <div class="field">
-    <%= f.label :scolarship %><br>
-    <%= f.text_field :scolarship %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :workplace %><br>
-    <%= f.text_field :workplace %>
-  </div>
-  <div class="field">
-    <%= f.label :current_residence %><br>
-    <%= f.text_field :current_residence %>
-  </div>
-  <div class="field">
-    <%= f.label :relationship %><br>
-    <%= f.text_field :relationship %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :admission_date %><br>
-    <%= f.date_select :admission_date %>
-  </div>
-  <div class="field">
-    <%= f.label :birth_date %><br>
-    <%= f.date_select :birth_date %>
-  </div>
-  <div class="field">
-    <%= f.label :transportation %><br>
-    <%= f.text_field :transportation %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class='row be-round_ligth_gray'>
+    <div class='col-xs col-md-2'>
+      <%= f.submit  %>
+      <br>
+    </div>
   </div>
 <% end %>

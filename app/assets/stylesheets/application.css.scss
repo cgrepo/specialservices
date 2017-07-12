@@ -1,17 +1,19 @@
+/*
+ *= require jquery-ui/datepicker
+ *= require rails_bootstrap_forms
+ *= require_self
+ *= require_tree .
+ */
 // Example using 'Cerulean' bootswatch
 //Import bootstrap-sprockets
 @import "bootstrap-sprockets";
 // Import cerulean variables
-@import "bootswatch/cerulean/variables";
+@import "bootswatch/cerulean/variables"; //<-------------------
 // Then bootstrap itself
 @import "bootstrap";
 // Bootstrap body padding for fixed navbar
 body { padding-top: 60px; }
 // And finally bootswatch style itself
-@import "bootswatch/cerulean/bootswatch";
-// Whatever application styles you have go last
-//@import "base";
-h1 {
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-}
+@import "bootswatch/cerulean/bootswatch"; 
+@import 'ionicons';
+.be-round_ligth_gray{ background-color: #efefef; color: black; }

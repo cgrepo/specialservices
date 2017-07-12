@@ -4,6 +4,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string :kind
       t.string :name
       t.integer :age
+      t.string :gender
       t.string :civil_status
       t.string :occupation
       t.float :salary
