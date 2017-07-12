@@ -7,8 +7,7 @@ one:
   water: 1.5
   fuel: 1.5
   education: 1.5
-  other: MyString
-  benefit: MyString
+  person_id: 
 
 two:
   feeding: 1.5
@@ -17,5 +16,4 @@ two:
   water: 1.5
   fuel: 1.5
   education: 1.5
-  other: MyString
-  benefit: MyString
+  person_id: 

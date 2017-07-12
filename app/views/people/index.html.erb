@@ -78,7 +78,7 @@
   </thead>
   <tbody>
     <% @people.each do |person| %>
-      <tr class='success'>
+      <tr>
         <td><%= person.kind %></td>
         <td><%= person.name %></td>
         <td><%= person.age %></td>
@@ -94,9 +94,15 @@
         <td><%= person.admission_date %></td>
         <!--<td><%#= person.birth_date %></td>
         <td><%#= person.transportation %></td>-->
-        <td><%= link_to 'Show', person %></td>
-        <td><%= link_to 'Edit', edit_person_path(person) %></td>
-        <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to person, :class=>"btn btn-default btn-md" do %>
+              <%= octicon 'clippy', :height => 20 %>
+            <% end %></td>
+        <td><%= link_to edit_person_path(person), :class=>"btn btn-default btn-md" do %>
+              <%= octicon 'pencil', :height => 20 %>
+            <% end %></td>
+        <td><%= link_to person, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-default btn-md"  do %>
+              <%= octicon 'trashcan', :height => 20 %>
+            <% end %></td>
       </tr>
     <% end %>
   </tbody>

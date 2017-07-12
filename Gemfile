@@ -18,13 +18,14 @@ gem 'bcrypt', '~> 3.1.7'
   gem 'jquery-ui-rails' # date displays
   gem 'jquery-turbolinks'
   gem 'ionicons-rails'
+  gem 'octicons_helper' # add svg icons not used in this stage
   gem 'carrierwave', '~> 1.0' # upload files and pictures
   gem 'prawn' # pdf creation 
   gem 'pry' # debugging
   
   #-------TESTING THIS GEMS
     gem 'bootswatch-rails'
-#gem 'octicons_helper' # add svg icons not used in this stage
+
 #gem 'spinjs-rails' # spinners it seems it is alreay contained in jquery-turbolinks
 
 # See https://github.com/rails/execjs#readme for more supported runtimes

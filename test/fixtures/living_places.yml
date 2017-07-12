@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  kind: MyString
+  wall_mat: MyString
+  roof_mat: MyString
+  floor_mat: MyString
+  rooms: 1
+  bedroom: MyString
+  kitchen: MyString
+  dinningroom: MyString
+  bathroom: MyString
+  notes: MyText
+  lighting_service: MyString
+  water_service: MyString
+  person_id: 
+
+two:
+  kind: MyString
+  wall_mat: MyString
+  roof_mat: MyString
+  floor_mat: MyString
+  rooms: 1
+  bedroom: MyString
+  kitchen: MyString
+  dinningroom: MyString
+  bathroom: MyString
+  notes: MyText
+  lighting_service: MyString
+  water_service: MyString
+  person_id: 

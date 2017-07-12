@@ -7,8 +7,7 @@ class CreateExpeditures < ActiveRecord::Migration
       t.float :water
       t.float :fuel
       t.float :education
-      t.string :other
-      t.string :benefit
+      t.references :person, index: true, foreign_key: true
 
       t.timestamps null: false
     end

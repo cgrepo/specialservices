@@ -96,6 +96,11 @@ GEM
     multi_json (1.12.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
+    octicons (3.0.1)
+      nokogiri (>= 1.6.3.1)
+    octicons_helper (3.0.1)
+      octicons (~> 3.0)
+      rails
     pdf-core (0.7.0)
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
@@ -190,6 +195,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  octicons_helper
   prawn
   pry
   rails (= 4.2.5)
