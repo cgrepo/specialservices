@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717181817) do
+ActiveRecord::Schema.define(version: 20170717195559) do
 
   create_table "expeditures", force: :cascade do |t|
     t.float    "feeding"
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(version: 20170717181817) do
   end
 
   add_index "other_expeditures", ["expediture_id"], name: "index_other_expeditures_on_expediture_id"
+
+  create_table "other_services", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "living_place_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "other_services", ["living_place_id"], name: "index_other_services_on_living_place_id"
 
   create_table "people", force: :cascade do |t|
     t.string   "kind"
