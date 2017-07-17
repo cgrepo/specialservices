@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717174918) do
+ActiveRecord::Schema.define(version: 20170712205154) do
 
   create_table "expeditures", force: :cascade do |t|
     t.float    "feeding"
@@ -27,26 +27,6 @@ ActiveRecord::Schema.define(version: 20170717174918) do
 
   add_index "expeditures", ["person_id"], name: "index_expeditures_on_person_id"
 
-  create_table "living_places", force: :cascade do |t|
-    t.string   "kind"
-    t.string   "wall_mat"
-    t.string   "roof_mat"
-    t.string   "floor_mat"
-    t.integer  "rooms"
-    t.string   "bedroom"
-    t.string   "kitchen"
-    t.string   "dinningroom"
-    t.string   "bathroom"
-    t.text     "notes"
-    t.string   "lighting_service"
-    t.string   "water_service"
-    t.integer  "person_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
-  add_index "living_places", ["person_id"], name: "index_living_places_on_person_id"
-
   create_table "other_expeditures", force: :cascade do |t|
     t.string   "name"
     t.float    "amount"
@@ -56,15 +36,6 @@ ActiveRecord::Schema.define(version: 20170717174918) do
   end
 
   add_index "other_expeditures", ["expediture_id"], name: "index_other_expeditures_on_expediture_id"
-
-  create_table "other_services", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "LivingPlace_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "other_services", ["LivingPlace_id"], name: "index_other_services_on_LivingPlace_id"
 
   create_table "people", force: :cascade do |t|
     t.string   "kind"
