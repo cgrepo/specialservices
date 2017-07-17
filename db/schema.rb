@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170712205154) do
+ActiveRecord::Schema.define(version: 20170717181817) do
 
   create_table "expeditures", force: :cascade do |t|
     t.float    "feeding"
@@ -26,6 +26,24 @@ ActiveRecord::Schema.define(version: 20170712205154) do
   end
 
   add_index "expeditures", ["person_id"], name: "index_expeditures_on_person_id"
+
+  create_table "living_places", force: :cascade do |t|
+    t.string   "kind"
+    t.string   "wall_material"
+    t.string   "roof_material"
+    t.string   "floor_material"
+    t.integer  "number_of_rooms"
+    t.boolean  "has_beedroom"
+    t.boolean  "has_kitchen"
+    t.boolean  "has_dinningroom"
+    t.boolean  "has_bathroom"
+    t.text     "notes"
+    t.integer  "Person_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "living_places", ["Person_id"], name: "index_living_places_on_Person_id"
 
   create_table "other_expeditures", force: :cascade do |t|
     t.string   "name"

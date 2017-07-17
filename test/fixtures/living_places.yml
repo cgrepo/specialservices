@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  kind: MyString
+  wall_material: MyString
+  roof_material: MyString
+  floor_material: MyString
+  number_of_rooms: 1
+  has_beedroom: false
+  has_kitchen: false
+  has_dinningroom: false
+  has_bathroom: false
+  notes: MyText
+  Person_id: 
+
+two:
+  kind: MyString
+  wall_material: MyString
+  roof_material: MyString
+  floor_material: MyString
+  number_of_rooms: 1
+  has_beedroom: false
+  has_kitchen: false
+  has_dinningroom: false
+  has_bathroom: false
+  notes: MyText
+  Person_id: 
