@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Case:</strong>
+  <%= @request.case %>
+</p>
+
+<p>
+  <strong>Rdate:</strong>
+  <%= @request.rdate %>
+</p>
+
+<p>
+  <strong>Sent by:</strong>
+  <%= @request.sent_by %>
+</p>
+
+<p>
+  <strong>Oriented:</strong>
+  <%= @request.oriented %>
+</p>
+
+<p>
+  <strong>Service:</strong>
+  <%= @request.service %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @request.notes %>
+</p>
+
+<p>
+  <strong>Qualification:</strong>
+  <%= @request.qualification %>
+</p>
+
+<p>
+  <strong>Person:</strong>
+  <%= @request.person %>
+</p>
+
+<%= link_to 'Edit', edit_request_path(@request) %> |
+<%= link_to 'Back', requests_path %>

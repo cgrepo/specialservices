@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717200152) do
+ActiveRecord::Schema.define(version: 20170717205119) do
 
   create_table "benefits", force: :cascade do |t|
     t.string   "name"
@@ -93,5 +93,20 @@ ActiveRecord::Schema.define(version: 20170717200152) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
+
+  create_table "requests", force: :cascade do |t|
+    t.string   "case"
+    t.date     "rdate"
+    t.string   "sent_by"
+    t.string   "oriented"
+    t.string   "service"
+    t.text     "notes"
+    t.float    "qualification"
+    t.integer  "person_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "requests", ["person_id"], name: "index_requests_on_person_id"
 
 end

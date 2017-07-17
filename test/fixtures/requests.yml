@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  case: MyString
+  rdate: 2017-07-17
+  sent_by: MyString
+  oriented: MyString
+  service: MyString
+  notes: MyText
+  qualification: 1.5
+  person_id: 
+
+two:
+  case: MyString
+  rdate: 2017-07-17
+  sent_by: MyString
+  oriented: MyString
+  service: MyString
+  notes: MyText
+  qualification: 1.5
+  person_id: 
