@@ -1,3 +1,3 @@
 class OtherExpediture < ActiveRecord::Base
-  belongs_to :expediture
+  belongs_to :Expediture
 end
