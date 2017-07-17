@@ -11,7 +11,7 @@ class CreateLivingPlaces < ActiveRecord::Migration
       t.boolean :has_dinningroom
       t.boolean :has_bathroom
       t.text :notes
-      t.references :Person, index: true, foreign_key: true
+      t.references :person, index: true, foreign_key: true
 
       t.timestamps null: false
     end
