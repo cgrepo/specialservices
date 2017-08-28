@@ -1,22 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Requests</h1>
+<h1>Listado de Solicitudes</h1>
 
-<table>
+<table class="table table-striped table-hover ">
   <thead>
-    <tr>
-      <th>Case</th>
-      <th>Rdate</th>
-      <th>Sent by</th>
-      <th>Oriented</th>
-      <th>Service</th>
-      <th>Notes</th>
-      <th>Qualification</th>
-      <th>Person</th>
+    <tr class='info'>
+      <th>Caso</th>
+      <th>Solicitado</th>
+      <th>Enviado x</th>
+      <th>Orientado a</th>
+      <th>Servicio</th>
+      <th>Notas</th>
+      <th>Calificacion</th>
+      <th>Persona</th>
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @requests.each do |request| %>
       <tr>
@@ -28,10 +27,15 @@
         <td><%= request.notes %></td>
         <td><%= request.qualification %></td>
         <td><%= request.person %></td>
-        <td><%= link_to 'Show', request %></td>
-        <td><%= link_to 'Edit', edit_request_path(request) %></td>
-        <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <td><%= link_to request, :class=>"btn btn-default btn-md" do %>
+              <%= octicon 'clippy', :height => 20 %>
+            <% end %></td>
+        <td><%= link_to edit_request_path(request), :class=>"btn btn-default btn-md" do %>
+              <%= octicon 'pencil', :height => 20 %>
+            <% end %></td>
+        <td><%= link_to request, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-default btn-md"  do %>
+              <%= octicon 'trashcan', :height => 20 %>
+            <% end %></td>
     <% end %>
   </tbody>
 </table>
