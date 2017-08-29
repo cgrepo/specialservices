@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  resources :requests
+  resources :requests do
+    collection do
+      get 'showmodal', to: 'requests#showmodal'
+    end
+  end
   resources :people
+  resources :expeditures, only: [ :index ]
+  resources :otherservices, only: [ :index ]
   get 'welcome/index'
 
   get 'welcome/index'

@@ -1,61 +1,107 @@
-<%= bootstrap_form_for(@request) do |f| %>
-  <div class='row be-round_ligth_gray'>
-    <div class='container'>
-        <div class='row'>
-          <div class='col-xs col-md-6'>
-            <% if @request.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
-                <ul>
-                <% @request.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-                </ul>
+<div class='row be-round_ligth_gray'>
+  <div class='col-xs col-md-12'>
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#home" data-toggle="tab">Caso</a></li>
+      <li><a href="#expediture" data-toggle="tab">Gastos</a></li>
+      <li><a href="#living" data-toggle="tab">Vivienda</a></li>
+    </ul>
+  </div>
+  <div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade active in" id="home">
+      <%= bootstrap_form_for(@request) do |f| %>
+        <div class='row be-round_ligth_gray'>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-xs col-md-6'>
+                <% if @request.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+                      <ul>
+                      <% @request.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
               </div>
-            <% end %>
+            </div>
           </div>
         </div>
-      </div>
+        <div class='row be-round_ligth_gray'>
+          <div class='col-xs col-md-2'>
+            <%= f.text_field_with_bootstrap :case, label:'No. Caso' %>
+          </div>
+          <div class='col-xs col-md-2'>
+            <%= f.text_field_with_bootstrap :rdate, label:'Fecha Solicitud', class:'xdate' %>
+          </div>
+          <div class='col-xs col-md-4'>
+            <%= f.text_field_with_bootstrap :sent_by, label:'Enviado por' %>
+          </div>
+          <div class='col-xs col-md-4'>
+            <%= f.text_field_with_bootstrap :oriented, label:'Orientado a' %>
+          </div>
+        </div>
+        <div class='row be-round_ligth_gray'>
+          <div class='col-xs col-md-3'>
+            <%= f.text_field_with_bootstrap :service, label:'Servicio' %>
+          </div>
+          <div class='col-xs col-md-3'>
+            <%= f.text_field_with_bootstrap :qualification, label:'Calificacion' %>
+          </div>
+          <div class='col-xs col-md-6'>
+            <%= f.text_area_with_bootstrap :notes, label:'Observaciones' %>
+          </div>
+            <%#= f.text_field_with_bootstrap :person_id, label:'Person_id' %> 
+        </div>
+        <div class='row be-round_ligth_gray'>
+          <div class='col-xs co-md-9'></div>
+          <div class='col-xs col-md-3'>
+            <a class="btn btn-default" id='addPerson'>
+              <%= octicon 'organization', :height => 20 %>
+            </a>
+          </div>
+        </div>
+        <div class='row be-round_ligth_gray'>
+          <div class='col-xs col-md-2'>
+            <%= f.submit  %>
+            <br>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="expediture">
+      <%= bootstrap_form_for(@expediture) do |f| %>
+        <div class='row be-round_ligth_gray'>
+          <div class='col-xs col-md-2'>
+            <%= f.number_field_with_bootstrap :feeding, label:'Alimentacion', prepend:'$', append:'.00' %>
+          </div>
+          <div class='col-xs col-md-2'>
+            <%= f.number_field_with_bootstrap :rent, label:'Renta', prepend:'$', append:'.00' %>
+          </div>
+          <div class='col-xs col-md-2'>
+            <%= f.number_field_with_bootstrap :electricity, label:'Electricidad', prepend:'$', append:'.00' %>
+          </div>
+          <div class='col-xs col-md-2'>
+            <%= f.number_field_with_bootstrap :water, label:'Agua', prepend:'$', append:'.00' %>
+          </div>
+          <div class='col-xs col-md-2'>
+            <%= f.number_field_with_bootstrap :fuel, label:'Gasolina', prepend:'$', append:'.00' %>
+          </div>
+          <div class='col-xs col-md-2'>
+            <%= f.number_field_with_bootstrap :education, label:'Educacion', prepend:'$', append:'.00' %>
+          </div>
+        </div>
+        <div class='row be-round_ligth_gray'>
+          <div class='col-xs col-md-3'>
+            <a  class="btn btn-default" id='addExpediture'>
+              <%= octicon 'diff-added', :height => 20 %>
+            </a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="living">
+      <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+    </div>
   </div>
-  <div class='row be-round_ligth_gray'>
-    <div class='col-xs col-md-2'>
-      <%= f.text_field_with_bootstrap :case, label:'No. Caso' %>
-    </div>
-    <div class='col-xs col-md-2'>
-      <%= f.text_field_with_bootstrap :rdate, label:'Fecha Solicitud', class:'xdate' %>
-    </div>
-    <div class='col-xs col-md-4'>
-      <%= f.text_field_with_bootstrap :sent_by, label:'Enviado por' %>
-    </div>
-    <div class='col-xs col-md-4'>
-      <%= f.text_field_with_bootstrap :oriented, label:'Orientado a' %>
-    </div>
-  </div>
-  <div class='row be-round_ligth_gray'>
-    <div class='col-xs col-md-3'>
-      <%= f.text_field_with_bootstrap :service, label:'Servicio' %>
-    </div>
-    <div class='col-xs col-md-3'>
-      <%= f.text_field_with_bootstrap :qualification, label:'Calificacion' %>
-    </div>
-    <div class='col-xs col-md-6'>
-      <%= f.text_area_with_bootstrap :notes, label:'Observaciones' %>
-    </div>
-    <%#= f.text_field_with_bootstrap :person_id, label:'Person_id' %> 
-  </div>
-  <div class='row be-round_ligth_gray'>
-    <div class='col-xs co-md-9'></div>
-    <div class='col-xs col-md-3'>
-        <a href="#" class="btn btn-default">
-          <%= octicon 'organization', :height => 20 %>
-        </a>
-    </div>
-    
-  </div>
-  <div class='row be-round_ligth_gray'>
-    <div class='col-xs col-md-2'>
-      <%= f.submit  %>
-      <br>
-    </div>
-  </div>
-<% end %>
+</div>

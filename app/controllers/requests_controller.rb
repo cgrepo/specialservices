@@ -15,6 +15,8 @@ class RequestsController < ApplicationController
   # GET /requests/new
   def new
     @request = Request.new
+    @expediture = Expediture.new
+    @otherservice = OtherService.new
   end
 
   # GET /requests/1/edit
@@ -60,7 +62,18 @@ class RequestsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  # Mine-----------------------
+    def showmodal
+      respond_to do |format|
+        if params[:key] == 'expediture'
+          @otherservice = OtherService.new
+          format.html {render :partial => 'modal4service'}
+        else
+          @person = Person.new
+          format.html {render :partial => 'modal4person'}
+        end
+      end
+    end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_request
