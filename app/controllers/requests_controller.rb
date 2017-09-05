@@ -16,7 +16,7 @@ class RequestsController < ApplicationController
   def new
     @request = Request.new
     @expediture = Expediture.new
-    @otherservice = OtherService.new
+    @livingPlace = LivingPlace.new
   end
 
   # GET /requests/1/edit
@@ -65,12 +65,18 @@ class RequestsController < ApplicationController
   # Mine-----------------------
     def showmodal
       respond_to do |format|
-        if params[:key] == 'expediture'
-          @otherservice = OtherService.new
-          format.html {render :partial => 'modal4service'}
-        else
-          @person = Person.new
-          format.html {render :partial => 'modal4person'}
+        case params[:key]
+          when 'expediture'
+            @otherExpediture = OtherExpediture.new
+            format.html {render :partial => 'modal4expediture'}
+          when 'person'
+            format.html {render :partial => 'modal4person'}
+          when 'service'
+            @otherService = OtherService.new
+            format.html {render :partial => 'modal4service'}
+          when 'benefit'
+            @benefit = Benefit.new
+            format.html {render :partial => 'modal4benefit'}
         end
       end
     end

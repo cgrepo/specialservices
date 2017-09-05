@@ -2,10 +2,10 @@
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">AGREGAR OTRO SERVICIO</h4>
+            <h4 class="modal-title">AGREGAR OTRO GASTO</h4>
         </div>
         <div class="modal-body">
-          <%= bootstrap_form_for(@otherService, layout: :horizontal, :html => {id:'addOtherService'}) do |f| %>
+          <%= bootstrap_form_for(@otherExpediture, layout: :horizontal, :html => {id:'addExpeditureCommit'}) do |f| %>
             <%#= f.text_field_with_bootstrap :brandx, label:'Marca' %>
             <%#= f.text_field_with_bootstrap :modelx, label:'Modelo' %>
             <%= f.submit %>

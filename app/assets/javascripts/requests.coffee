@@ -22,3 +22,27 @@ $(document).on 'turbolinks:load', ->
                 $('#modal-window').modal('show')
             error: (response) ->
                 alert response
+                
+    $('#addBenefit').on 'click', ->
+        $.ajax
+            type:'GET'
+            url: '/requests/showmodal'
+            data:
+                key:'benefit'
+            success: (response) ->
+                $("#modal-window").html(response)
+                $('#modal-window').modal('show')
+            error: (response) ->
+                alert response
+                
+    $('#addService').on 'click', ->
+        $.ajax
+            type:'GET'
+            url: '/requests/showmodal'
+            data:
+                key:'service'
+            success: (response) ->
+                $("#modal-window").html(response)
+                $('#modal-window').modal('show')
+            error: (response) ->
+                alert response

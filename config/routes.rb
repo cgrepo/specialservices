@@ -5,12 +5,14 @@ Rails.application.routes.draw do
     end
   end
   resources :people
-  resources :expeditures, only: [ :index ]
-  resources :otherservices, only: [ :index ]
+  resources :expeditures,:other_services, :other_expeditures, :living_places, :benefits, 
+  only: [ :index ]
+  #resources :otherservices, only: [ :index ]
   get 'welcome/index'
 
   get 'welcome/index'
   root to: 'welcome#index'
+#--------HIDER-----------------
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

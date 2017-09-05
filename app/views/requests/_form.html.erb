@@ -92,16 +92,60 @@
           </div>
         </div>
         <div class='row be-round_ligth_gray'>
-          <div class='col-xs col-md-3'>
+          <div class='col-xs col-md-2'>
             <a  class="btn btn-default" id='addExpediture'>
-              <%= octicon 'diff-added', :height => 20 %>
+             Agregar gasto
+            </a>
+          </div>
+          <div class='col-xs col-md-2'>
+            <a  class="btn btn-default" id='addBenefit'>
+             Agregar prestacion
             </a>
           </div>
         </div>
       <% end %>
     </div>
     <div class="tab-pane fade" id="living">
-      <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+       <%= bootstrap_form_for(@livingPlace) do |f| %>
+        <div class='row be-round_ligth_gray'>
+          <div class='col-xs col-md-2'>
+            <%= f.text_field_with_bootstrap :kind, label:'tipo' %>
+          </div>
+          <div class='col-xs col-md-2'>
+            <%= f.text_field_with_bootstrap :wall_material, label:'Pared' %>
+          </div>
+          <div class='col-xs col-md-2'>
+            <%= f.text_field_with_bootstrap :roof_material, label:'Techo' %>
+          </div>
+          <div class='col-xs col-md-2'>
+            <%= f.text_field_with_bootstrap :floor_material, label:'Piso' %>
+          </div>
+          <div class='col-xs col-md-2'>
+            <%= f.number_field_with_bootstrap :number_of_rooms, label:'No.cuartos', prepend:'#' %>
+          </div>
+          <div class='col-xs col-md-2'>
+            <%= f.text_field_with_bootstrap :has_beedroom, label:'Recamara', prepend:'?' %>
+          </div>
+        </div>
+        <div class='row be-round_ligth_gray'>
+          <div class='col-xs col-md-2'>
+            <%= f.text_field_with_bootstrap :has_kitchen, label:'Cosina', prepend:'?' %>
+          </div>
+          <div class='col-xs col-md-2'>
+            <%= f.text_field_with_bootstrap :has_dinningroom, label:'Comedor', prepend:'?' %>
+          </div>
+          <div class='col-xs col-md-2'>
+            <%= f.text_field_with_bootstrap :has_bathroom, label:'Baño', prepend:'?' %>
+          </div>
+        </div>
+        <div class='row be-round_ligth_gray'>
+          <div class='col-xs col-md-2'>
+            <a  class="btn btn-default" id='addService'>
+              otro servicio
+            </a>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
