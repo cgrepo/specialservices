@@ -79,6 +79,12 @@ class RequestsController < ApplicationController
             format.html {render :partial => 'modal4benefit'}
           when 'kind'
             format.html {render :partial => 'modal4otherKind'}
+          when 'wall'
+            format.html {render :partial => 'modal4wall'}
+          when 'roof'
+            format.html {render :partial => 'modal4roof'}
+          when 'floor'
+            format.html {render :partial => 'modal4floor'}
         end
       end
     end
