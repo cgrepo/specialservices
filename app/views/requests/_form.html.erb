@@ -109,34 +109,39 @@
        <%= bootstrap_form_for(@livingPlace) do |f| %>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-2'>
-            <%= f.text_field_with_bootstrap :kind, label:'tipo' %>
+            <%= f.select_with_bootstrap :kind, [['PROPIA'],['RENTADA'],['PRESTADA'],['TERRENO IRREGULAR'],['VIVE CON PARIENTES'],['OTROS']], label:'TIPO' %>
           </div>
           <div class='col-xs col-md-2'>
-            <%= f.text_field_with_bootstrap :wall_material, label:'Pared' %>
+            <label><br><br>MATERIAL DE VIVIENDA</label>
           </div>
           <div class='col-xs col-md-2'>
-            <%= f.text_field_with_bootstrap :roof_material, label:'Techo' %>
+            <%= f.select_with_bootstrap :wall_material, [['BLOCK'],['LADRILLO'],['CARTON'],['MADERA'],['AGREGAR']], label:'Pared' %>
           </div>
           <div class='col-xs col-md-2'>
-            <%= f.text_field_with_bootstrap :floor_material, label:'Piso' %>
+            <%= f.select_with_bootstrap :roof_material, [['CONCRETO'],['CARTON'],['PALMA'],['AGREGAR']], label:'Techo' %>
+          </div>
+          <div class='col-xs col-md-2'>
+            <%= f.select_with_bootstrap :floor_material, [['MOSAICO'],['CEMENTO'],['TIERRA'],['AGREGAR']], label:'Piso' %>
           </div>
           <div class='col-xs col-md-2'>
             <%= f.number_field_with_bootstrap :number_of_rooms, label:'No.cuartos', prepend:'#' %>
           </div>
-          <div class='col-xs col-md-2'>
-            <%= f.text_field_with_bootstrap :has_beedroom, label:'Recamara', prepend:'?' %>
-          </div>
         </div>
         <div class='row be-round_ligth_gray'>
-          <div class='col-xs col-md-2'>
-            <%= f.text_field_with_bootstrap :has_kitchen, label:'Cosina', prepend:'?' %>
-          </div>
-          <div class='col-xs col-md-2'>
-            <%= f.text_field_with_bootstrap :has_dinningroom, label:'Comedor', prepend:'?' %>
-          </div>
-          <div class='col-xs col-md-2'>
-            <%= f.text_field_with_bootstrap :has_bathroom, label:'Baño', prepend:'?' %>
-          </div>
+          <%= f.form_group do %>
+            <div class='col-xs col-md-2'>
+              <%= f.check_box_with_bootstrap :has_beedroom, label:'Recamara' %>
+            </div>
+            <div class='col-xs col-md-2'>
+              <%= f.check_box_with_bootstrap :has_kitchen, label:'Cocina' %>
+            </div>
+            <div class='col-xs col-md-2'>
+              <%= f.check_box_with_bootstrap :has_dinningroom, label:'Comedor' %>
+            </div>
+            <div class='col-xs col-md-2'>
+              <%= f.check_box_with_bootstrap :has_bathroom, label:'Baño' %>
+            </div>
+          <% end %>
         </div>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-2'>

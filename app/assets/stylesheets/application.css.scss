@@ -17,3 +17,13 @@ body { padding-top: 60px; }
 @import "bootswatch/cerulean/bootswatch"; 
 @import 'ionicons';
 .be-round_ligth_gray{ background-color: #efefef; color: black; }
+.full_borders{
+  border-top-style:solid;
+  border-bottom-style:solid;
+  border-right-style:solid;
+  border-left-style:solid;
+  border-left-width:thin;
+  border-right-width:thin;
+  border-top-width:thin;
+  border-bottom-width:thin;
+}
