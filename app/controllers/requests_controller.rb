@@ -77,6 +77,8 @@ class RequestsController < ApplicationController
           when 'benefit'
             @benefit = Benefit.new
             format.html {render :partial => 'modal4benefit'}
+          when 'kind'
+            format.html {render :partial => 'modal4otherKind'}
         end
       end
     end

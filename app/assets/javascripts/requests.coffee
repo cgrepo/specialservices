@@ -46,3 +46,20 @@ $(document).on 'turbolinks:load', ->
                 $('#modal-window').modal('show')
             error: (response) ->
                 alert response
+                
+    $('#living_place_kind').on 'change', ->
+        if $('#living_place_kind').val() == 'OTROS'
+            $.ajax
+                type:'GET'
+                url: '/requests/showmodal'
+                data:
+                    key:'kind'
+                success: (response) ->
+                    $("#modal-window").html(response)
+                    $('#modal-window').modal('show')
+                error: (response) ->
+                    alert response
+    $('#modal-window').on 'hidden.bs.modal', ->
+        console.log $('#textinput').val()
+        $('#living_place_kind').prepend('<option value="'+$('#textinput').val()+'">'+$('#textinput').val()+'</option>')
+        $('#living_place_kind').val($('#textinput').val())
