@@ -70,6 +70,7 @@ class RequestsController < ApplicationController
             @otherExpediture = OtherExpediture.new
             format.html {render :partial => 'modal4expediture'}
           when 'person'
+            @person = Person.new
             format.html {render :partial => 'modal4person'}
           when 'service'
             @otherService = OtherService.new

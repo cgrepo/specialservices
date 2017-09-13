@@ -5,11 +5,74 @@
             <h4 class="modal-title">AGREGAR PERSONA</h4>
         </div>
         <div class="modal-body">
-          <%#= bootstrap_form_for(@brandmodel, layout: :horizontal, :html => {id:'commitAddBrandModel4pc'}) do |f| %>
-            <%#= f.text_field_with_bootstrap :brandx, label:'Marca' %>
-            <%#= f.text_field_with_bootstrap :modelx, label:'Modelo' %>
-            <%#= f.submit %>
-          <%# end %>
+            <%= bootstrap_form_for(@person, :html => {id:'commitAddPerson'}) do |f| %>
+            <div class='row'>
+              <div class='col-xs col-md-4'>
+                <%= f.select_with_bootstrap :kind, [['BENEFICIARIO'],['RESPONSABLE'],['FAMILIAR']],  :include_blank => true, label:'Tipo persona' %>
+              </div>
+              <div class='col-xs col-md-8'>
+                <%= f.text_field_with_bootstrap :name, label:'Nombre' %>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-xs col-md-4'>
+                <%= f.number_field_with_bootstrap :salary, label:'Salario', prepend:'$' %>
+              </div>
+              <div class='col-xs col-md-8'>
+                <%= f.text_field_with_bootstrap :occupation, label:'Ocupacion' %>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-xs col-md-2'>
+                <%= f.number_field_with_bootstrap :age, label:'Edad' %>
+              </div>
+              <div class='col-xs col-md-2'>
+                <%= f.select_with_bootstrap :gender, [['M'],['F']], label:'Sexo' %>
+              </div>
+              <div class='col-xs col-md-4'>
+                <%= f.select_with_bootstrap :civil_status, [['SOLTERO'],['CASADO'],['UNION LIBRE'],['VIUDO'],['DIVORCIADO']], label:'Estado Civil' %>
+              </div>
+              <div class='col-xs col-md-4'>
+                <%= f.select_with_bootstrap :scolarship, [['INCOMPLETA'],['PRIMARIA'],['SECUNDARIA']], label:'Escolaridad' %>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-xs-12'>
+                <%= f.text_field_with_bootstrap :address, label:'Direccion' %>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-xs-12'>
+                <%= f.text_field_with_bootstrap :workplace, label:'Lugar de Trabajo' %>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-xs-12'>
+                <%= f.text_field_with_bootstrap :current_residence, label:'Residencia actual' %>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-xs col-md-3'>
+                <%= f.text_field_with_bootstrap :relationship, label:'Parentesco' %>
+              </div>
+              <div class='col-xs col-md-4'>
+                <%= f.text_field_with_bootstrap :phone, label:'Telefono' %>
+              </div>
+              <div class='col-xs col-md-5'>
+                <%= f.text_field_with_bootstrap :transportation, label:'Transporte' %>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-xs col-md-8'>
+                <%= f.date_select_with_bootstrap :admission_date, label:'Fecha admision' %>
+              </div>
+              <div class='col-xs col-md-8'>
+                <%= f.date_select_with_bootstrap :birth_date, label:'Fecha nacimiento' %>
+              </div>
+            </div>
+              <%= f.submit %>
+            <% end %>
+          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
