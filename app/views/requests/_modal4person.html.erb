@@ -8,7 +8,7 @@
             <%= bootstrap_form_for(@person, :html => {id:'commitAddPerson'}) do |f| %>
             <div class='row'>
               <div class='col-xs col-md-4'>
-                <%= f.select_with_bootstrap :kind, [['BENEFICIARIO'],['RESPONSABLE'],['FAMILIAR']],  :include_blank => true, label:'Tipo persona' %>
+                <%= f.select_with_bootstrap :kind, [['','0'],['BENEFICIARIO','1'],['RESPONSABLE','2'],['FAMILIAR','3']], label:'Tipo persona' %>
               </div>
               <div class='col-xs col-md-8'>
                 <%= f.text_field_with_bootstrap :name, label:'Nombre' %>

@@ -10,7 +10,6 @@ $(document).on 'turbolinks:load', ->
                 $('#modal-window').modal('show')
             error: (response) ->
                 alert response
-                
     $('#addExpediture').on 'click', ->
         $.ajax
             type:'GET'
@@ -22,7 +21,6 @@ $(document).on 'turbolinks:load', ->
                 $('#modal-window').modal('show')
             error: (response) ->
                 alert response
-                
     $('#addBenefit').on 'click', ->
         $.ajax
             type:'GET'
@@ -34,7 +32,6 @@ $(document).on 'turbolinks:load', ->
                 $('#modal-window').modal('show')
             error: (response) ->
                 alert response
-                
     $('#addService').on 'click', ->
         $.ajax
             type:'GET'
@@ -46,7 +43,6 @@ $(document).on 'turbolinks:load', ->
                 $('#modal-window').modal('show')
             error: (response) ->
                 alert response
-                
     $('#living_place_kind').on 'change', ->
         if $('#living_place_kind').val() == 'OTROS'
             $.ajax
@@ -71,7 +67,6 @@ $(document).on 'turbolinks:load', ->
                     $('#modal-window2').modal('show')
                 error: (response) ->
                     alert response
-    
     $('#living_place_roof_material').on 'change', ->
         if $('#living_place_roof_material').val() == 'AGREGAR'
             $.ajax
@@ -84,7 +79,6 @@ $(document).on 'turbolinks:load', ->
                     $('#modal-window2').modal('show')
                 error: (response) ->
                     alert response
-    
     $('#living_place_floor_material').on 'change', ->
         if $('#living_place_floor_material').val() == 'AGREGAR'
             $.ajax
@@ -97,7 +91,6 @@ $(document).on 'turbolinks:load', ->
                     $('#modal-window2').modal('show')
                 error: (response) ->
                     alert response
-    
     $('#modal-window2').on 'hidden.bs.modal', ->
         if $('h4').text() == 'AGREGAR OTRO TIPO DE VIVIENDA'
             $('#living_place_kind').prepend('<option value="'+$('#textinput').val()+'">'+$('#textinput').val()+'</option>')
@@ -111,3 +104,10 @@ $(document).on 'turbolinks:load', ->
         else if $('h4').text() == 'AGREGAR OTRO MATERIAL DE PISO'
             $('#living_place_floor_material').prepend('<option value="'+$('#floor').val()+'">'+$('#floor').val()+'</option>')
             $('#living_place_floor_material').val($('#floor').val())
+$(document).on 'change', '#person_kind', ->
+    unless $(this).val()=='1'
+        $('#person_relationship').prop('disabled',false)
+        console.log $(this).val()
+    else
+        $('#person_relationship').prop('disabled',true)
+        console.log $(this).val()
