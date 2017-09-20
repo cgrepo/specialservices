@@ -104,10 +104,12 @@ $(document).on 'turbolinks:load', ->
         else if $('h4').text() == 'AGREGAR OTRO MATERIAL DE PISO'
             $('#living_place_floor_material').prepend('<option value="'+$('#floor').val()+'">'+$('#floor').val()+'</option>')
             $('#living_place_floor_material').val($('#floor').val())
-$(document).on 'change', '#person_kind', ->
-    unless $(this).val()=='1'
-        $('#person_relationship').prop('disabled',false)
-        console.log $(this).val()
-    else
-        $('#person_relationship').prop('disabled',true)
-        console.log $(this).val()
+        else if $('h4').text() == 'SELECCIONAR PERSONA(S)'
+            console.log 'tet'
+# $(document).on 'change', '#person_kind', ->
+#     unless $(this).val()=='1'
+#         $('#person_relationship').prop('disabled',false)
+#         console.log $(this).val()
+#     else
+#         $('#person_relationship').prop('disabled',true)
+#         console.log $(this).val()

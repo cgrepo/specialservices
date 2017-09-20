@@ -70,8 +70,10 @@ class RequestsController < ApplicationController
             @otherExpediture = OtherExpediture.new
             format.html {render :partial => 'modal4expediture'}
           when 'person'
-            @person = Person.new
-            format.html {render :partial => 'modal4person'}
+            # Dont add person search and select the person Daa!
+            #@person = Person.new
+            #format.html {render :partial => 'modal4person'}
+            format.html {render :partial => 'modalPSearch'}
           when 'service'
             @otherService = OtherService.new
             format.html {render :partial => 'modal4service'}
