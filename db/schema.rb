@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717205119) do
+ActiveRecord::Schema.define(version: 20170922152939) do
 
   create_table "benefits", force: :cascade do |t|
     t.string   "name"
@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 20170717205119) do
   add_index "other_services", ["living_place_id"], name: "index_other_services_on_living_place_id"
 
   create_table "people", force: :cascade do |t|
-    t.string   "kind"
     t.string   "name"
     t.integer  "age"
     t.string   "gender"
