@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170922152939) do
+ActiveRecord::Schema.define(version: 20170925200406) do
 
   create_table "benefits", force: :cascade do |t|
     t.string   "name"
@@ -107,5 +107,21 @@ ActiveRecord::Schema.define(version: 20170922152939) do
   end
 
   add_index "requests", ["person_id"], name: "index_requests_on_person_id"
+
+  create_table "responsables", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "age"
+    t.string   "gender"
+    t.string   "civil_status"
+    t.string   "occupation"
+    t.string   "address"
+    t.string   "workplace"
+    t.string   "relationship"
+    t.integer  "Person_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "responsables", ["Person_id"], name: "index_responsables_on_Person_id"
 
 end
