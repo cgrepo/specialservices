@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170925201229) do
+ActiveRecord::Schema.define(version: 20170925200406) do
 
   create_table "benefits", force: :cascade do |t|
     t.string   "name"
@@ -120,7 +120,6 @@ ActiveRecord::Schema.define(version: 20170925201229) do
     t.integer  "Person_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.float    "salary"
   end
 
   add_index "responsables", ["Person_id"], name: "index_responsables_on_Person_id"
