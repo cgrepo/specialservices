@@ -9,6 +9,7 @@ class CreateResponsables < ActiveRecord::Migration
       t.string :address
       t.string :workplace
       t.string :relationship
+      t.float :salary
       t.references :Person, index: true, foreign_key: true
 
       t.timestamps null: false

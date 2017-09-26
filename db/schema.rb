@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20170926034136) do
     t.string   "address"
     t.string   "workplace"
     t.string   "relationship"
+    t.float    "salary"
     t.integer  "Person_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false

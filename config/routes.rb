@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     end
   end
   resources :people
-  resources :expeditures,:other_services, :other_expeditures, :living_places, :benefits, 
-  only: [ :index ]
+  resources :expeditures , :benefits, :other_services, :other_expeditures, :living_places,
+            :responsables, :relatives, only: [ :index ]
   #resources :otherservices, only: [ :index ]
   get 'welcome/index'
 
