@@ -8,8 +8,9 @@ class CreateRelatives < ActiveRecord::Migration
       t.string :occupation
       t.string :adddress
       t.string :workplace
-      t.string :relationshow
+      t.string :relationship
       t.string :salary
+      t.string :scolarship
       t.references :Person, index: true, foreign_key: true
 
       t.timestamps null: false

@@ -101,8 +101,9 @@ ActiveRecord::Schema.define(version: 20171004191730) do
     t.string   "occupation"
     t.string   "adddress"
     t.string   "workplace"
-    t.string   "relationshow"
+    t.string   "relationship"
     t.string   "salary"
+    t.string   "scolarship"
     t.integer  "Person_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
