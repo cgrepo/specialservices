@@ -3,12 +3,14 @@ class CreateRelatives < ActiveRecord::Migration
     create_table :relatives do |t|
       t.string :name
       t.integer :age
-      t.string :civil_status
       t.string :gender
+      t.string :civil_status
       t.string :occupation
-      t.float :salary
-      t.string :scolarship
-      t.string :relationship
+      t.string :adddress
+      t.string :workplace
+      t.string :relationshow
+      t.string :salary
+      t.references :Person, index: true, foreign_key: true
 
       t.timestamps null: false
     end

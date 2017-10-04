@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170926034136) do
+ActiveRecord::Schema.define(version: 20171004191730) do
 
   create_table "benefits", force: :cascade do |t|
     t.string   "name"
@@ -96,15 +96,19 @@ ActiveRecord::Schema.define(version: 20170926034136) do
   create_table "relatives", force: :cascade do |t|
     t.string   "name"
     t.integer  "age"
-    t.string   "civil_status"
     t.string   "gender"
+    t.string   "civil_status"
     t.string   "occupation"
-    t.float    "salary"
-    t.string   "scolarship"
-    t.string   "relationship"
+    t.string   "adddress"
+    t.string   "workplace"
+    t.string   "relationshow"
+    t.string   "salary"
+    t.integer  "Person_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  add_index "relatives", ["Person_id"], name: "index_relatives_on_Person_id"
 
   create_table "requests", force: :cascade do |t|
     t.string   "case"

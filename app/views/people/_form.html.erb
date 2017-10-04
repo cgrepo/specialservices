@@ -125,9 +125,45 @@
             <br>
             <%= f.submit 'SALVAR' , class:'btn btn-default btn-block'  %>
           </div>
-          
         </div>
       <% end %> 
     </div>
-    <div class="tab-pane fade" id="relatives"></div>
+    <div class="tab-pane fade" id="relatives">
+      <%= bootstrap_form_for(@relative) do |f| %>
+        <div class='row be-round_ligth_gray'>
+          <div class='col-xs col-md-6'>
+            <%= f.text_field_with_bootstrap :name, label:'Nombre' %>
+          </div>
+          <div class='col-xs col-md-1'>
+            <%= f.number_field_with_bootstrap :age, label:'Edad' %>
+          </div>
+          <div class='col-xs col-md-1'>
+            <%= f.select_with_bootstrap :gender, [['M'],['F']] ,label:'SEXO' %>
+          </div>
+          <div class='col-xs col-md-2'>
+            <%= f.select_with_bootstrap :civil_status,[['SOLTERO'],['CASADO'],['VIUDO(A)'],['UNION LIBRE'],['MS'],['OTRO'] ],label:'Edo. civil' %>
+          </div>
+          <div class='col-xs col-md-2'>
+            <%= f.text_field_with_bootstrap :salary, prepend:'$' ,label:'Salario', append:'.00' %>
+          </div>
+        </div>
+        <div class='row be-round_ligth_gray'>
+          <div class='col-xs col-md-4'>
+            <%= f.text_field_with_bootstrap :occupation, label:'Ocupacion' %>
+          </div>
+          <div class='col-xs col-md-4'>
+            <%= f.text_field_with_bootstrap :scolarship, label:'Escolaridad' %>
+          </div>
+          <div class='col-xs col-md-4'>
+            <%= f.text_field_with_bootstrap :relationship, label:'Parentesco' %>
+          </div>
+        </div>
+        <div class='row be-round_ligth_gray'>
+          <div class='col-xs col-md-4'>
+            <br>
+            <%= f.submit 'SALVAR' , class:'btn btn-default btn-block'  %>
+          </div>
+        </div>
+      <% end %> 
+    </div>
    </div>
