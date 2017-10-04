@@ -11,7 +11,6 @@ class CreatePeople < ActiveRecord::Migration
       t.string :address
       t.string :workplace
       t.string :current_residence
-      t.string :relationship
       t.string :phone
       t.date :admission_date
       t.date :birth_date

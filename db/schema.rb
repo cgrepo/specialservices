@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 20171004191730) do
     t.string   "address"
     t.string   "workplace"
     t.string   "current_residence"
-    t.string   "relationship"
     t.string   "phone"
     t.date     "admission_date"
     t.date     "birth_date"

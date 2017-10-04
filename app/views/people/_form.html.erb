@@ -18,9 +18,9 @@
   </div>
   <div class='col-xs col-md-12'>
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#home" data-toggle="tab">SOLICITANTE</a></li>
-      <li><a href="#responsables" data-toggle="tab">RESPONSABLE</a></li>
-      <li><a href="#relatives" data-toggle="tab">PARIENTES</a></li>
+      <li id="person" class="active"><a href="#home" data-toggle="tab">SOLICITANTE</a></li>
+      <li id="responsable"><a href="#responsables" data-toggle="tab">RESPONSABLE</a></li>
+      <li id="relative"><a href="#relatives" data-toggle="tab">PARIENTES</a></li>
     </ul>
   </div>
    <div id="myTabContent" class="tab-content">
@@ -48,7 +48,7 @@
             <%= f.select_with_bootstrap :scolarship,[['PRIMARIA'],['SECUNDARIA'],['PREPARATORIA'],['UNIVERSIDAD'],['OTRO']]  ,label:'Escolaridad' %>
           </div>
           <div class='col-xs col-md-2'>
-            <%= f.text_field_with_bootstrap :relationship, label:'Parentesco' %>
+            
           </div>
           <div class='col-xs col-md-2'>
             <%= f.text_field_with_bootstrap :phone, label:'Telefono' %>
@@ -81,7 +81,8 @@
         </div>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-2'>
-            <%= f.submit  %>
+            <%#= f.submit  %>
+            <!--<a  id="btn-save-person" class="btn btn-primary">GUARDAR</a> -->
             <br>
           </div>
         </div>
@@ -123,7 +124,7 @@
           </div>
           <div class='col-xs col-md-4'>
             <br>
-            <%= f.submit 'SALVAR' , class:'btn btn-default btn-block'  %>
+            <%#= f.submit 'SALVAR' , class:'btn btn-default btn-block'  %>
           </div>
         </div>
       <% end %> 
@@ -161,9 +162,33 @@
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-4'>
             <br>
-            <%= f.submit 'SALVAR' , class:'btn btn-default btn-block'  %>
+            <%#= f.submit 'SALVAR' , class:'btn btn-default btn-block'  %>
           </div>
         </div>
-      <% end %> 
+      <% end %>
+      <table class="table table-striped table-hover ">
+        <thead>
+          <tr>
+            <th>NOMBRE</th>
+            <th>PARENTESCO</th>
+            <th>EDAD</th>
+            <th>SEXO</th>
+            <th>ESCOLARIDAD</th>
+            <th>EDO. CIVIL</th>
+            <th>OCUPACION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Carlos Albino Garcia Grijalba</td>
+            <td>Esposo</td>
+            <td>38</td>
+            <td>M</td>
+            <td>Profesionista</td>
+            <td>Casado</td>
+            <td>Ing. en Sistemas</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
    </div>

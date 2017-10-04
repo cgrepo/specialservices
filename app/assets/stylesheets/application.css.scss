@@ -27,3 +27,7 @@ body { padding-top: 60px; }
   border-top-width:thin;
   border-bottom-width:thin;
 }
+.disabledbutton {
+    pointer-events: none;
+    opacity: 0.4;
+}
