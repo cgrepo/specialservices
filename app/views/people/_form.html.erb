@@ -163,10 +163,12 @@
           <div class='col-xs col-md-4'>
             <br>
             <%#= f.submit 'SALVAR' , class:'btn btn-default btn-block'  %>
+            <a  id='addRelative', class="btn btn-default"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span> Agregar pariente</a>
+            <br>
           </div>
         </div>
       <% end %>
-      <table class="table table-striped table-hover ">
+      <table id='relationshipTable' class="table table-striped table-hover ">
         <thead>
           <tr>
             <th>NOMBRE</th>
@@ -176,19 +178,12 @@
             <th>ESCOLARIDAD</th>
             <th>EDO. CIVIL</th>
             <th>OCUPACION</th>
+            <th colspan='2'></th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Carlos Albino Garcia Grijalba</td>
-            <td>Esposo</td>
-            <td>38</td>
-            <td>M</td>
-            <td>Profesionista</td>
-            <td>Casado</td>
-            <td>Ing. en Sistemas</td>
-          </tr>
         </tbody>
       </table>
+      <a id='save_relatives'class="btn btn-default"><span class="glyphicon glyphicon-floppy-open"></span >GUARDAR</a>
     </div>
    </div>
