@@ -1,35 +1,36 @@
 $(document).on "turbolinks:load", ->
     #$('div#relatives').addClass("disabledbutton")
     #$('div#responsables').addClass("disabledbutton")
+    items = []
     $('a#save_relatives').attr('disabled',true)
     $('a#btn-save-person').on 'click', ->
     $('a#addRelative').on 'click', ->
-        name = $('#relative_name').val()
-        age = $('#relative_age').val()
-        gender = $('#relative_gender').val()
-        civil = $('#relative_civil_status').val()
-        salary = $('#relative_salary').val()
-        occupation = $('#relative_occupation').val()
-        scolar = $('#relative_scolarship').val()
-        relationship = $('#relative_relationship').val()
-        if name == ''
+        $name = $('#relative_name')
+        $age = $('#relative_age')
+        $gender = $('#relative_gender')
+        $civil = $('#relative_civil_status')
+        $salary = $('#relative_salary')
+        $occupation = $('#relative_occupation')
+        $scolar = $('#relative_scolarship')
+        $relationship = $('#relative_relationship')
+        if $name.val() == ''
             alert 'debe proporcionar un nombre'
         else 
-            if age == ''
+            if $age.val() == ''
                 alert 'debe proporcionar la edad'
             else 
-                if gender == ''
+                if $gender.val() == ''
                     alert 'debe proporcionar el sexo'
                 else 
-                    if civil == ''
+                    if $civil.val() == ''
                         alert 'debe proporcionar el estado civil'
                     else 
-                        if relationship == ''
+                        if $relationship.val() == ''
                             alert 'debe proporcionar el parentesco'
                         else
                             $('#relationshipTable tbody').append('<tr><td>'+
-                            name+'</td> <td>'+relationship+'</td> <td>'+age+'</td> <td>'+gender+'</td> <td>'+
-                            scolar+'</td><td>'+civil+'</td> <td>'+occupation+
+                            $name.val()+'</td> <td>'+$relationship.val()+'</td> <td>'+$age.val()+'</td> <td>'+
+                            $gender.val()+'</td> <td>'+$scolar.val()+'</td><td>'+$civil.val()+'</td> <td>'+$occupation.val()+
                             '</td><td><a class="btn btn-sm btn-default edrelative"><span class="glyphicon glyphicon-pencil"></span></a>'+
                             '</td><td><a class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash delrelative"></span></a></td></tr>' )
                             $('#relative_name').val('')
@@ -42,8 +43,19 @@ $(document).on "turbolinks:load", ->
                             $('#relative_relationship').val('')
                             $('a#save_relatives').attr('disabled',false)
                             $('.edrelative').on 'click', ->
-                                alert 'feho'
+                                $row = $(this).closest('tr')
+                                $row.find('td').each ->
+                                    items.push($(this).text())
+                                $name.val(items[0])
+                                $relationship.val(items[1])
+                                $age.val(items[2])
+                                $gender.val(items[3])
+                                $scolar.val(items[4])
+                                $civil.val(items[5])
+                                $occupation.val(items[6])
+                                $row.remove()
                             $('.delrelative').on 'dblclick', ->
-                                alert 'feho'
+                                $row = $(this).closest('tr')
+                                $row.remove()
 #$row = $(this).closest('tr')
 #alert $row.text()
