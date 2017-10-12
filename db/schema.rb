@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171004191730) do
+ActiveRecord::Schema.define(version: 20171011191939) do
 
   create_table "benefits", force: :cascade do |t|
     t.string   "name"
@@ -141,5 +141,16 @@ ActiveRecord::Schema.define(version: 20171004191730) do
   end
 
   add_index "responsables", ["Person_id"], name: "index_responsables_on_Person_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "account"
+    t.string   "name"
+    t.string   "pname"
+    t.string   "mname"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
 end

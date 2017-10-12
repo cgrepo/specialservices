@@ -1,0 +1,19 @@
+<div class='col-xs col-md-4'></div>
+<div class='col-xs col-md-4'>
+  <%= bootstrap_form_for @user, controller:'users', method:'post', url:updatePass_users_path do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> No se pudo salvar!:</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.password_field_with_bootstrap :authme, label:'Password Anterior' %>
+    <%= f.password_field_with_bootstrap :password %>
+    <%= f.password_field_with_bootstrap :password_confirmation, label:'Confirmar' %>
+    <%= f.submit 'APLICAR', class:'btn btn-md be-border_heroku btn-block' %>
+  <% end %>
+</div>

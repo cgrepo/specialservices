@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :users, only:[:new, :create, :destroy] do
+    collection do
+      get 'editPass/:id', action:'editPass', controller:'users', as:'editPass'
+      post 'updatePass/:id', action:'updatePass', controller:'users', as:'updatePass'
+    end
+  end
   resources :requests do
     collection do
       get 'showmodal', to: 'requests#showmodal'
@@ -8,8 +14,9 @@ Rails.application.routes.draw do
   resources :expeditures , :benefits, :other_services, :other_expeditures, :living_places,
             :responsables, :relatives, only: [ :index ]
   #resources :otherservices, only: [ :index ]
-  get 'welcome/index'
-
+  resources :sessions, only:[:new, :create, :destroy]
+  get "/login" => "sessions#new", as: "login"
+  delete "/logout" => "sessions#destroy", as: "logout"
   get 'welcome/index'
   root to: 'welcome#index'
 #--------HIDER-----------------
