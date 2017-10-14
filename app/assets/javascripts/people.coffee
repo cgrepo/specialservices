@@ -1,6 +1,4 @@
 $(document).on "turbolinks:load", ->
-    #$('div#relatives').addClass("disabledbutton")
-    #$('div#responsables').addClass("disabledbutton")
     items = []
     $('a#save_relatives').attr('disabled',true)
     $('a#btn-save-person').on 'click', ->
@@ -16,7 +14,7 @@ $(document).on "turbolinks:load", ->
         if $name.val() == ''
             alert 'debe proporcionar un nombre'
         else 
-            if $age.val() == ''
+            if $age.val() == '' || $age.val() == null
                 alert 'debe proporcionar la edad'
             else 
                 if $gender.val() == ''
@@ -35,8 +33,8 @@ $(document).on "turbolinks:load", ->
                             '</td><td><a class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash delrelative"></span></a></td></tr>' )
                             $('#relative_name').val('')
                             $('#relative_age').val('')
-                            $('#relative_gender').val('')
-                            $('#relative_civil_status').val('')
+                            $('#relative_gender').val('M')
+                            $('#relative_civil_status').val('CASADO')
                             $('#relative_salary').val('')
                             $('#relative_occupation').val('')
                             $('#relative_scolarship').val('')
@@ -54,8 +52,13 @@ $(document).on "turbolinks:load", ->
                                 $civil.val(items[5])
                                 $occupation.val(items[6])
                                 $row.remove()
-                            $('.delrelative').on 'dblclick', ->
+                                checkRows()
+                            $('.delrelative').on 'click', ->
+                                checkRows()
                                 $row = $(this).closest('tr')
                                 $row.remove()
-#$row = $(this).closest('tr')
-#alert $row.text()
+                                
+checkRows=->
+    rows = $('#relationshipTable tbody').children('tr').length
+    if rows == 0
+        $('#save_relatives').attr('disabled',true)
