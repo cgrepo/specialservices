@@ -1,4 +1,6 @@
 $(document).on "turbolinks:load", ->
+    $('.nav li').not('.active').addClass('disabled')
+    $('.nav li').not('.active').find('a').removeAttr("data-toggle")
     items = []
     $('a#save_relatives').attr('disabled',true)
     $('a#btn-save-person').on 'click', ->
@@ -63,7 +65,12 @@ $(document).on "turbolinks:load", ->
                                         $row = $(this).closest('tr')
                                         $row.remove()
                                         checkRows()
-                                
+    $('a#save-person').on 'click', ->
+        alert 'save it'
+    $('a#save_relatives').on 'click', ->
+        alert 'dudes will be saves without person will put you back to fill this data :)'
+            
+        
 checkRows=->
     rows = $('#relationshipTable tbody').children('tr').length
     alert rows
