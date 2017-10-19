@@ -1,10 +1,9 @@
 $(document).on "turbolinks:load", ->
-    $('.nav li').not('.active').addClass('disabled')
-    $('.nav li').not('.active').find('a').removeAttr("data-toggle")
-    items = []
+    uxEnabler(false)
     $('a#save_relatives').attr('disabled',true)
     $('a#btn-save-person').on 'click', ->
     $('a#addRelative').on 'click', ->
+        items = []
         $name = $('#relative_name')
         $age = $('#relative_age')
         $gender = $('#relative_gender')
@@ -66,13 +65,37 @@ $(document).on "turbolinks:load", ->
                                         $row.remove()
                                         checkRows()
     $('a#save-person').on 'click', ->
-        alert 'save it'
+        requester = []
+        requester.push($('#person_name').val())
+        requester.push($('#person_age').val())
+        requester.push($('#person_gender').val())
+        requester.push($('#person_civil_status').val())
+        requester.push($('#person_salary').val())
+        requester.push($('#person_scolarship').val())
+        requester.push($('#person_phone').val())
+        requester.push($('#person_admission_date').val())
+        requester.push($('#person_birth_date').val())
+        requester.push($('#person_transportation').val())
+        requester.push($('#person_address').val())
+        requester.push($('#person_current_residence').val())
+        requester.push($('#person_occupation').val())
+        requester.push($('#person_workplace').val())
     $('a#save_relatives').on 'click', ->
         alert 'dudes will be saves without person will put you back to fill this data :)'
-            
         
 checkRows=->
     rows = $('#relationshipTable tbody').children('tr').length
     alert rows
     if rows == 0
         $('#save_relatives').attr('disabled',true)
+uxEnabler=(opt) ->
+    if opt
+        $('.nav li#responsable').removeClass('disabled')
+        $('.nav li#responsable').find('a').addAttr("data-toggle")
+        $('.nav li#relative').removeClass('disabled')
+        $('.nav li#relative').find('a').addAttr("data-toggle")
+    else
+        $('.nav li#responsable').addClass('disabled')
+        $('.nav li#responsable').find('a').removeAttr("data-toggle")
+        $('.nav li#relative').addClass('disabled')
+        $('.nav li#relative').find('a').removeAttr("data-toggle")
