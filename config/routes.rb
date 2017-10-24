@@ -10,7 +10,11 @@ Rails.application.routes.draw do
       get 'showmodal', to: 'requests#showmodal'
     end
   end
-  resources :people
+  resources :people do
+    collection do
+      post 'addResponsable', action:'addResponsable', controller:'people', as:'addResponsable'
+    end
+  end
   resources :expeditures , :benefits, :other_services, :other_expeditures, :living_places,
             :responsables, :relatives, only: [ :index ]
   #resources :otherservices, only: [ :index ]

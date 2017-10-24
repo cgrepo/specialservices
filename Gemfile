@@ -22,7 +22,7 @@ gem 'bcrypt', '~> 3.1.7'
   gem 'carrierwave', '~> 1.0' # upload files and pictures
   gem 'prawn' # pdf creation 
   gem 'pry' # debugging
-  
+  gem 'spinjs-rails'
   #-------TESTING THIS GEMS
     gem 'bootswatch-rails'
 

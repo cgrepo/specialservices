@@ -16,4 +16,6 @@
 //= require bootstrap-sprockets
 //= require jquery-ui/widgets/datepicker
 //= require cafe
+//= require spin
+//= require jquery.spin
 //= require_tree .

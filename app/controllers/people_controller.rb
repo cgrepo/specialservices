@@ -26,19 +26,53 @@ class PeopleController < ApplicationController
   # POST /people
   # POST /people.json
   def create
-    @person = Person.new(person_params)
+    @person = Person.new
+    @person.name = params[:person][0]
+    @person.age= params[:person][1]
+    @person.gender= params[:person][2]
+    @person.civil_status= params[:person][3]
+    @person.salary= params[:person][4]
+    @person.scolarship= params[:person][5]
+    @person.phone= params[:person][6]
+    @person.admission_date= params[:person][7]
+    @person.birth_date= params[:person][8]
+    @person.transportation= params[:person][9]
+    @person.address= params[:person][10]
+    @person.current_residence= params[:person][11]
+    @person.occupation= params[:person][12]
+    @person.workplace= params[:person][13]
     
     respond_to do |format|
       if @person.save
-        format.html { redirect_to @person, notice: 'Person was successfully created.' }
-        format.json { render :show, status: :created, location: @person }
+        format.json { render json: @person.as_json(only: [:id] ) }
       else
-        format.html { render :new }
-        format.json { render json: @person.errors, status: :unprocessable_entity }
+       format.html { render :new }
+       format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
   end
-
+  
+  def addResponsable
+    @responsable = Responsable.new
+    @responsable.Person_id = params[:person]
+    @responsable.name = params[:responsable][0]
+    @responsable.age= params[:responsable][1]
+    @responsable.gender= params[:responsable][2]
+    @responsable.civil_status= params[:responsable][3]
+    @responsable.salary= params[:responsable][4]
+    @responsable.address= params[:responsable][5]
+    @responsable.occupation= params[:responsable][6]
+    @responsable.workplace= params[:responsable][7]
+    @responsable.relationship= params[:responsable][8]
+    respond_to do |format|
+      if @responsable.save
+        format.json { render json: @responsable.as_json(only: [:id] ) }
+      else
+       format.html { render :new }
+       format.json { render json: @responsable.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   # PATCH/PUT /people/1
   # PATCH/PUT /people/1.json
   def update
