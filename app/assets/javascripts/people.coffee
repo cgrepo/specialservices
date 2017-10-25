@@ -79,25 +79,22 @@ $(document).on "turbolinks:load", ->
                 person:personID
             success: (data) ->
                 #block edition
-                $('#person_name').attr('disabled',true)
-                $('#person_age').attr('disabled',true)
-                $('#person_gender').attr('disabled',true)
-                $('#person_civil_status').attr('disabled',true)
-                $('#person_salary').attr('disabled',true)
-                $('#person_scolarship').attr('disabled',true)
-                $('#person_phone').attr('disabled',true)
-                $('#person_admission_date').attr('disabled',true)
-                $('#person_birth_date').attr('disabled',true)
-                $('#person_transportation').attr('disabled',true)
-                $('#person_address').attr('disabled',true)
-                $('#person_current_residence').attr('disabled',true)
-                $('#person_occupation').attr('disabled',true)
-                $('#person_workplace').attr('disabled',true)
+                $('#responsable_name').attr('disabled',true)
+                $('#responsable_age').attr('disabled',true)
+                $('#responsable_gender').attr('disabled',true)
+                $('#responsable_civil_status').attr('disabled',true)
+                $('#responsable_salary').attr('disabled',true)
+                $('#responsable_address').attr('disabled',true)
+                $('#responsable_occupation').attr('disabled',true)
+                $('#responsable_workplace').attr('disabled',true)
+                $('#responsable_relationship').attr('disabled',true)
                 $.each data, (element, value) ->
                     responsableID = value
                 console.log 'person='+personID + 'responsable=' + responsableID
                 spinner('OFF')
                 $('.badge').text('2')
+                $('#save-responsable').fadeToggle()
+                fillREL()
             error: (data) ->
                 alert data
                 spinner('OFF')
@@ -111,6 +108,7 @@ $(document).on "turbolinks:load", ->
         $occupation = $('#relative_occupation')
         $scolar = $('#relative_scolarship')
         $relationship = $('#relative_relationship')
+        fillREL()
         if $name.val() == ''
             alert 'debe proporcionar un nombre'
         else 
@@ -223,3 +221,12 @@ fillRE=->
     $('#responsable_occupation').val('CELEBRATE')
     $('#responsable_workplace').val('UNDERGROUND')
     $('#responsable_relationship').val('UHMUCULO')
+fillREL=->
+    $('#relative_name').val('SABARON SUBARU SABAYON')
+    $('#relative_age').val('123')
+    $('#relative_gender').val('M')
+    $('#relative_civil_status').val('SOLTERO')
+    $('#relative_salary').val('2901')
+    $('#relative_occupation').val('FUXLOK')
+    $('#relative_scolarship').val('UNIVERSIDAD')
+    $('#relative_relationship').val('PATHER')
