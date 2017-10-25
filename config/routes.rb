@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :people do
     collection do
       post 'addResponsable', action:'addResponsable', controller:'people', as:'addResponsable'
+      put 'updatePerson/:id', action:'updatePerson', controller:'people', as:'updatePerson'
     end
   end
   resources :expeditures , :benefits, :other_services, :other_expeditures, :living_places,

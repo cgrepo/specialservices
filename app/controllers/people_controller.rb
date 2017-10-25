@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :updatePerson]
 
   # GET /people
   # GET /people.json
@@ -72,6 +72,9 @@ class PeopleController < ApplicationController
        format.json { render json: @responsable.errors, status: :unprocessable_entity }
       end
     end
+  end
+  def updatePerson
+    byebug
   end
   # PATCH/PUT /people/1
   # PATCH/PUT /people/1.json

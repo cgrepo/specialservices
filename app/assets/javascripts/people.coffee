@@ -1,28 +1,16 @@
 personID = null
 responsableID = null
+requester = []
 $(document).on "turbolinks:load", ->
     fillR()
     if personID == null
         tabsEnabled(false)
     $('a#save_relatives').attr('disabled',true)
-    $('#barprog').hide()
+    $('a#edit-person').attr('disabled',true)
+    $('a#update-person').hide()
     $('a#save-person').on 'click', ->
         spinner('ON')
-        requester = []
-        requester.push($('#person_name').val())
-        requester.push($('#person_age').val())
-        requester.push($('#person_gender').val())
-        requester.push($('#person_civil_status').val())
-        requester.push($('#person_salary').val())
-        requester.push($('#person_scolarship').val())
-        requester.push($('#person_phone').val())
-        requester.push($('#person_admission_date').val())
-        requester.push($('#person_birth_date').val())
-        requester.push($('#person_transportation').val())
-        requester.push($('#person_address').val())
-        requester.push($('#person_current_residence').val())
-        requester.push($('#person_occupation').val())
-        requester.push($('#person_workplace').val())
+        personDataGet()
         $.ajax
             type:'POST'
             url:'/people'
@@ -30,21 +18,7 @@ $(document).on "turbolinks:load", ->
             data:
                 person:requester
             success: (data) ->
-                #block edition
-                $('#person_name').attr('disabled',true)
-                $('#person_age').attr('disabled',true)
-                $('#person_gender').attr('disabled',true)
-                $('#person_civil_status').attr('disabled',true)
-                $('#person_salary').attr('disabled',true)
-                $('#person_scolarship').attr('disabled',true)
-                $('#person_phone').attr('disabled',true)
-                $('#person_admission_date').attr('disabled',true)
-                $('#person_birth_date').attr('disabled',true)
-                $('#person_transportation').attr('disabled',true)
-                $('#person_address').attr('disabled',true)
-                $('#person_current_residence').attr('disabled',true)
-                $('#person_occupation').attr('disabled',true)
-                $('#person_workplace').attr('disabled',true)
+                personDataUX('disable')
                 $('a#save-person').fadeToggle()
                 $.each data, (element, value) ->
                     personID = value
@@ -53,8 +27,33 @@ $(document).on "turbolinks:load", ->
                 fillRE()
                 spinner('OFF')
                 $('.badge').text('1')
-                $('#barprog').fadeToggle(3000)
-                $('#bar').attr('width','33.33%')
+                $('a#edit-person').attr('disabled',false)
+            error: (data) ->
+                alert data
+                spinner('OFF')
+    $('a#edit-person').on 'click', ->
+        personDataUX('enable')
+        $('a#update-person').fadeToggle('slow')
+        $('a#edit-person').fadeToggle('slow')
+    $('a#update-person').on 'click', ->
+        requester = []
+        personDataGet()
+        spinner('ON')
+        personDataGet()
+        $.ajax
+            type:'PUT'
+            url:'/people/updatePerson/'+personID
+            success: (data) ->
+                personDataUX('disable')
+                $('a#save-person').fadeToggle()
+                $.each data, (element, value) ->
+                    personID = value
+                tabsEnabled(true)
+                console.log personID
+                fillRE()
+                spinner('OFF')
+                $('.badge').text('1')
+                $('a#edit-person').attr('disabled',false)
             error: (data) ->
                 alert data
                 spinner('OFF')
@@ -196,6 +195,52 @@ spinner=(opt) ->
             shadow: false
     if opt == 'OFF'
         $('#spinnerContainer').spin false
+personDataUX=(opt) ->
+    if opt == 'disable'
+        $('#person_name').attr('disabled',true)
+        $('#person_age').attr('disabled',true)
+        $('#person_gender').attr('disabled',true)
+        $('#person_civil_status').attr('disabled',true)
+        $('#person_salary').attr('disabled',true)
+        $('#person_scolarship').attr('disabled',true)
+        $('#person_phone').attr('disabled',true)
+        $('#person_admission_date').attr('disabled',true)
+        $('#person_birth_date').attr('disabled',true)
+        $('#person_transportation').attr('disabled',true)
+        $('#person_address').attr('disabled',true)
+        $('#person_current_residence').attr('disabled',true)
+        $('#person_occupation').attr('disabled',true)
+        $('#person_workplace').attr('disabled',true)
+    else
+        $('#person_name').attr('disabled',false)
+        $('#person_age').attr('disabled',false)
+        $('#person_gender').attr('disabled',false)
+        $('#person_civil_status').attr('disabled',false)
+        $('#person_salary').attr('disabled',false)
+        $('#person_scolarship').attr('disabled',false)
+        $('#person_phone').attr('disabled',false)
+        $('#person_admission_date').attr('disabled',false)
+        $('#person_birth_date').attr('disabled',false)
+        $('#person_transportation').attr('disabled',false)
+        $('#person_address').attr('disabled',false)
+        $('#person_current_residence').attr('disabled',false)
+        $('#person_occupation').attr('disabled',false)
+        $('#person_workplace').attr('disabled',false)
+personDataGet=->
+    requester.push($('#person_name').val())
+    requester.push($('#person_age').val())
+    requester.push($('#person_gender').val())
+    requester.push($('#person_civil_status').val())
+    requester.push($('#person_salary').val())
+    requester.push($('#person_scolarship').val())
+    requester.push($('#person_phone').val())
+    requester.push($('#person_admission_date').val())
+    requester.push($('#person_birth_date').val())
+    requester.push($('#person_transportation').val())
+    requester.push($('#person_address').val())
+    requester.push($('#person_current_residence').val())
+    requester.push($('#person_occupation').val())
+    requester.push($('#person_workplace').val())
 fillR=->
     $('#person_name').val('ScorpKing one')
     $('#person_age').val(100)
