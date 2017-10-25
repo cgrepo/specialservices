@@ -27,21 +27,7 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     @person = Person.new
-    @person.name = params[:person][0]
-    @person.age= params[:person][1]
-    @person.gender= params[:person][2]
-    @person.civil_status= params[:person][3]
-    @person.salary= params[:person][4]
-    @person.scolarship= params[:person][5]
-    @person.phone= params[:person][6]
-    @person.admission_date= params[:person][7]
-    @person.birth_date= params[:person][8]
-    @person.transportation= params[:person][9]
-    @person.address= params[:person][10]
-    @person.current_residence= params[:person][11]
-    @person.occupation= params[:person][12]
-    @person.workplace= params[:person][13]
-    
+    setPersonVal
     respond_to do |format|
       if @person.save
         format.json { render json: @person.as_json(only: [:id] ) }
@@ -75,6 +61,13 @@ class PeopleController < ApplicationController
   end
   def updatePerson
     byebug
+    respond_to do |format|
+      if @person.update(person_params)
+        format.json { render json: @person.as_json(only: [:id] ), status: :ok }
+      else
+        format.json { render json: @person.errors, status: :unprocessable_entity }
+      end
+    end
   end
   # PATCH/PUT /people/1
   # PATCH/PUT /people/1.json
@@ -109,5 +102,22 @@ class PeopleController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
       params.require(:person).permit(:name, :age, :gender, :civil_status, :occupation, :salary, :scolarship, :address, :workplace, :current_residence, :relationship, :phone, :admission_date, :birth_date, :transportation)
+    end
+    
+    def setPersonVal
+      @person.name = params[:person][0]
+      @person.age= params[:person][1]
+      @person.gender= params[:person][2]
+      @person.civil_status= params[:person][3]
+      @person.salary= params[:person][4]
+      @person.scolarship= params[:person][5]
+      @person.phone= params[:person][6]
+      @person.admission_date= params[:person][7]
+      @person.birth_date= params[:person][8]
+      @person.transportation= params[:person][9]
+      @person.address= params[:person][10]
+      @person.current_residence= params[:person][11]
+      @person.occupation= params[:person][12]
+      @person.workplace= params[:person][13]
     end
 end

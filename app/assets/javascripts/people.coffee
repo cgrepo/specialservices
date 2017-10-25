@@ -43,6 +43,22 @@ $(document).on "turbolinks:load", ->
         $.ajax
             type:'PUT'
             url:'/people/updatePerson/'+personID
+            data:
+                person:
+                    name:requester[0]
+                    age:requester[1]
+                    gender:requester[2]
+                    civil_status:requester[3]
+                    salary:requester[4]
+                    scolarship:requester[5]
+                    phone:requester[6]
+                    admission_date:requester[7]
+                    birth_date:requester[8]
+                    transportation:requester[9]
+                    address:requester[10]
+                    current_residence:requester[11]
+                    occupation:requester[12]
+                    workplace:requester[13]
             success: (data) ->
                 personDataUX('disable')
                 $('a#save-person').fadeToggle()
