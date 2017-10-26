@@ -60,12 +60,22 @@ class PeopleController < ApplicationController
     end
   end
   def updatePerson
-    byebug
     respond_to do |format|
       if @person.update(person_params)
         format.json { render json: @person.as_json(only: [:id] ), status: :ok }
       else
         format.json { render json: @person.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  def updateResponsable
+    byebug
+    @responsable  = Responsable.find(params[:id])
+    respond_to do |format|
+      if @responsable.update(responsable_params)
+        format.json { render json: @responsable.as_json(only: [:id] ), status: :ok }
+      else
+        format.json { render json: @responsable.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -101,9 +111,11 @@ class PeopleController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:name, :age, :gender, :civil_status, :occupation, :salary, :scolarship, :address, :workplace, :current_residence, :relationship, :phone, :admission_date, :birth_date, :transportation)
+      params.require(:person).permit(:name, :age, :gender, :civil_status, :occupation, :salary, :scolarship, :address, :workplace, :current_residence, :phone, :admission_date, :birth_date, :transportation)
     end
-    
+    def responsable_params
+      params.require(:responsable).permit(:name, :age, :gender, :civil_status, :salary, :address, :occupation, :workplace, :relationship)
+    end
     def setPersonVal
       @person.name = params[:person][0]
       @person.age= params[:person][1]

@@ -1,13 +1,13 @@
 personID = null
 responsableID = null
 requester = []
+responsable = []
+relative = []
 $(document).on "turbolinks:load", ->
     fillR()
     if personID == null
         tabsEnabled(false)
-    $('a#save_relatives').attr('disabled',true)
-    $('a#edit-person').attr('disabled',true)
-    $('a#update-person').hide()
+    setup()
     $('a#save-person').on 'click', ->
         spinner('ON')
         personDataGet()
@@ -39,7 +39,6 @@ $(document).on "turbolinks:load", ->
         requester = []
         personDataGet()
         spinner('ON')
-        personDataGet()
         $.ajax
             type:'PUT'
             url:'/people/updatePerson/'+personID
@@ -61,30 +60,19 @@ $(document).on "turbolinks:load", ->
                     workplace:requester[13]
             success: (data) ->
                 personDataUX('disable')
-                $('a#save-person').fadeToggle()
-                $.each data, (element, value) ->
-                    personID = value
                 tabsEnabled(true)
                 console.log personID
                 fillRE()
                 spinner('OFF')
                 $('.badge').text('1')
-                $('a#edit-person').attr('disabled',false)
+                $('a#edit-person').fadeToggle('slow')
+                $('a#update-person').fadeToggle('slow')
             error: (data) ->
                 alert data
                 spinner('OFF')
     $('a#save-responsable').on 'click', ->
         spinner('ON')
-        responsable = []
-        responsable.push($('#responsable_name').val())
-        responsable.push($('#responsable_age').val())
-        responsable.push($('#responsable_gender').val())
-        responsable.push($('#responsable_civil_status').val())
-        responsable.push($('#responsable_salary').val())
-        responsable.push($('#responsable_address').val())
-        responsable.push($('#responsable_occupation').val())
-        responsable.push($('#responsable_workplace').val())
-        responsable.push($('#responsable_relationship').val())
+        responsableDataGet()
         $.ajax
             type:'POST'
             url:'/people/addResponsable'
@@ -93,23 +81,46 @@ $(document).on "turbolinks:load", ->
                 responsable:responsable
                 person:personID
             success: (data) ->
-                #block edition
-                $('#responsable_name').attr('disabled',true)
-                $('#responsable_age').attr('disabled',true)
-                $('#responsable_gender').attr('disabled',true)
-                $('#responsable_civil_status').attr('disabled',true)
-                $('#responsable_salary').attr('disabled',true)
-                $('#responsable_address').attr('disabled',true)
-                $('#responsable_occupation').attr('disabled',true)
-                $('#responsable_workplace').attr('disabled',true)
-                $('#responsable_relationship').attr('disabled',true)
+                responsableDataUX('disable')
+                $('a#save-responsable').fadeToggle('slow')
                 $.each data, (element, value) ->
                     responsableID = value
                 console.log 'person='+personID + 'responsable=' + responsableID
                 spinner('OFF')
                 $('.badge').text('2')
-                $('#save-responsable').fadeToggle()
+                $('a#edit-responsable').attr('disabled',false)
                 fillREL()
+            error: (data) ->
+                alert data
+                spinner('OFF')
+    $('a#edit-responsable').on 'click', ->
+        $('a#update-responsable').fadeToggle('slow')
+        $('a#edit-responsable').fadeToggle('slow')
+        responsableDataUX('enable')
+    $('a#update-responsable').on 'click', ->
+        responsable = []
+        responsableDataGet()
+        spinner('ON')
+        $.ajax
+            type:'PUT'
+            url:'/people/updateResponsable/'+responsableID
+            data:
+                responsable:
+                    name:requester[0]
+                    age:requester[1]
+                    gender:requester[2]
+                    civil_status:responsable[3]
+                    salary:responsable[4]
+                    address:responsable[5]
+                    occupation:responsable[6]
+                    workplace:responsable[7]
+                    relationship:responsable[8]
+            success: (data) ->
+                responsableDataUX('disable')
+                tabsEnabled(true)
+                spinner('OFF')
+                $('a#edit-responsable').fadeToggle('slow')
+                $('a#update-responsable').fadeToggle('slow')
             error: (data) ->
                 alert data
                 spinner('OFF')
@@ -177,7 +188,15 @@ $(document).on "turbolinks:load", ->
                                         $row.remove()
                                         checkRows()
     $('a#save_relatives').on 'click', ->
-        alert 'dudes will be saves without person will put you back to fill this data :)'
+        $('#relationshipTable tbody tr').each ->
+            $(this).find('td').each ->
+                alert $(this).text() unless $(this).text() == ''
+setup=->
+    $('a#save_relatives').attr('disabled',true)
+    $('a#edit-person').attr('disabled',true)
+    $('a#update-person').hide()
+    $('a#edit-responsable').attr('disabled',true)
+    $('a#update-responsable').hide()
 checkRows=->
     rows = $('#relationshipTable tbody').children('tr').length
     alert rows
@@ -242,6 +261,28 @@ personDataUX=(opt) ->
         $('#person_current_residence').attr('disabled',false)
         $('#person_occupation').attr('disabled',false)
         $('#person_workplace').attr('disabled',false)
+responsableDataUX=(opt) ->
+    if opt == 'disable'
+        $('#responsable_name').attr('disabled',true)
+        $('#responsable_age').attr('disabled',true)
+        $('#responsable_gender').attr('disabled',true)
+        $('#responsable_civil_status').attr('disabled',true)
+        $('#responsable_salary').attr('disabled',true)
+        $('#responsable_address').attr('disabled',true)
+        $('#responsable_occupation').attr('disabled',true)
+        $('#responsable_workplace').attr('disabled',true)
+        $('#responsable_relationship').attr('disabled',true)
+    else
+        $('#responsable_name').attr('disabled',false)
+        $('#responsable_age').attr('disabled',false)
+        $('#responsable_gender').attr('disabled',false)
+        $('#responsable_civil_status').attr('disabled',false)
+        $('#responsable_salary').attr('disabled',false)
+        $('#responsable_address').attr('disabled',false)
+        $('#responsable_occupation').attr('disabled',false)
+        $('#responsable_workplace').attr('disabled',false)
+        $('#responsable_relationship').attr('disabled',false)
+        
 personDataGet=->
     requester.push($('#person_name').val())
     requester.push($('#person_age').val())
@@ -257,6 +298,16 @@ personDataGet=->
     requester.push($('#person_current_residence').val())
     requester.push($('#person_occupation').val())
     requester.push($('#person_workplace').val())
+responsableDataGet=->
+    responsable.push($('#responsable_name').val())
+    responsable.push($('#responsable_age').val())
+    responsable.push($('#responsable_gender').val())
+    responsable.push($('#responsable_civil_status').val())
+    responsable.push($('#responsable_salary').val())
+    responsable.push($('#responsable_address').val())
+    responsable.push($('#responsable_occupation').val())
+    responsable.push($('#responsable_workplace').val())
+    responsable.push($('#responsable_relationship').val())
 fillR=->
     $('#person_name').val('ScorpKing one')
     $('#person_age').val(100)
