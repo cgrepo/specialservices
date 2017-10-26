@@ -3,6 +3,7 @@ responsableID = null
 requester = []
 responsable = []
 relative = []
+relativeData = []
 $(document).on "turbolinks:load", ->
     fillR()
     if personID == null
@@ -134,7 +135,6 @@ $(document).on "turbolinks:load", ->
         $occupation = $('#relative_occupation')
         $scolar = $('#relative_scolarship')
         $relationship = $('#relative_relationship')
-        fillREL()
         if $name.val() == ''
             alert 'debe proporcionar un nombre'
         else 
@@ -188,9 +188,35 @@ $(document).on "turbolinks:load", ->
                                         $row.remove()
                                         checkRows()
     $('a#save_relatives').on 'click', ->
+        relative = []
         $('#relationshipTable tbody tr').each ->
+            relativeData = []
             $(this).find('td').each ->
-                alert $(this).text() unless $(this).text() == ''
+                relativeData.push($(this).text()) unless $(this).text() == ''
+            #relative.push(['|'])
+            relative.push([relativeData])
+        console.log 'relative[0]------>' + relative[0]
+        console.log 'relative[0][0]--->' + relative[0][0]
+        console.log 'relative[0][1]--->' + relative[0][1]
+        console.log 'relative[1][0]--->' + relative[1][0]
+        console.log 'relative[1][1]--->' + relative[1][1]
+        console.log 'relative--------->' + relative
+        console.log 'relative.length-->' + relative.length
+        $.ajax
+            type:'POST'
+            url:'/people/addRelatives'
+            dataType:'json'
+            data:
+                relatives:relative
+            success: (data) ->
+                spinner('OFF')
+                $('.badge').text('completado!')
+                $('a#save_relatives').attr('disabled',true)
+                $('a#addRelative').attr('disabled',true)
+                fillREL()
+            error: (data) ->
+                alert data
+                spinner('OFF')
 setup=->
     $('a#save_relatives').attr('disabled',true)
     $('a#edit-person').attr('disabled',true)
@@ -282,7 +308,6 @@ responsableDataUX=(opt) ->
         $('#responsable_occupation').attr('disabled',false)
         $('#responsable_workplace').attr('disabled',false)
         $('#responsable_relationship').attr('disabled',false)
-        
 personDataGet=->
     requester.push($('#person_name').val())
     requester.push($('#person_age').val())

@@ -79,6 +79,10 @@ class PeopleController < ApplicationController
       end
     end
   end
+  def addRelatives
+    @relative = Relative.new
+    byebug
+  end
   # PATCH/PUT /people/1
   # PATCH/PUT /people/1.json
   def update
