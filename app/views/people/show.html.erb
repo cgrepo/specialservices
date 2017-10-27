@@ -3,7 +3,9 @@
   <div class='col-xs col-md'>
     <p>
       <strong>Tipo persona:</strong>
-      <%= @person.kind %>
+      <%= @person %>
+      <%= @person.responsable %>
+      <%= @person.relatives %>
     </p>
     <p>
       <strong>Nombre:</strong>
@@ -47,7 +49,7 @@
     </p>
     <p>
       <strong>Parentesco:</strong>
-      <%= @person.relationship %>
+
     </p>
     <p>
       <strong>Telefono:</strong>

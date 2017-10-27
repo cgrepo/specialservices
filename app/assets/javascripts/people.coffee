@@ -210,8 +210,8 @@ $(document).on "turbolinks:load", ->
                 $('.badge').text('completado!')
                 $('a#save_relatives').attr('disabled',true)
                 $('a#addRelative').attr('disabled',true)
-                console.log data
-                fillREL()
+                #window.location.replace('/people/showrel?person='+personID+'&responsable='+responsableID+'&relatives='+data)
+                window.location.replace('/people/'+personID)
             error: (data) ->
                 alert data
                 spinner('OFF')
