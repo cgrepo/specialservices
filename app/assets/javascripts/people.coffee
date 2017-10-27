@@ -193,26 +193,24 @@ $(document).on "turbolinks:load", ->
             relativeData = []
             $(this).find('td').each ->
                 relativeData.push($(this).text()) unless $(this).text() == ''
-            #relative.push(['|'])
-            relative.push([relativeData])
-        console.log 'relative[0]------>' + relative[0]
-        console.log 'relative[0][0]--->' + relative[0][0]
-        console.log 'relative[0][1]--->' + relative[0][1]
-        console.log 'relative[1][0]--->' + relative[1][0]
-        console.log 'relative[1][1]--->' + relative[1][1]
+            relative.push(relativeData)
         console.log 'relative--------->' + relative
         console.log 'relative.length-->' + relative.length
+        spinner('ON')
         $.ajax
             type:'POST'
             url:'/people/addRelatives'
             dataType:'json'
             data:
+                requester:personID
+                responsable:responsableID
                 relatives:relative
             success: (data) ->
                 spinner('OFF')
                 $('.badge').text('completado!')
                 $('a#save_relatives').attr('disabled',true)
                 $('a#addRelative').attr('disabled',true)
+                console.log data
                 fillREL()
             error: (data) ->
                 alert data
@@ -225,7 +223,6 @@ setup=->
     $('a#update-responsable').hide()
 checkRows=->
     rows = $('#relationshipTable tbody').children('tr').length
-    alert rows
     if rows == 0
         $('#save_relatives').attr('disabled',true)
 tabsEnabled=(opt) ->

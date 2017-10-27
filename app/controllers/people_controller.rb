@@ -80,8 +80,32 @@ class PeopleController < ApplicationController
     end
   end
   def addRelatives
-    @relative = Relative.new
-    byebug
+    @relations = []
+    problems = false
+    respond_to do |format|
+      params[:relatives].each do |r|
+        @relative = Relative.new
+        @relative.Person_id = params[:requester]
+        @relative.name = r[1][0]
+        @relative.age  = r[1][1]
+        @relative.gender = r[1][2]
+        @relative.civil_status = r[1][3]
+        @relative.salary = r[1][4]
+        @relative.occupation = r[1][5]
+        @relative.scolarship = r[1][6]
+        @relative.relationship = r[1][7]
+        if @relative.save
+          @relations << @relative.id
+        else
+          problems = true
+        end
+      end
+      if problems
+        format.json { render json: @relative.errors, status: :unprocessable_entity }
+      else
+        format.json { render json: @relations.as_json(only: [:id] ) }
+      end
+    end
   end
   # PATCH/PUT /people/1
   # PATCH/PUT /people/1.json
