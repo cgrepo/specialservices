@@ -7,71 +7,145 @@
       <%= @person.responsable %>
       <%= @person.relatives %>
     </p>
-    <p>
-      <strong>Nombre:</strong>
-      <%= @person.name %>
-    </p>
-    <p>
-      <strong>Edad:</strong>
-      <%= @person.age %>
-    </p>
-    <p>
-      <strong>Sexo:</strong>
-      <%= @person.gender %>
-    </p>
-    <p>
-      <strong>Estado civil:</strong>
-      <%= @person.civil_status %>
-    </p>
-    <p>
-      <strong>Ocupacion:</strong>
-      <%= @person.occupation %>
-    </p>
-    <p>
-      <strong>Salario:</strong>
-      <%= @person.salary %>
-    </p>
-    <p>
-      <strong>Escolaridad:</strong>
-      <%= @person.scolarship %>
-    </p>
-    <p>
-      <strong>Direccion:</strong>
-      <%= @person.address %>
-    </p>
-    <p>
-      <strong>Lugar de Trabajo:</strong>
-      <%= @person.workplace %>
-    </p>
-    <p>
-      <strong>Residencia actual:</strong>
-      <%= @person.current_residence %>
-    </p>
-    <p>
-      <strong>Parentesco:</strong>
-
-    </p>
-    <p>
-      <strong>Telefono:</strong>
-      <%= @person.phone %>
-    </p>
-    <p>
-      <strong>Fecha de Admision:</strong>
-      <%= @person.admission_date %>
-    </p>
-    <p>
-      <strong>Fecha nacimiento:</strong>
-      <%= @person.birth_date %>
-    </p>
-    <p>
-      <strong>Transporte:</strong>
-      <%= @person.transportation %>
-    </p>
   </div>
 </div>
 <div class='btn-toolbar'>
   <div class='btn-group'>
     <%= link_to 'Editar', edit_person_path(@person), class:'btn btn-default' %>
     <%= link_to 'Regresar', people_path, class:'btn btn-default' %>
+  </div>
+</div>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">SOLICITANTE</h3>
+  </div>
+  <div class="panel-body be-round_ligth_gray">
+    <div class='row'>
+      <div class='col-xs col-md-4'>
+        <strong>Nombre:</strong><br>
+        <%= @person.name %>
+      </div>
+      <div class='col-xs col-md-2'>
+        <strong>Edad:</strong><br>
+        <%= @person.age %>  
+      </div>
+      <div class='col-xs col-md-2'>
+        <strong>Sexo:</strong>
+        <%= @person.gender %><br>
+      </div>
+      <div class='col-xs col-md-2'>
+        <strong>Estado civil:</strong><br>
+        <%= @person.civil_status %>  
+      </div>
+    </div>
+    <br>
+    <div class='row'>
+      <div class='col-xs col-md-4'>
+        <strong>Ocupacion:</strong><br>
+        <%= @person.occupation %>  
+      </div>
+      <div class='col-xs col-md-2'>
+        <strong>Salario:</strong><br>
+        <%= @person.salary %>
+      </div>
+      <div class='col-xs col-md-3'>
+        <strong>Escolaridad:</strong><br>
+        <%= @person.scolarship %>
+      </div>
+    </div>
+    <br>
+    <div class='row'>
+      <div class='col-xs col-md-4'>
+        <strong>Direccion:</strong><br>
+        <%= @person.address %>  
+      </div>
+      <div class='col-xs col-md-4'>
+        <strong>Residencia actual:</strong><br>
+        <%= @person.current_residence %>
+      </div>
+      <div class='col-xs col-md-4'>
+        <strong>Lugar de Trabajo:</strong><br>
+        <%= @person.workplace %>
+      </div>
+    </div>
+    <br>
+    <div class='row'>
+      <div class='col-xs col-md-3'>
+        <strong>Telefono:</strong><br>
+        <%= @person.phone %>
+      </div>
+      <div class='col-xs col-md-3'>
+        <strong>Fecha de Admision:</strong><br>
+        <%= @person.admission_date %>
+      </div>
+      <div class='col-xs col-md-3'>
+        <strong>Fecha nacimiento:</strong><br>
+        <%= @person.birth_date %>
+      </div>
+      <div class='col-xs col-md-3'>
+        <strong>Transporte:</strong><br>
+        <%= @person.transportation %>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
+
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">RESPONSABLE</h3>
+  </div>
+  <div class="panel-body be-round_ligth_gray">
+    <div class='row'>
+      <div class='col-xs col-md-4'>
+        <strong>Nombre:</strong><br>
+        <%= @person.responsable.name %>
+      </div>
+      <div class='col-xs col-md-2'>
+        <strong>Edad:</strong><br>
+        <%= @person.responsable.age %>
+      </div>
+      <div class='col-xs col-md-2'>
+        <strong>Sexo:</strong><br>
+        <%= @person.responsable.gender %>
+      </div>
+      <div class='col-xs col-md-3'>
+        <strong>Salario:</strong><br>  
+        <%= @person.responsable.salary %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-xs col-md-2'>
+        <strong>Estado Civil:</strong><br>  
+        <%= @person.responsable.civil_status %>
+      </div>
+      <div class='col-xs col-md-4'>
+        <strong>Ocupacion:</strong><br>  
+        <%= @person.responsable.occupation %>
+      </div>
+      <div class='col-xs col-md-4'>
+        <strong>Direccion:</strong><br>  
+        <%= @person.responsable.address %>
+      </div>
+      <div class='col-xs col-md-2'>
+        <strong>Relacion:</strong><br>  
+        <%= @person.responsable.relationship %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-xs col-md-4'>
+        <strong>Lugar de Trabajo:</strong><br>
+        <%= @person.responsable.workplace %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    <h3 class="panel-title">PARIENTES</h3></h3>
+  </div>
+  <div class="panel-body">
+    Panel content
   </div>
 </div>
