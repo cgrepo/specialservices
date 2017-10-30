@@ -10,6 +10,7 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
+    @relatives = @person.relatives
   end
   # GET /people/new
   def new
