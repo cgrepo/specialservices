@@ -71,8 +71,7 @@ class RequestsController < ApplicationController
             format.html {render :partial => 'modal4expediture'}
           when 'person'
             # Dont add person search and select the person Daa!
-            #@person = Person.new
-            #format.html {render :partial => 'modal4person'}
+            @persons = Person.where('name LIKE ?','%'+params[:val]+'%')
             format.html {render :partial => 'modalPSearch'}
           when 'service'
             @otherService = OtherService.new
@@ -88,6 +87,17 @@ class RequestsController < ApplicationController
             format.html {render :partial => 'modal4roof'}
           when 'floor'
             format.html {render :partial => 'modal4floor'}
+        end
+      end
+    end
+    def showPDF
+      respond_to do |format|
+        format.pdf do
+          pdf = ServiceRequestPdf.new(@service_request)
+          send_data pdf.render, 
+            filename: "reques#{@person.id}.pdf",
+            type: 'application/pdf',
+            disposition: 'inline'
         end
       end
     end

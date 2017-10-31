@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy, :updatePerson]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :updatePerson, :showPDF]
 
   # GET /people
   # GET /people.json
@@ -12,6 +12,7 @@ class PeopleController < ApplicationController
   def show
     @relatives = @person.relatives
   end
+  
   # GET /people/new
   def new
     @person = Person.new

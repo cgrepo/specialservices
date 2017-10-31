@@ -10,8 +10,24 @@
                     <form class="form-horizontal">
                         <fieldset>
                             <div class="form-group">
-                              <label>Nombre</label>  
-                              <input id="psearch" placeholder="Proporcione el nombre de la persona" class="form-control input-md" type="text">
+                              <table id='namesResultsTbl' class="table table-striped table-hover ">
+                                  <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>NOMBRE</th>
+                                        <th colspan='1'></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <% @persons.each do |person| %>
+                                      <tr>
+                                        <td><%= person.id %></td>
+                                        <td><%= person.name %></td>
+                                        <td><a class="btn btn-xs btn-info selNamebtn"><span class="glyphicon glyphicon-hand-left"></span></a></td>
+                                      </tr>
+                                    <% end %>
+                                  </tbody>
+                                </table>
                             </div>
                         </fieldset>
                     </form>

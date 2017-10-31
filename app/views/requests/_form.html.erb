@@ -63,28 +63,17 @@
           <div class='col-xs col-md-4'>
             <%= bootstrap_form_tag   :html => {id:'commitSearchByName'} do |f| %>
               <%= f.text_field_with_bootstrap :name, label:'Nombre' %>
-              <%#= f.submit 'BUSCAR' %>
             <% end %>
-            <!--<form class="form-horizontal">-->
-            <!--  <fieldset>-->
-            <!--    <div class="form-group">-->
-            <!--      <label>Nombre</label>  -->
-            <!--      <input id="psearch" placeholder="Proporcione el nombre de la persona" class="form-control input-md" type="text">-->
-            <!--    </div>-->
-            <!--  </fieldset>-->
-            <!--</form>-->
           </div>
           <div class='col-xs col-md-1'>
             <br>
-            <a class="btn btn-default">
-              <%= octicon 'search', :height => 20 %>
-            </a>
+            <a id='seachPpl' class="btn btn-primary btn-block"><span class="glyphicon glyphicon-search"></span ></a>
           </div>
          
         </div>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-2'>
-            <%= f.submit  %>
+            <%= f.submit class:'btn btn-primary', id:'addRequest'  %>
             <br>
           </div>
         </div>
@@ -114,14 +103,10 @@
         </div>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-2'>
-            <a  class="btn btn-default" id='addExpediture'>
-             Agregar gasto
-            </a>
+            <a  class="btn btn-primary" id='addExpediture'>Agregar gasto</a>
           </div>
           <div class='col-xs col-md-2'>
-            <a  class="btn btn-default" id='addBenefit'>
-             Agregar prestacion
-            </a>
+            <a  class="btn btn-primary" id='addBenefit'>Agregar prestacion</a>
           </div>
         </div>
       <% end %>
@@ -166,9 +151,7 @@
         </div>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-2'>
-            <a  class="btn btn-default" id='addService'>
-              otro servicio
-            </a>
+            <a  class="btn btn-primary" id='addService'>otro servicio</a>
           </div>
         </div>
       <% end %>

@@ -1,13 +1,19 @@
 $(document).on 'turbolinks:load', ->
-    $('#addPerson').on 'click', ->
+    $('#addRequest').hide()
+    $('#seachPpl').on 'click', ->
         $.ajax
             type:'GET'
             url: '/requests/showmodal'
             data:
                 key:'person'
+                val:$('input#name').val()
             success: (response) ->
                 $("#modal-window").html(response)
                 $('#modal-window').modal('show')
+                $('.selNamebtn').on 'click', ->
+                    $row = $(this).closest('tr')
+                    alert $row.find('td').first().text()
+                    $('#modal-window').modal('hide')
             error: (response) ->
                 alert response
     $('#addExpediture').on 'click', ->
