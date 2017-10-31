@@ -1,3 +1,4 @@
+personID = null
 $(document).on 'turbolinks:load', ->
     $('#addRequest').hide()
     $('#seachPpl').on 'click', ->
@@ -12,7 +13,9 @@ $(document).on 'turbolinks:load', ->
                 $('#modal-window').modal('show')
                 $('.selNamebtn').on 'click', ->
                     $row = $(this).closest('tr')
-                    alert $row.find('td').first().text()
+                    personID = $row.find('td').first().text()
+                    $('#dudename').html('<br><div class="alert alert-dismissible alert-info">'+
+                     '<strong>Solicitud para: </strong><a href="'+'/people/'+personID+'" class="alert-link">'+$row.find('td').eq(1).text()+'</a></div>')
                     $('#modal-window').modal('hide')
             error: (response) ->
                 alert response
