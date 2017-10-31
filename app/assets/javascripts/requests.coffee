@@ -1,6 +1,8 @@
 personID = null
 $(document).on 'turbolinks:load', ->
     $('#addRequest').hide()
+    $('#editPpl').hide()
+    
     $('#seachPpl').on 'click', ->
         $.ajax
             type:'GET'
@@ -17,8 +19,16 @@ $(document).on 'turbolinks:load', ->
                     $('#dudename').html('<br><div class="alert alert-dismissible alert-info">'+
                      '<strong>Solicitud para: </strong><a href="'+'/people/'+personID+'" class="alert-link">'+$row.find('td').eq(1).text()+'</a></div>')
                     $('#modal-window').modal('hide')
+                    $('input#name').attr('disabled',true)
+                    $('#seachPpl').fadeToggle('slow')
+                    $('#editPpl').fadeToggle('slow')
             error: (response) ->
                 alert response
+    $('#editPpl').on 'click', ->
+        $('input#name').val('')
+        $('input#name').attr('disabled',false)
+        $('#editPpl').fadeToggle('slow')
+        $('#seachPpl').fadeToggle('slow')
     $('#addExpediture').on 'click', ->
         $.ajax
             type:'GET'
