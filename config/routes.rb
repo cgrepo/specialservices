@@ -19,8 +19,9 @@ Rails.application.routes.draw do
       post 'addRelatives',          action:'addRelatives',      controller:'people', as:'addRelatives'
     end
   end
-  resources :expeditures , :benefits, :other_services, :other_expeditures, :living_places,
+  resources :expeditures , :benefits, :other_services, :living_places,
             :responsables, :relatives, only: [ :index ]
+  resources :other_expeditures, only: [ :index, :show, :create, :destroy ]
   #resources :otherservices, only: [ :index ]
   resources :sessions, only:[:new, :create, :destroy]
   get "/login" => "sessions#new", as: "login"

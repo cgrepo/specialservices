@@ -73,10 +73,10 @@ class RequestsController < ApplicationController
             # Dont add person search and select the person Daa!
             @persons = Person.where('name LIKE ?','%'+params[:val]+'%')
             format.html {render :partial => 'modalPSearch'}
-          when 'service'
+          when 'service' #vivienda servicios
             @otherService = OtherService.new
             format.html {render :partial => 'modal4service'}
-          when 'benefit'
+          when 'benefit' #gastos prestacin nueva
             @benefit = Benefit.new
             format.html {render :partial => 'modal4benefit'}
           when 'kind'

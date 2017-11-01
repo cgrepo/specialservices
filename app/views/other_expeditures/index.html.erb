@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Other Expeditures</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @other_expeditures.each do |other_expediture| %>
+      <tr>
+        <td><%= link_to 'Show', other_expediture %></td>
+        <td><%= link_to 'Edit', edit_other_expediture_path(other_expediture) %></td>
+        <td><%= link_to 'Destroy', other_expediture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Other expediture', new_other_expediture_path %>

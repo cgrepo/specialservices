@@ -5,10 +5,10 @@
             <h4 class="modal-title">AGREGAR OTRO GASTO</h4>
         </div>
         <div class="modal-body">
-          <%= bootstrap_form_for(@otherExpediture, layout: :horizontal, :html => {id:'addExpeditureCommit'}) do |f| %>
-            <%#= f.text_field_with_bootstrap :brandx, label:'Marca' %>
-            <%#= f.text_field_with_bootstrap :modelx, label:'Modelo' %>
-            <%= f.submit %>
+          <%= bootstrap_form_for(@otherExpediture, layout: :horizontal, remote:true, :html => {id:'addExpeditureCommit', format:'js'}) do |f| %>
+            <%= f.text_field_with_bootstrap :name,   label:'Gasto' %>
+            <%= f.text_field_with_bootstrap :amount, label:'Monto', prepend:'$', append:'.00' %>
+            <%= f.submit 'Guardar', class:'btn btn-md btn-primary' %>
           <% end %>
         </div>
         <div class="modal-footer">

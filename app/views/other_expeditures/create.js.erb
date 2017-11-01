@@ -1,0 +1,4 @@
+$('#modal-window').modal('hide')
+$('#otherExpedituresTable tbody').append("<tr><td><%= @other_expediture.name %></td><td>"+
+    "$ <%= @other_expediture.amount %></td></tr>")
+$('#otherExpedituresTable').show()

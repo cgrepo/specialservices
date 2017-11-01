@@ -1,29 +1,44 @@
 personID = null
 $(document).on 'turbolinks:load', ->
-    $('#addRequest').hide()
+    #$('#addRequest').hide()
+    $('#otherExpedituresTable').hide()
     $('#editPpl').hide()
-    
     $('#seachPpl').on 'click', ->
-        $.ajax
-            type:'GET'
-            url: '/requests/showmodal'
-            data:
-                key:'person'
-                val:$('input#name').val()
-            success: (response) ->
-                $("#modal-window").html(response)
-                $('#modal-window').modal('show')
-                $('.selNamebtn').on 'click', ->
-                    $row = $(this).closest('tr')
-                    personID = $row.find('td').first().text()
-                    $('#dudename').html('<br><div class="alert alert-dismissible alert-info">'+
-                     '<strong>Solicitud para: </strong><a href="'+'/people/'+personID+'" class="alert-link">'+$row.find('td').eq(1).text()+'</a></div>')
-                    $('#modal-window').modal('hide')
-                    $('input#name').attr('disabled',true)
-                    $('#seachPpl').fadeToggle('slow')
-                    $('#editPpl').fadeToggle('slow')
-            error: (response) ->
-                alert response
+        unless $('input#name').val() == ''
+            spinner('ON')
+            $.ajax
+                type:'GET'
+                url: '/requests/showmodal'
+                data:
+                    key:'person'
+                    val:$('input#name').val()
+                success: (response) ->
+                    $("#modal-window").html(response)
+                    $('#modal-window').modal('show')
+                    $('.selNamebtn').on 'click', ->
+                        $row = $(this).closest('tr')
+                        personID = $row.find('td').first().text()
+                        $('#dudename').html('<br><div class="alert alert-dismissible alert-info">'+
+                         '<strong>Solicitud para: </strong><a href="'+'/people/'+personID+'" class="alert-link">'+$row.find('td').eq(1).text()+'</a></div>')
+                        $('#modal-window').modal('hide')
+                        $('input#name').attr('disabled',true)
+                        $('#seachPpl').fadeToggle('slow')
+                        $('#editPpl').fadeToggle('slow')
+                        spinner('OFF')
+                        fillCase()
+                        fillExp()
+                error: (response) ->
+                    spinner('OFF')
+                    alert response
+        else
+            alert 'proporcionar el nombre a buscar'
+    #$(document).on 'submit', 'form#addExpeditureCommit',(e) ->
+    #    e.preventDefault()
+        
+            
+        
+    $('#modal-window').on 'hidden.bs.modal', ->
+       spinner('OFF')
     $('#editPpl').on 'click', ->
         $('input#name').val('')
         $('input#name').attr('disabled',false)
@@ -125,10 +140,31 @@ $(document).on 'turbolinks:load', ->
             $('#living_place_floor_material').val($('#floor').val())
         else if $('h4').text() == 'SELECCIONAR PERSONA(S)'
             console.log 'tet'
-# $(document).on 'change', '#person_kind', ->
-#     unless $(this).val()=='1'
-#         $('#person_relationship').prop('disabled',false)
-#         console.log $(this).val()
-#     else
-#         $('#person_relationship').prop('disabled',true)
-#         console.log $(this).val()
+spinner=(opt) ->
+    if opt == 'ON'
+        $('#spinnerContainer').spin
+            lines: 12
+            length: 7
+            width: 8
+            radius: 6
+            color: 'blue'
+            # speed: 1
+            trail: 60
+            shadow: false
+    if opt == 'OFF'
+        $('#spinnerContainer').spin false
+fillCase=->
+    $('#request_case').val('889')
+    $('#request_rdate').val('11/11/2017')
+    $('#request_sent_by').val('NOSFERATUS')
+    $('#request_oriented').val('HELL')
+    $('#request_service').val('MONEY MAN')
+    $('#request_qualification').val('9')
+    $('#request_notes').val('HEs LYNING DONT TRUST HIM')
+fillExp=->
+    $('#expediture_feeding').val('100')
+    $('#expediture_rent').val('100')
+    $('#expediture_electricity').val('100')
+    $('#expediture_water').val('100')
+    $('#expediture_fuel').val('100')
+    $('#expediture_education').val('100')
