@@ -1,0 +1,2 @@
+alert("destroyed"+<%= @other_expediture.id %>);
+$("#otherExpedituresTable tbody td:contains(<%= @other_expediture.id %>)").closest("tr").remove();

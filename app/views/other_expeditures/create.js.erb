@@ -1,4 +1,7 @@
 $('#modal-window').modal('hide')
 $('#otherExpedituresTable tbody').append("<tr><td><%= @other_expediture.name %></td><td>"+
-    "$ <%= @other_expediture.amount %></td></tr>")
+    "$ <%= @other_expediture.amount %></td>"+
+    "<td><a href='/other_expeditures/<%= @other_expediture.id %>/edit' class='btn btn-sm btn-info'><span class='glyphicon glyphicon-pencil'></span></a></td>"+
+    "<td><a href='/other_expeditures/<%= @other_expediture.id %>' data-method='delete' class='btn btn-sm btn-danger' rel='nofollow' data-remote='true'><span class='glyphicon glyphicon-trash'></span></a></td>"+
+    "<td style='display:none;'><%= @other_expediture.id %></td></tr>")
 $('#otherExpedituresTable').show()

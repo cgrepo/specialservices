@@ -1,7 +1,6 @@
-class OtherExpedituresController < ApplicationController
-  before_action :set_other_expediture, only: [:show, :update, :destroy]
-
-  # GET /other_expeditures
+class BenefitsController < ApplicationController
+  before_action :set_benefit, only: [:show, :update, :destroy]
+   # GET /other_expeditures
   # GET /other_expeditures.json
   def index
     @other_expeditures = OtherExpediture.all
@@ -46,18 +45,19 @@ class OtherExpedituresController < ApplicationController
   def destroy
     @other_expediture.destroy
     respond_to do |format|
-      format.js
+      format.html { redirect_to other_expeditures_url, notice: 'Other expediture was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_other_expediture
+    def set_benefit
       @other_expediture = OtherExpediture.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def other_expediture_params
-      params.require(:other_expediture).permit(:name, :amount)
+    def benefit_params
+      params.require(:benefit).permit(:name)
     end
 end
