@@ -2,15 +2,25 @@
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">AGREGAR OTRO GASTO</h4>
+            <h4 class="modal-title">AGREGAR PRESTACION</h4>
         </div>
         <div class="modal-body">
-          <%= bootstra
-          p_form_for(@benefit, layout: :horizontal, :html => {id:'addBenefitCommit'}) do |f| %>
-          agregar prestacion
-            <%#= f.text_field_with_bootstrap :brandx, label:'Marca' %>
-            <%#= f.text_field_with_bootstrap :modelx, label:'Modelo' %>
-            <%= f.submit %>
+          <%= bootstrap_form_for(@benefit, layout: :horizontal, :html => {id:'addBenefitCommit'}) do |f| %>
+            <%= f.select_with_bootstrap :name, [['IMSS',1],['ISSSTE',2],['PARTICULAR',3], ['DIF',4], ['OTRO',5]], label:'PRESTACION' %>
+            <%= f.number_field_with_bootstrap :amount, :prepend=>'$', :append=>'.00', label:'CANTIDAD' %>
+            <div class="form-group has-success">
+              <br>
+              <div class='col-xs col-md-2'>
+                <label class="form-control-label" for="inputSuccess1" id="label-new-benefit">NUEVA PRESTACION</label>
+              </div>
+              <div class='col-xs col-md-8'>
+                <input class="form-control is-valid" id="new-benefit-name" type="text">
+              </div>
+              <div class='col-xs col-md-2'>
+                <a id="save-benefit-name" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span></a>
+              </div>
+              <br>
+            </div>
           <% end %>
         </div>
         <div class="modal-footer">

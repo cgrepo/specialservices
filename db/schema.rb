@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20171011191939) do
 
   create_table "benefits", force: :cascade do |t|
     t.string   "name"
+    t.float    "amount"
     t.integer  "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

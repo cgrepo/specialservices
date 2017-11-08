@@ -2,7 +2,9 @@ personID = null
 $(document).on 'turbolinks:load', ->
     #$('#addRequest').hide()
     $('#otherExpedituresTable').hide()
+    $('#benefitsTable').hide()
     $('#editPpl').hide()
+    
     $('#seachPpl').on 'click', ->
         unless $('input#name').val() == ''
             spinner('ON')
@@ -32,13 +34,27 @@ $(document).on 'turbolinks:load', ->
                     alert response
         else
             alert 'proporcionar el nombre a buscar'
-    #$(document).on 'submit', 'form#addExpeditureCommit',(e) ->
-    #    e.preventDefault()
-        
-            
-        
     $('#modal-window').on 'hidden.bs.modal', ->
        spinner('OFF')
+    $('#modal-window2').on 'show.bs.modal', ->
+        $('#new-benefit-name').hide()
+        $('#label-new-benefit').hide()
+        $('#save-benefit-name').hide()
+        $('#benefit_name').on 'change', ->
+            if parseInt($(this).val()) == 5
+                $('#new-benefit-name').fadeToggle()
+                $('#label-new-benefit').fadeToggle()
+                $('#save-benefit-name').fadeToggle()
+        $('#save-benefit-name').on 'click', ->
+            if $('#new-benefit-name').val() == ''
+                alert 'nombre invalido'
+            else
+                lastValue = parseInt($('#benefit_name option:last-child').val())+1
+                $('#benefit_name').append('<option value="'+lastValue+'">'+$('#new-benefit-name').val()+"</option>")
+                $('#benefit_name').val(lastValue)
+                $('#new-benefit-name').fadeToggle()
+                $('#label-new-benefit').fadeToggle()
+                $('#save-benefit-name').fadeToggle()
     $('#editPpl').on 'click', ->
         $('input#name').val('')
         $('input#name').attr('disabled',false)
@@ -51,8 +67,8 @@ $(document).on 'turbolinks:load', ->
             data:
                 key:'expediture'
             success: (response) ->
-                $("#modal-window").html(response)
-                $('#modal-window').modal('show')
+                $("#modal-window2").html(response)
+                $('#modal-window2').modal('show')
             error: (response) ->
                 alert response
     $('#addBenefit').on 'click', ->
@@ -62,8 +78,8 @@ $(document).on 'turbolinks:load', ->
             data:
                 key:'benefit'
             success: (response) ->
-                $("#modal-window").html(response)
-                $('#modal-window').modal('show')
+                $("#modal-window2").html(response)
+                $('#modal-window2').modal('show')
             error: (response) ->
                 alert response
     $('#addService').on 'click', ->
