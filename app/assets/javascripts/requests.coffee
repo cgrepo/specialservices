@@ -1,6 +1,5 @@
 personID = null
 $(document).on 'turbolinks:load', ->
-    #$('#addRequest').hide()
     $('#otherExpedituresTable').hide()
     $('#benefitsTable').hide()
     $('#editPpl').hide()
@@ -33,34 +32,6 @@ $(document).on 'turbolinks:load', ->
                     alert response
         else
             alert 'proporcionar el nombre a buscar'
-    $('#modal-window').on 'hidden.bs.modal', ->
-       spinner('OFF')
-    $('#modal-window2').on 'show.bs.modal', ->
-        $('#new-benefit-name').hide()
-        $('#label-new-benefit').hide()
-        $('#save-benefit-name').hide()
-        $('#benefit_name').on 'change', ->
-            if $(this).val() == 'OTRO'
-                $('#new-benefit-name').fadeToggle()
-                $('#label-new-benefit').fadeToggle()
-                $('#save-benefit-name').fadeToggle()
-                $('#benefit_amount').attr('disabled',true)
-                $('.addBenefit').attr('disabled',true)
-                $('#benefit_name').attr('disabled',true)
-        $('#save-benefit-name').on 'click', ->
-            if $('#new-benefit-name').val() == ''
-                alert 'nombre invalido'
-            else
-                lastValue = $('#new-benefit-name').val()
-                $('#benefit_name').append('<option value="'+lastValue+'">'+lastValue+"</option>")
-                $('#benefit_name').val(lastValue)
-                $('#new-benefit-name').fadeToggle()
-                $('#label-new-benefit').fadeToggle()
-                $('#save-benefit-name').fadeToggle()
-                $('#benefit_amount').attr('disabled',false)
-                $('.addBenefit').attr('disabled',false)
-                $('#benefit_name').attr('disabled',false)
-                
     $('#editPpl').on 'click', ->
         $('input#name').val('')
         $('input#name').attr('disabled',false)
@@ -107,8 +78,8 @@ $(document).on 'turbolinks:load', ->
                 data:
                     key:'kind'
                 success: (response) ->
-                    $("#modal-window2").html(response)
-                    $('#modal-window2').modal('show')
+                    $("#modal-window").html(response)
+                    $('#modal-window').modal('show')
                 error: (response) ->
                     alert response
     $('#living_place_wall_material').on 'change', ->
@@ -119,8 +90,8 @@ $(document).on 'turbolinks:load', ->
                 data:
                     key:'wall'
                 success: (response) ->
-                    $("#modal-window2").html(response)
-                    $('#modal-window2').modal('show')
+                    $("#modal-window").html(response)
+                    $('#modal-window').modal('show')
                 error: (response) ->
                     alert response
     $('#living_place_roof_material').on 'change', ->
@@ -131,8 +102,8 @@ $(document).on 'turbolinks:load', ->
                 data:
                     key:'roof'
                 success: (response) ->
-                    $("#modal-window2").html(response)
-                    $('#modal-window2').modal('show')
+                    $("#modal-window").html(response)
+                    $('#modal-window').modal('show')
                 error: (response) ->
                     alert response
     $('#living_place_floor_material').on 'change', ->
@@ -143,12 +114,38 @@ $(document).on 'turbolinks:load', ->
                 data:
                     key:'floor'
                 success: (response) ->
-                    $("#modal-window2").html(response)
-                    $('#modal-window2').modal('show')
+                    $("#modal-window").html(response)
+                    $('#modal-window').modal('show')
                 error: (response) ->
                     alert response
-    $('#modal-window2').on 'hidden.bs.modal', ->
-        if $('h4').text() == 'AGREGAR OTRO TIPO DE VIVIENDA'
+    $('#modal-window2').on 'show.bs.modal', ->
+        $('#new-benefit-name').hide()
+        $('#label-new-benefit').hide()
+        $('#save-benefit-name').hide()
+        $('#benefit_name').on 'change', ->
+            if $(this).val() == 'OTRO'
+                $('#new-benefit-name').fadeToggle()
+                $('#label-new-benefit').fadeToggle()
+                $('#save-benefit-name').fadeToggle()
+                $('#benefit_amount').attr('disabled',true)
+                $('.addBenefit').attr('disabled',true)
+                $('#benefit_name').attr('disabled',true)
+        $('#save-benefit-name').on 'click', ->
+            if $('#new-benefit-name').val() == ''
+                alert 'nombre invalido'
+            else
+                lastValue = $('#new-benefit-name').val()
+                $('#benefit_name').append('<option value="'+lastValue+'">'+lastValue+"</option>")
+                $('#benefit_name').val(lastValue)
+                $('#new-benefit-name').fadeToggle()
+                $('#label-new-benefit').fadeToggle()
+                $('#save-benefit-name').fadeToggle()
+                $('#benefit_amount').attr('disabled',false)
+                $('.addBenefit').attr('disabled',false)
+                $('#benefit_name').attr('disabled',false)
+    $('#modal-window').on 'hidden.bs.modal', ->
+       spinner('OFF')
+       if $('h4').text() == 'AGREGAR OTRO TIPO DE VIVIENDA'
             $('#living_place_kind').prepend('<option value="'+$('#textinput').val()+'">'+$('#textinput').val()+'</option>')
             $('#living_place_kind').val($('#textinput').val())
         else if $('h4').text() == 'AGREGAR OTRO MATERIAL DE PARED'
@@ -162,6 +159,22 @@ $(document).on 'turbolinks:load', ->
             $('#living_place_floor_material').val($('#floor').val())
         else if $('h4').text() == 'SELECCIONAR PERSONA(S)'
             console.log 'tet'
+    # $('#modal-window2').on 'hidden.bs.modal', ->
+    #     if $('h4').text() == 'AGREGAR OTRO TIPO DE VIVIENDA'
+    #         $('#living_place_kind').prepend('<option value="'+$('#textinput').val()+'">'+$('#textinput').val()+'</option>')
+    #         $('#living_place_kind').val($('#textinput').val())
+    #     else if $('h4').text() == 'AGREGAR OTRO MATERIAL DE PARED'
+    #         $('#living_place_wall_material').prepend('<option value="'+$('#wall').val()+'">'+$('#wall').val()+'</option>')
+    #         $('#living_place_wall_material').val($('#wall').val())
+    #     else if $('h4').text() == 'AGREGAR OTRO MATERIAL DE TECHO'
+    #         $('#living_place_roof_material').prepend('<option value="'+$('#roof').val()+'">'+$('#roof').val()+'</option>')
+    #         $('#living_place_roof_material').val($('#roof').val())
+    #     else if $('h4').text() == 'AGREGAR OTRO MATERIAL DE PISO'
+    #         $('#living_place_floor_material').prepend('<option value="'+$('#floor').val()+'">'+$('#floor').val()+'</option>')
+    #         $('#living_place_floor_material').val($('#floor').val())
+    #     else if $('h4').text() == 'SELECCIONAR PERSONA(S)'
+    #         console.log 'tet'
+
 spinner=(opt) ->
     if opt == 'ON'
         $('#spinnerContainer').spin
