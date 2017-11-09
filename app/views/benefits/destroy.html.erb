@@ -1,2 +1,1 @@
-<h1>Benefits#destroy</h1>
-<p>Find me in app/views/benefits/destroy.html.erb</p>
+$("#benefitsTable tbody td:contains(<%= @benefit.id %>)").closest("tr").remove();

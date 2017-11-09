@@ -5,8 +5,8 @@
             <h4 class="modal-title">AGREGAR PRESTACION</h4>
         </div>
         <div class="modal-body">
-          <%= bootstrap_form_for(@benefit, layout: :horizontal, :html => {id:'addBenefitCommit'}) do |f| %>
-            <%= f.select_with_bootstrap :name, [['IMSS',1],['ISSSTE',2],['PARTICULAR',3], ['DIF',4], ['OTRO',5]], label:'PRESTACION' %>
+          <%= bootstrap_form_for(@benefit, layout: :horizontal, remote:true, :html => {id:'addBenefitCommit'}) do |f| %>
+            <%= f.select_with_bootstrap :name, [['IMSS'],['ISSSTE'],['PARTICULAR'], ['DIF'], ['OTRO']], label:'PRESTACION' %>
             <%= f.number_field_with_bootstrap :amount, :prepend=>'$', :append=>'.00', label:'CANTIDAD' %>
             <div class="form-group has-success">
               <br>
@@ -21,6 +21,7 @@
               </div>
               <br>
             </div>
+            <%= f.submit 'Guardar', class:'btn btn-md btn-primary addBenefit' %>
           <% end %>
         </div>
         <div class="modal-footer">

@@ -4,7 +4,6 @@ $(document).on 'turbolinks:load', ->
     $('#otherExpedituresTable').hide()
     $('#benefitsTable').hide()
     $('#editPpl').hide()
-    
     $('#seachPpl').on 'click', ->
         unless $('input#name').val() == ''
             spinner('ON')
@@ -41,20 +40,27 @@ $(document).on 'turbolinks:load', ->
         $('#label-new-benefit').hide()
         $('#save-benefit-name').hide()
         $('#benefit_name').on 'change', ->
-            if parseInt($(this).val()) == 5
+            if $(this).val() == 'OTRO'
                 $('#new-benefit-name').fadeToggle()
                 $('#label-new-benefit').fadeToggle()
                 $('#save-benefit-name').fadeToggle()
+                $('#benefit_amount').attr('disabled',true)
+                $('.addBenefit').attr('disabled',true)
+                $('#benefit_name').attr('disabled',true)
         $('#save-benefit-name').on 'click', ->
             if $('#new-benefit-name').val() == ''
                 alert 'nombre invalido'
             else
-                lastValue = parseInt($('#benefit_name option:last-child').val())+1
-                $('#benefit_name').append('<option value="'+lastValue+'">'+$('#new-benefit-name').val()+"</option>")
+                lastValue = $('#new-benefit-name').val()
+                $('#benefit_name').append('<option value="'+lastValue+'">'+lastValue+"</option>")
                 $('#benefit_name').val(lastValue)
                 $('#new-benefit-name').fadeToggle()
                 $('#label-new-benefit').fadeToggle()
                 $('#save-benefit-name').fadeToggle()
+                $('#benefit_amount').attr('disabled',false)
+                $('.addBenefit').attr('disabled',false)
+                $('#benefit_name').attr('disabled',false)
+                
     $('#editPpl').on 'click', ->
         $('input#name').val('')
         $('input#name').attr('disabled',false)
