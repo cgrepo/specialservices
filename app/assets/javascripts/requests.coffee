@@ -154,21 +154,49 @@ $(document).on 'turbolinks:load', ->
                 $('#benefit_name').attr('disabled',false)
     $('#modal-window3').on 'hidden.bs.modal', ->
         if $('h4').attr('id') == 'newKind'
-            $('#living_place_kind').prepend('<option value="'+$('#textinput').val()+'">'+$('#textinput').val()+'</option>')
-            $('#living_place_kind').val($('#textinput').val())
+            unless $('#newKind').val() == ''
+                $('#living_place_kind').prepend('<option value="'+$('#textinput').val()+'">'+$('#textinput').val()+'</option>')
+                $('#living_place_kind').val($('#textinput').val())
+            else
+                alert 'debe proporcionar un nombre'
         else 
             if $('h4').attr('id') == 'newWall'
-                $('#living_place_wall_material').prepend('<option value="'+$('#wall').val()+'">'+$('#wall').val()+'</option>')
-                $('#living_place_wall_material').val($('#wall').val())
+                unless $('#newWall').val() == ''
+                    $('#living_place_wall_material').prepend('<option value="'+$('#wall').val()+'">'+$('#wall').val()+'</option>')
+                    $('#living_place_wall_material').val($('#wall').val())
+                else
+                    alert 'debe proporcionar un nombre'
             else 
                 if $('h4').attr('id') == 'newRoof'
-                    $('#living_place_roof_material').prepend('<option value="'+$('#roof').val()+'">'+$('#roof').val()+'</option>')
-                    $('#living_place_roof_material').val($('#roof').val())
+                    unless $('#newRoof').val() == ''
+                        $('#living_place_roof_material').prepend('<option value="'+$('#roof').val()+'">'+$('#roof').val()+'</option>')
+                        $('#living_place_roof_material').val($('#roof').val())
+                    else
+                        alert 'debe proporcionar un nombre'
                 else 
                     if $('h4').attr('id') == 'newFloor'
-                        $('#living_place_floor_material').prepend('<option value="'+$('#floor').val()+'">'+$('#floor').val()+'</option>')
-                        $('#living_place_floor_material').val($('#floor').val())
-
+                        unless $('#newRoof').val() == ''
+                            $('#living_place_floor_material').prepend('<option value="'+$('#floor').val()+'">'+$('#floor').val()+'</option>')
+                            $('#living_place_floor_material').val($('#floor').val())
+                        else
+                            alert 'debe proporcionar un nombre'
+            
+    $('#modal-window3').on 'show.bs.modal', ->
+        $('.badBoy').keypress (event) ->
+            if event.keyCode == 13
+                event.preventDefault()
+        # $('#textinput').keypress (event) ->
+        #   if event.keyCode == 13
+        #       event.preventDefault()
+        # $('#wall').keypress (event) ->
+        #   if event.keyCode == 13
+        #       event.preventDefault()
+        # $('#roof').keypress (event) ->
+        #   if event.keyCode == 13
+        #       event.preventDefault()
+        # $('#floor').keypress (event) ->
+        #   if event.keyCode == 13
+        #       event.preventDefault()
 
 spinner=(opt) ->
     if opt == 'ON'
