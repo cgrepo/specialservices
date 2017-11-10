@@ -74,7 +74,7 @@ class RequestsController < ApplicationController
             @persons = Person.where('name LIKE ?','%'+params[:val]+'%')
             format.html {render :partial => 'modalPSearch'}
           when 'service' #vivienda servicios
-            @otherService = OtherService.new
+            @other_service = OtherService.new
             format.html {render :partial => 'modal4service'}
           when 'benefit' #gastos prestacin nueva
             @benefit = Benefit.new

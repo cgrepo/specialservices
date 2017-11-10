@@ -5,10 +5,9 @@
             <h4 class="modal-title">AGREGAR OTRO SERVICIO</h4>
         </div>
         <div class="modal-body">
-          <%= bootstrap_form_for(@otherService, layout: :horizontal, :html => {id:'addOtherService'}) do |f| %>
-            <%#= f.text_field_with_bootstrap :brandx, label:'Marca' %>
-            <%#= f.text_field_with_bootstrap :modelx, label:'Modelo' %>
-            <%= f.submit %>
+          <%= bootstrap_form_for(@other_service, layout: :horizontal, remote:true, :html => {id:'addOtherService'}) do |f| %>
+            <%= f.text_field_with_bootstrap :name, label:'NUEVO SERVICIO', label_col:'col-xs col-md-4', control_col:'col-xs col-md-8' %>
+            <%= f.submit'Guardar', class:'btn btn-md btn-primary saveService' %>
           <% end %>
         </div>
         <div class="modal-footer">

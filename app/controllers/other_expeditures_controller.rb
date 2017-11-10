@@ -27,20 +27,6 @@ class OtherExpedituresController < ApplicationController
     end
   end
 
-  # PATCH/PUT /other_expeditures/1
-  # PATCH/PUT /other_expeditures/1.json
-  def update
-    respond_to do |format|
-      if @other_expediture.update(other_expediture_params)
-        format.html { redirect_to @other_expediture, notice: 'Other expediture was successfully updated.' }
-        format.json { render :show, status: :ok, location: @other_expediture }
-      else
-        format.html { render :edit }
-        format.json { render json: @other_expediture.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /other_expeditures/1
   # DELETE /other_expeditures/1.json
   def destroy

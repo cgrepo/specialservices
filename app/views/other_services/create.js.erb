@@ -1,0 +1,5 @@
+$('#modal-window3').modal('hide')
+$('#servicesTable tbody').append("<tr><td><%= @other_service.name %></td>"+
+    "<td><a href='/other_services/<%= @other_service.id %>' data-method='delete' class='btn btn-sm btn-danger' rel='nofollow' data-remote='true'><span class='glyphicon glyphicon-trash'></span></a></td>"+
+    "<td style='display:none;'><%= @other_service.id %></td></tr>")
+$('#servicesTable').show()

@@ -1,8 +1,11 @@
 personID = null
 $(document).on 'turbolinks:load', ->
+    
     $('#otherExpedituresTable').hide()
     $('#benefitsTable').hide()
     $('#editPpl').hide()
+    $('#servicesTable').hide()
+    
     $('#seachPpl').on 'click', ->
         unless $('input#name').val() == ''
             spinner('ON')
@@ -70,6 +73,10 @@ $(document).on 'turbolinks:load', ->
                 $('#modal-window').modal('show')
             error: (response) ->
                 alert response
+    $('#saveService').on 'click', ->
+        if $('#other_service_name').val() == ''
+            alert 'proporcionar un nombre de servicio'
+
     $('#living_place_kind').on 'change', ->
         if $('#living_place_kind').val() == 'OTROS'
             $.ajax
@@ -78,8 +85,8 @@ $(document).on 'turbolinks:load', ->
                 data:
                     key:'kind'
                 success: (response) ->
-                    $("#modal-window").html(response)
-                    $('#modal-window').modal('show')
+                    $("#modal-window3").html(response)
+                    $('#modal-window3').modal('show')
                 error: (response) ->
                     alert response
     $('#living_place_wall_material').on 'change', ->
@@ -90,8 +97,8 @@ $(document).on 'turbolinks:load', ->
                 data:
                     key:'wall'
                 success: (response) ->
-                    $("#modal-window").html(response)
-                    $('#modal-window').modal('show')
+                    $("#modal-window3").html(response)
+                    $('#modal-window3').modal('show')
                 error: (response) ->
                     alert response
     $('#living_place_roof_material').on 'change', ->
@@ -102,8 +109,8 @@ $(document).on 'turbolinks:load', ->
                 data:
                     key:'roof'
                 success: (response) ->
-                    $("#modal-window").html(response)
-                    $('#modal-window').modal('show')
+                    $("#modal-window3").html(response)
+                    $('#modal-window3').modal('show')
                 error: (response) ->
                     alert response
     $('#living_place_floor_material').on 'change', ->
@@ -114,10 +121,12 @@ $(document).on 'turbolinks:load', ->
                 data:
                     key:'floor'
                 success: (response) ->
-                    $("#modal-window").html(response)
-                    $('#modal-window').modal('show')
+                    $("#modal-window3").html(response)
+                    $('#modal-window3').modal('show')
                 error: (response) ->
                     alert response
+    $('#modal-window').on 'hidden.bs.modal', ->
+        spinner('OFF')
     $('#modal-window2').on 'show.bs.modal', ->
         $('#new-benefit-name').hide()
         $('#label-new-benefit').hide()
@@ -143,37 +152,26 @@ $(document).on 'turbolinks:load', ->
                 $('#benefit_amount').attr('disabled',false)
                 $('.addBenefit').attr('disabled',false)
                 $('#benefit_name').attr('disabled',false)
-    $('#modal-window').on 'hidden.bs.modal', ->
-       spinner('OFF')
-       if $('h4').text() == 'AGREGAR OTRO TIPO DE VIVIENDA'
+    $('#modal-window3').on 'hidden.bs.modal', ->
+        alert 'aqui si llega'
+        alert $('#newKind').text()
+        alert $('h4').attr('id')
+        if $('h4').attr('id') == 'newKind'
             $('#living_place_kind').prepend('<option value="'+$('#textinput').val()+'">'+$('#textinput').val()+'</option>')
             $('#living_place_kind').val($('#textinput').val())
-        else if $('h4').text() == 'AGREGAR OTRO MATERIAL DE PARED'
-            $('#living_place_wall_material').prepend('<option value="'+$('#wall').val()+'">'+$('#wall').val()+'</option>')
-            $('#living_place_wall_material').val($('#wall').val())
-        else if $('h4').text() == 'AGREGAR OTRO MATERIAL DE TECHO'
-            $('#living_place_roof_material').prepend('<option value="'+$('#roof').val()+'">'+$('#roof').val()+'</option>')
-            $('#living_place_roof_material').val($('#roof').val())
-        else if $('h4').text() == 'AGREGAR OTRO MATERIAL DE PISO'
-            $('#living_place_floor_material').prepend('<option value="'+$('#floor').val()+'">'+$('#floor').val()+'</option>')
-            $('#living_place_floor_material').val($('#floor').val())
-        else if $('h4').text() == 'SELECCIONAR PERSONA(S)'
-            console.log 'tet'
-    # $('#modal-window2').on 'hidden.bs.modal', ->
-    #     if $('h4').text() == 'AGREGAR OTRO TIPO DE VIVIENDA'
-    #         $('#living_place_kind').prepend('<option value="'+$('#textinput').val()+'">'+$('#textinput').val()+'</option>')
-    #         $('#living_place_kind').val($('#textinput').val())
-    #     else if $('h4').text() == 'AGREGAR OTRO MATERIAL DE PARED'
-    #         $('#living_place_wall_material').prepend('<option value="'+$('#wall').val()+'">'+$('#wall').val()+'</option>')
-    #         $('#living_place_wall_material').val($('#wall').val())
-    #     else if $('h4').text() == 'AGREGAR OTRO MATERIAL DE TECHO'
-    #         $('#living_place_roof_material').prepend('<option value="'+$('#roof').val()+'">'+$('#roof').val()+'</option>')
-    #         $('#living_place_roof_material').val($('#roof').val())
-    #     else if $('h4').text() == 'AGREGAR OTRO MATERIAL DE PISO'
-    #         $('#living_place_floor_material').prepend('<option value="'+$('#floor').val()+'">'+$('#floor').val()+'</option>')
-    #         $('#living_place_floor_material').val($('#floor').val())
-    #     else if $('h4').text() == 'SELECCIONAR PERSONA(S)'
-    #         console.log 'tet'
+        else 
+            if $('h4').attr('id') == 'newWall'
+                $('#living_place_wall_material').prepend('<option value="'+$('#wall').val()+'">'+$('#wall').val()+'</option>')
+                $('#living_place_wall_material').val($('#wall').val())
+            else 
+                if $('h4').attr('id') == 'newRoof'
+                    $('#living_place_roof_material').prepend('<option value="'+$('#roof').val()+'">'+$('#roof').val()+'</option>')
+                    $('#living_place_roof_material').val($('#roof').val())
+                else 
+                    if $('h4').attr('id') == 'newFloor'
+                        $('#living_place_floor_material').prepend('<option value="'+$('#floor').val()+'">'+$('#floor').val()+'</option>')
+                        $('#living_place_floor_material').val($('#floor').val())
+
 
 spinner=(opt) ->
     if opt == 'ON'
