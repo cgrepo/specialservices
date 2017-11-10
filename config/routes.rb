@@ -19,14 +19,11 @@ Rails.application.routes.draw do
       post 'addRelatives',          action:'addRelatives',      controller:'people', as:'addRelatives'
     end
   end
-  resources :expeditures, :other_services, :living_places,
-            :responsables, :relatives, only: [ :index ]
-  resources :other_expeditures, only: [ :index, :show, :create, :destroy, :edit ]
-  resources :benefits, only: [ :index, :show, :create, :destroy ]
-  #resources :otherservices, only: [ :index ]
+  resources :expeditures, :living_places, :responsables, :relatives, only: [ :index ]
+  resources :other_expeditures, :benefits, :other_services, only: [ :index, :show, :create, :destroy ]
   resources :sessions, only:[:new, :create, :destroy]
   get "/login" => "sessions#new", as: "login"
-  delete "/logout" => "sessions#destroy", as: "logout"
   get 'welcome/index'
+  delete "/logout" => "sessions#destroy", as: "logout"
   root to: 'welcome#index'
 end

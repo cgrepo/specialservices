@@ -9,7 +9,7 @@ class OtherServicesController < ApplicationController
   end
 
   def create
-    @other_service = OtherService.new(benefit_params)
+    @other_service = OtherService.new(other_service_params)
     respond_to do |format|
       if @other_service.save
         format.js 

@@ -1,2 +1,2 @@
-<h1>OtherServices#destroy</h1>
-<p>Find me in app/views/other_services/destroy.html.erb</p>
+alert("destroyed"+<%= @other_service.id %>);
+$("#servicesTable tbody td:contains(<%= @other_service.id %>)").closest("tr").remove();

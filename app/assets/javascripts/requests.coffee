@@ -69,8 +69,8 @@ $(document).on 'turbolinks:load', ->
             data:
                 key:'service'
             success: (response) ->
-                $("#modal-window").html(response)
-                $('#modal-window').modal('show')
+                $("#modal-window3").html(response)
+                $('#modal-window3').modal('show')
             error: (response) ->
                 alert response
     $('#saveService').on 'click', ->
@@ -153,9 +153,6 @@ $(document).on 'turbolinks:load', ->
                 $('.addBenefit').attr('disabled',false)
                 $('#benefit_name').attr('disabled',false)
     $('#modal-window3').on 'hidden.bs.modal', ->
-        alert 'aqui si llega'
-        alert $('#newKind').text()
-        alert $('h4').attr('id')
         if $('h4').attr('id') == 'newKind'
             $('#living_place_kind').prepend('<option value="'+$('#textinput').val()+'">'+$('#textinput').val()+'</option>')
             $('#living_place_kind').val($('#textinput').val())
