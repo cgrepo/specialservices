@@ -35,23 +35,22 @@
             <%= f.text_field_with_bootstrap :rdate, label:'Fecha Solicitud', class:'xdate' %>
           </div>
           <div class='col-xs col-md-4'>
-            <%= f.text_field_with_bootstrap :sent_by, label:'Enviado por' %>
+            <%= f.text_field_with_bootstrap :sent_by, label:'Enviado por', class:'ups' %>
           </div>
           <div class='col-xs col-md-4'>
-            <%= f.text_field_with_bootstrap :oriented, label:'Orientado a' %>
+            <%= f.text_field_with_bootstrap :oriented, label:'Orientado a', class:'ups' %>
           </div>
         </div>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-3'>
-            <%= f.text_field_with_bootstrap :service, label:'Servicio' %>
+            <%= f.text_field_with_bootstrap :service, label:'Servicio', class:'ups' %>
           </div>
           <div class='col-xs col-md-3'>
-            <%= f.text_field_with_bootstrap :qualification, label:'Calificacion' %>
+            <%= f.text_field_with_bootstrap :qualification, label:'Calificacion', class:'ups' %>
           </div>
           <div class='col-xs col-md-6'>
-            <%= f.text_area_with_bootstrap :notes, label:'Observaciones' %>
+            <%= f.text_area_with_bootstrap :notes, label:'Observaciones', class:'ups' %>
           </div>
-            <%#= f.text_field_with_bootstrap :person_id, label:'Person_id' %> 
         </div>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-4'>
@@ -182,11 +181,9 @@
               <tbody></tbody>
             </table>
           </div>
-          </div>
         </div>
       <% end %>
     </div>
-  </div>
 </div>
 <div id="modal-window2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
 <div id="modal-window3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

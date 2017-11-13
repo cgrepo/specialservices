@@ -23,12 +23,13 @@
       <li id="relative"><a href="#relatives" data-toggle="tab">PARIENTES</a></li>
     </ul>
   </div>
-   <div id="myTabContent" class="tab-content">
+  
+  <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade active in" id="home">
       <%= bootstrap_form_for(@person ) do |f| %>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-6'>
-            <%= f.text_field_with_bootstrap :name, label:'Nombre' %>
+            <%= f.text_field_with_bootstrap :name, label:'Nombre', class:'ups' %>
           </div>
           <div class='col-xs col-md-1'>
             <%= f.number_field_with_bootstrap :age, label:'Edad' %>
@@ -40,18 +41,16 @@
             <%= f.select_with_bootstrap :civil_status,[['SOLTERO'],['CASADO'],['VIUDO(A)'],['UNION LIBRE'],['MS'],['OTRO'] ],label:'Edo. civil' %>
           </div>
           <div class='col-xs col-md-2'>
-            <%= f.text_field_with_bootstrap :salary, prepend:'$' ,label:'Salario', append:'.00' %>
+            <%= f.text_field_with_bootstrap :salary, prepend:'$' ,label:'Salario', append:'.00', class:'ups' %>
           </div>
         </div>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-2'>
             <%= f.select_with_bootstrap :scolarship,[['PRIMARIA'],['SECUNDARIA'],['PREPARATORIA'],['UNIVERSIDAD'],['OTRO']]  ,label:'Escolaridad' %>
           </div>
+          <div class='col-xs col-md-2'></div>
           <div class='col-xs col-md-2'>
-            
-          </div>
-          <div class='col-xs col-md-2'>
-            <%= f.text_field_with_bootstrap :phone, label:'Telefono' %>
+            <%= f.text_field_with_bootstrap :phone, label:'Telefono', class:'ups' %>
           </div>
           <div class='col-xs col-md-2'>
             <%= f.text_field_with_bootstrap :admission_date, label:'Fecha admision', class:'xdate' %>
@@ -65,18 +64,18 @@
         </div>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-6'>
-            <%= f.text_field_with_bootstrap :address, label:'Direccion' %>
+            <%= f.text_field_with_bootstrap :address, label:'Direccion', class:'ups' %>
           </div>
           <div class='col-xs col-md-6'>
-            <%= f.text_field_with_bootstrap :current_residence, label:'Residencia actual' %>
+            <%= f.text_field_with_bootstrap :current_residence, label:'Residencia actual', class:'ups' %>
           </div>
         </div>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-6'>
-            <%= f.text_field_with_bootstrap :occupation, label:'Ocupacion' %>
+            <%= f.text_field_with_bootstrap :occupation, label:'Ocupacion', class:'ups' %>
           </div>
           <div class='col-xs col-md-6'>
-            <%= f.text_field_with_bootstrap :workplace, label:'Lugar de Trabajo' %>
+            <%= f.text_field_with_bootstrap :workplace, label:'Lugar de Trabajo', class:'ups' %>
           </div>
         </div>
         <div class='row be-round_ligth_gray'>
@@ -89,7 +88,7 @@
             <br>
           </div>
           <div class='col-xs col-md-1'>
-            <a  id="update-person" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-ok-circle"></a>
+            <a  id="update-person" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-ok-circle"></span></a>
             <br>
           </div>
         </div>
@@ -99,7 +98,7 @@
       <%= bootstrap_form_for(@responsable) do |f| %>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-6'>
-            <%= f.text_field_with_bootstrap :name, label:'Nombre' %>
+            <%= f.text_field_with_bootstrap :name, label:'Nombre', class:'ups' %>
           </div>
           <div class='col-xs col-md-1'>
             <%= f.number_field_with_bootstrap :age, label:'Edad' %>
@@ -116,18 +115,18 @@
         </div>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-6'>
-            <%= f.text_field_with_bootstrap :address, label:'Direccion' %>
+            <%= f.text_field_with_bootstrap :address, label:'Direccion', class:'ups' %>
           </div>
           <div class='col-xs col-md-6'>
-            <%= f.text_field_with_bootstrap :occupation, label:'Ocupacion' %>
+            <%= f.text_field_with_bootstrap :occupation, label:'Ocupacion', class:'ups' %>
           </div>
         </div>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-4'>
-            <%= f.text_field_with_bootstrap :workplace, label:'Lugar de Trabajo' %>
+            <%= f.text_field_with_bootstrap :workplace, label:'Lugar de Trabajo', class:'ups' %>
           </div>
           <div class='col-xs col-md-4'>
-            <%= f.text_field_with_bootstrap :relationship, label:'Parentesco' %>
+            <%= f.text_field_with_bootstrap :relationship, label:'Parentesco', class:'ups' %>
           </div>
           <div class='col-xs col-md-1'>
             <br>
@@ -148,7 +147,7 @@
       <%= bootstrap_form_for(@relative) do |f| %>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-6'>
-            <%= f.text_field_with_bootstrap :name, label:'Nombre' %>
+            <%= f.text_field_with_bootstrap :name, label:'Nombre', class:'ups' %>
           </div>
           <div class='col-xs col-md-1'>
             <%= f.number_field_with_bootstrap :age, label:'Edad' %>
@@ -165,13 +164,13 @@
         </div>
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-4'>
-            <%= f.text_field_with_bootstrap :occupation, label:'Ocupacion' %>
+            <%= f.text_field_with_bootstrap :occupation, label:'Ocupacion', class:'ups' %>
           </div>
           <div class='col-xs col-md-4'>
-            <%= f.text_field_with_bootstrap :scolarship, label:'Escolaridad' %>
+            <%= f.text_field_with_bootstrap :scolarship, label:'Escolaridad', class:'ups' %>
           </div>
           <div class='col-xs col-md-4'>
-            <%= f.text_field_with_bootstrap :relationship, label:'Parentesco' %>
+            <%= f.text_field_with_bootstrap :relationship, label:'Parentesco', class:'ups' %>
           </div>
         </div>
         <div class='row be-round_ligth_gray'>
@@ -209,5 +208,4 @@
         </div>
       </div>
     </div>
-    
-   </div>
+  </div>
