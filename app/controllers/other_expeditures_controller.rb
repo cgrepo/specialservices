@@ -16,12 +16,13 @@ class OtherExpedituresController < ApplicationController
   # POST /other_expeditures.json
   def create
     @other_expediture = OtherExpediture.new(other_expediture_params)
+    #byebug
     respond_to do |format|
       if @other_expediture.save
         #format.html
         format.js 
       else
-        format.js { render :new }
+        format.js   { render :createFail }
         format.json { render json: @other_expediture.errors, status: :unprocessable_entity }
       end
     end
