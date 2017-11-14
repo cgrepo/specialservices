@@ -14,7 +14,7 @@ class OtherServicesController < ApplicationController
       if @other_service.save
         format.js 
       else
-        format.js { render :new }
+        format.js   { render :createFail }
         format.json { render json: @benefit.errors, status: :unprocessable_entity }
       end
     end
