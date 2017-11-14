@@ -27,7 +27,7 @@ $(document).on 'turbolinks:load', ->
                         fillCase()
                         fillExp()
                         tabsEnabled(true)
-                        #caseUIEnabled(true)
+                        caseUIEnabled(true)
                 error: (response) ->
                     spinner('OFF')
                     alert response
@@ -203,29 +203,28 @@ tabsEnabled=(opt) ->
         $('.nav li#expedit').find('a').removeAttr("data-toggle")
         $('.nav li#live').addClass('disabled')
         $('.nav li#live').find('a').removeAttr("data-toggle")
-# caseUIEnabled=(opt) ->
-#     if opt
-#         $('#request_case').attr('disabled',false)
-#         $('#request_rdate').attr('disabled',false)
-#         $('#request_sent_by').attr('disabled',false)
-#         $('#request_oriented').attr('disabled',false)
-#         $('#request_service').attr('disabled',false)
-#         $('#request_qualification').attr('disabled',false)
-#         $('#request_notes').attr('disabled',false)
-#     else
-#         $('#request_case').attr('disabled',true)
-#         $('#request_rdate').attr('disabled',true)
-#         $('#request_sent_by').attr('disabled',true)
-#         $('#request_oriented').attr('disabled',true)
-#         $('#request_service').attr('disabled',true)
-#         $('#request_qualification').attr('disabled',true)
-#         $('#request_notes').attr('disabled',true)
+caseUIEnabled=(opt) ->
+    if opt
+        $('#request_case').attr('disabled',false)
+        $('#request_rdate').attr('disabled',false)
+        $('#request_sent_by').attr('disabled',false)
+        $('#request_oriented').attr('disabled',false)
+        $('#request_service').attr('disabled',false)
+        $('#request_qualification').attr('disabled',false)
+        $('#request_notes').attr('disabled',false)
+    else
+        $('#request_case').attr('disabled',true)
+        $('#request_rdate').attr('disabled',true)
+        $('#request_sent_by').attr('disabled',true)
+        $('#request_oriented').attr('disabled',true)
+        $('#request_service').attr('disabled',true)
+        $('#request_qualification').attr('disabled',true)
+        $('#request_notes').attr('disabled',true)
         
 setup=->
     tabsEnabled(false)
     $('#editPpl').hide()
-    #$('#saveAll').hide()
-    #caseUIEnabled(false)
+    caseUIEnabled(false)
 spinner=(opt) ->
     if opt == 'ON'
         $('#spinnerContainer').spin
