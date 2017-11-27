@@ -52,6 +52,7 @@ $(document).on 'turbolinks:load', ->
             error: (response) ->
                 alert response
     $('#addBenefit').on 'click', ->
+        spinner('ON',$('#spinnerContainer4exp'))
         $.ajax
             type:'GET'
             url: '/requests/showmodal'
