@@ -1,10 +1,11 @@
 personID = null
 superCell = []
+otExp = []
 $(document).on 'turbolinks:load', ->
     setup()
     $('#seachPpl').on 'click', ->
         unless $('input#name').val() == ''
-            spinner('ON')
+            spinner('ON',$('#spinnerContainer4case'))
             $.ajax
                 type:'GET'
                 url: '/requests/showmodal'
@@ -23,13 +24,13 @@ $(document).on 'turbolinks:load', ->
                         $('input#name').attr('disabled',true)
                         $('#seachPpl').fadeToggle('slow')
                         $('#editPpl').fadeToggle('slow')
-                        spinner('OFF')
+                        spinner('OFF',$('#spinnerContainer4case'))
                         fillCase()
                         fillExp()
                         tabsEnabled(true)
                         caseUIEnabled(true)
                 error: (response) ->
-                    spinner('OFF')
+                    spinner('OFF',$('#spinnerContainer4case'))
                     alert response
         else
             alert 'proporcionar el nombre a buscar'
@@ -39,6 +40,7 @@ $(document).on 'turbolinks:load', ->
         $('#editPpl').fadeToggle('slow')
         $('#seachPpl').fadeToggle('slow')
     $('#addExpediture').on 'click', ->
+        spinner('ON',$('#spinnerContainer4exp'))
         $.ajax
             type:'GET'
             url: '/requests/showmodal'
@@ -75,7 +77,9 @@ $(document).on 'turbolinks:load', ->
         if $('#other_service_name').val() == ''
             alert 'proporcionar un nombre de servicio'
     $('#saveAll').on 'click', ->
-        validate()
+        if validCaseData()
+            if validExpensivesData()
+                console.log ''
 
     $('#living_place_kind').on 'change', ->
         if $('#living_place_kind').val() == 'OTROS'
@@ -127,7 +131,7 @@ $(document).on 'turbolinks:load', ->
                     alert response
                     
     $('#modal-window').on 'hidden.bs.modal', ->
-        spinner('OFF')
+        spinner('OFF',$('#spinnerContainer4case'))
     $('#modal-window2').on 'show.bs.modal', ->
         $('#new-benefit-name').hide()
         $('#label-new-benefit').hide()
@@ -153,6 +157,8 @@ $(document).on 'turbolinks:load', ->
                 $('#benefit_amount').attr('disabled',false)
                 $('.addBenefit').attr('disabled',false)
                 $('#benefit_name').attr('disabled',false)
+    $('#modal-window2').on 'hidden.bs.modal', ->
+        spinner('OFF',$('#spinnerContainer4exp'))
     $('#modal-window3').on 'hidden.bs.modal', ->
         console.log 'got here'
         console.log $('h4').attr('id')
@@ -188,6 +194,7 @@ $(document).on 'turbolinks:load', ->
         $('.badBoy').keypress (event) ->
             if event.keyCode == 13
                 event.preventDefault()
+    
 tabsEnabled=(opt) ->
     if opt
         $('.nav li#expedit').removeClass('disabled')
@@ -225,9 +232,9 @@ setup=->
     tabsEnabled(false)
     $('#editPpl').hide()
     caseUIEnabled(false)
-spinner=(opt) ->
+spinner=(opt,container) ->
     if opt == 'ON'
-        $('#spinnerContainer').spin
+        container.spin
             lines: 12
             length: 7
             width: 8
@@ -237,7 +244,7 @@ spinner=(opt) ->
             trail: 60
             shadow: false
     if opt == 'OFF'
-        $('#spinnerContainer').spin false
+        container.spin false
 fillCase=->
     $('#request_case').val('889')
     $('#request_rdate').val('11/11/2017')
@@ -253,9 +260,8 @@ fillExp=->
     $('#expediture_water').val('100')
     $('#expediture_fuel').val('100')
     $('#expediture_education').val('100')
-validate=->
+validCaseData=->
     requestDataFlag = false
-    console.log $('#request_case').val()
     unless $('#request_case').val() == ''
         superCell[0] =  $('#request_case').val()
     else
@@ -297,8 +303,58 @@ validate=->
         requestDataFlag = true
         $('#request_qualification').css('color','red')
         $('#request_qualification').val('¿ NO DATA ?')
-        
+    
+    superCell[6] = $('#request_notes').val()
     alert 'Faltaron datos de llenar en Caso' if requestDataFlag
-    #superCell[6] = $('#request_notes').val()
+    return true unless requestDataFlag
     
+validExpensivesData=->
+    requestExpensivesDataFlag = false
+    unless $('#expediture_feeding').val() == ''
+        superCell[7] = $('#expediture_feeding').val()
+    else
+        requestExpensivesDataFlag = true
+        $('#expediture_feeding').css('color','red')
+        $('#expediture_feeding').val(0)
     
+    unless $('#expediture_rent').val() == ''
+        superCell[8] = $('#expediture_rent').val()
+    else
+        requestExpensivesDataFlag = true
+        $('#expediture_rent').css('color','red')
+        $('#expediture_rent').val(0)
+    
+    unless $('#expediture_electricity').val() == ''
+        superCell[9] = $('#expediture_electricity').val()
+    else
+        requestExpensivesDataFlag = true
+        $('#expediture_electricity').css('color','red')
+        $('#expediture_electricity').val(0)
+    
+    unless $('#expediture_water').val() == ''
+        superCell[10] = $('#expediture_water').val()
+    else
+        requestExpensivesDataFlag = true
+        $('#expediture_water').css('color','red')
+        $('#expediture_water').val(0)
+    
+    unless $('#expediture_fuel').val() == ''
+        superCell[11] = $('#expediture_fuel').val()
+    else
+        requestExpensivesDataFlag = true
+        $('#expediture_fuel').css('color','red')
+        $('#expediture_fuel').val(0)
+        
+    unless $('#expediture_education').val() == ''
+        superCell[12] = $('#expediture_education').val()
+    else
+        requestExpensivesDataFlag = true
+        $('#expediture_education').css('color','red')
+        $('#expediture_education').val(0)
+    alert 'faltan datos de capturar en Gastos' if requestExpensivesDataFlag
+    if $('#otherExpedituresTable tbody').children('tr').length > 0
+        getExpeditureIDs()
+    return true unless requestExpensivesDataFlag
+getExpeditureIDs=->
+     $('#otherExpedituresTable tbody tr').each ->
+         console.log $(this).find('td last').text()
