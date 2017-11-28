@@ -162,7 +162,6 @@ $(document).on 'turbolinks:load', ->
     $('#modal-window2').on 'hidden.bs.modal', ->
         spinner('OFF',$('#spinnerContainer4exp'))
     $('#modal-window3').on 'hidden.bs.modal', ->
-        console.log 'got here'
         console.log $('h4').attr('id')
         if $('h4').attr('id') == 'newKind'
             console.log $('#textinput').val()
@@ -372,14 +371,19 @@ validLivingData=->
         $('#living_place_number_of_rooms').css('color','red')
         $('#living_place_number_of_rooms').val(0)
     alert 'datos faltantes de capturar en Vivienda' if requestLivigDataFlag
+    if $('#servicesTable tbody').children('tr').length > 0
+        getServicesIDs() 
     return true unless requestLivigDataFlag
         
 getExpeditureIDs=->
-     $('#otherExpedituresTable tbody tr').each ->
-         console.log 'getting other expeditures ' + $(this).find('td').eq(3).text()
+    $('#otherExpedituresTable tbody tr').each ->
+        console.log 'getting other expeditures ' + $(this).find('td').eq(3).text()
 getBenefitsIDs=->
-     $('#benefitsTable tbody tr').each ->
-         console.log 'getting other benetits ' + $(this).find('td').eq(3).text()
+    $('#benefitsTable tbody tr').each ->
+        console.log 'getting other benetits ' + $(this).find('td').eq(3).text()
+getServicesIDs=->
+    $('#servicesTable tbody tr').each ->
+        console.log 'getting other services ' + $(this).find('td').eq(2).text()
          
          
          
