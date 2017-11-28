@@ -80,7 +80,8 @@ $(document).on 'turbolinks:load', ->
     $('#saveAll').on 'click', ->
         if validCaseData()
             if validExpensivesData()
-                console.log ''
+                if validLivingData()
+                    console.log superCell
 
     $('#living_place_kind').on 'change', ->
         if $('#living_place_kind').val() == 'OTROS'
@@ -308,7 +309,6 @@ validCaseData=->
     superCell[6] = $('#request_notes').val()
     alert 'Faltaron datos de llenar en Caso' if requestDataFlag
     return true unless requestDataFlag
-    
 validExpensivesData=->
     requestExpensivesDataFlag = false
     unless $('#expediture_feeding').val() == ''
@@ -355,7 +355,44 @@ validExpensivesData=->
     alert 'faltan datos de capturar en Gastos' if requestExpensivesDataFlag
     if $('#otherExpedituresTable tbody').children('tr').length > 0
         getExpeditureIDs()
+    if $('#benefitsTable tbody').children('tr').length > 0
+        getBenefitsIDs()
     return true unless requestExpensivesDataFlag
+    
+validLivingData=->
+    requestLivigDataFlag = false
+    superCell[13] =$('#living_place_kind').val()
+    superCell[14] =$('#living_place_wall_material').val()
+    superCell[15] =$('#living_place_roof_material').val()
+    superCell[16] =$('#living_place_floor_material').val()
+    unless $('#living_place_number_of_rooms').val() == ''
+        superCell[17] =$('#living_place_number_of_rooms').val()
+    else
+        requestLivigDataFlag = true
+        $('#living_place_number_of_rooms').css('color','red')
+        $('#living_place_number_of_rooms').val(0)
+    alert 'datos faltantes de capturar en Vivienda' if requestLivigDataFlag
+    return true unless requestLivigDataFlag
+        
 getExpeditureIDs=->
      $('#otherExpedituresTable tbody tr').each ->
-         console.log $(this).find('td last').text()
+         console.log 'getting other expeditures ' + $(this).find('td').eq(3).text()
+getBenefitsIDs=->
+     $('#benefitsTable tbody tr').each ->
+         console.log 'getting other benetits ' + $(this).find('td').eq(3).text()
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
