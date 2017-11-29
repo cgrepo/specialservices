@@ -1,6 +1,11 @@
 personID = null
-superCell = []
-otExp = []
+requ = []
+expe = []
+oexp = []
+bene = []
+vita = []
+serv = []
+has = {bedroom:false,kitchen:false,dinningroom:false,bathroom:false}
 $(document).on 'turbolinks:load', ->
     setup()
     $('#seachPpl').on 'click', ->
@@ -82,7 +87,28 @@ $(document).on 'turbolinks:load', ->
         if validCaseData()
             if validExpensivesData()
                 if validLivingData()
-                    console.log superCell
+                    console.log 'request data ' + requ
+                    console.log 'expedit data ' + expe
+                    console.log 'oexpedi data ' + oexp
+                    console.log 'benefit data ' + bene
+                    console.log 'living  data ' + vita
+                    console.log 'oservic data ' + serv
+                    spinner('ON',$('#spinnerContainer4liv'))
+                    $.ajax
+                        type:'POST'
+                        url:'/requests'
+                        data:
+                            rdata:requ,
+                            edata:expe,
+                            oedata:oexp,
+                            bdata:bene,
+                            osdata:serv,
+                            ldata:vita
+                            rooms:has
+                            
+                        success: (response) ->
+                        error: (response) ->
+                            alert response
 
     $('#living_place_kind').on 'change', ->
         if $('#living_place_kind').val() == 'OTROS'
@@ -164,9 +190,7 @@ $(document).on 'turbolinks:load', ->
         spinner('OFF',$('#spinnerContainer4exp'))
     $('#modal-window3').on 'hidden.bs.modal', ->
         spinner('OFF',$('#spinnerContainer4liv'))
-        console.log $('h4').attr('id')
         if $('h4').attr('id') == 'newKind'
-            console.log $('#textinput').val()
             unless $('#textinput').val() == ''
                 $('#living_place_kind').append('<option value="'+$('#textinput').val()+'">'+$('#textinput').val()+'</option>')
                 $('#living_place_kind').val($('#textinput').val())
@@ -266,89 +290,89 @@ fillExp=->
 validCaseData=->
     requestDataFlag = false
     unless $('#request_case').val() == ''
-        superCell[0] =  $('#request_case').val()
+        requ[0] =  $('#request_case').val()
     else
         requestDataFlag = true
         $('#request_case').css('color','red')
         $('#request_case').val('¿ NO DATA ?') 
     
     unless $('#request_rdate').val() == ''
-        superCell[1] =  $('#request_rdate').val()
+        requ[1] =  $('#request_rdate').val()
     else
         requestDataFlag = true
         $('#request_rdate').css('color','red')
         $('#request_rdate').val('¿ NO DATA ?')
         
     unless $('#request_sent_by').val() == ''
-        superCell[2] = $('#request_sent_by').val()
+        requ[2] = $('#request_sent_by').val()
     else
         requestDataFlag = true
         $('#request_sent_by').css('color','red')
         $('#request_sent_by').val('¿ NO DATA ?')
         
     unless $('#request_oriented').val() == ''
-        superCell[3] = $('#request_oriented').val()
+        requ[3] = $('#request_oriented').val()
     else
         requestDataFlag = true
         $('#request_oriented').css('color','red')
         $('#request_oriented').val('¿ NO DATA ?')
         
     unless $('#request_service').val() == ''
-        superCell[4] = $('#request_service').val()
+        requ[4] = $('#request_service').val()
     else
         requestDataFlag = true
         $('#request_service').css('color','red')
         $('#request_service').val('¿ NO DATA ?')
         
     unless $('#request_qualification').val() == ''
-        superCell[5] = $('#request_qualification').val()
+        requ[5] = $('#request_qualification').val()
     else
         requestDataFlag = true
         $('#request_qualification').css('color','red')
         $('#request_qualification').val('¿ NO DATA ?')
     
-    superCell[6] = $('#request_notes').val()
+    requ[6] = $('#request_notes').val()
     alert 'Faltaron datos de llenar en Caso' if requestDataFlag
     return true unless requestDataFlag
 validExpensivesData=->
     requestExpensivesDataFlag = false
     unless $('#expediture_feeding').val() == ''
-        superCell[7] = $('#expediture_feeding').val()
+        expe[0] = $('#expediture_feeding').val()
     else
         requestExpensivesDataFlag = true
         $('#expediture_feeding').css('color','red')
         $('#expediture_feeding').val(0)
     
     unless $('#expediture_rent').val() == ''
-        superCell[8] = $('#expediture_rent').val()
+        expe[1] = $('#expediture_rent').val()
     else
         requestExpensivesDataFlag = true
         $('#expediture_rent').css('color','red')
         $('#expediture_rent').val(0)
     
     unless $('#expediture_electricity').val() == ''
-        superCell[9] = $('#expediture_electricity').val()
+        expe[2] = $('#expediture_electricity').val()
     else
         requestExpensivesDataFlag = true
         $('#expediture_electricity').css('color','red')
         $('#expediture_electricity').val(0)
     
     unless $('#expediture_water').val() == ''
-        superCell[10] = $('#expediture_water').val()
+        expe[3] = $('#expediture_water').val()
     else
         requestExpensivesDataFlag = true
         $('#expediture_water').css('color','red')
         $('#expediture_water').val(0)
     
     unless $('#expediture_fuel').val() == ''
-        superCell[11] = $('#expediture_fuel').val()
+        expe[4] = $('#expediture_fuel').val()
     else
         requestExpensivesDataFlag = true
         $('#expediture_fuel').css('color','red')
         $('#expediture_fuel').val(0)
         
     unless $('#expediture_education').val() == ''
-        superCell[12] = $('#expediture_education').val()
+        expe[5] = $('#expediture_education').val()
     else
         requestExpensivesDataFlag = true
         $('#expediture_education').css('color','red')
@@ -359,36 +383,36 @@ validExpensivesData=->
     return true unless requestExpensivesDataFlag
 validLivingData=->
     requestLivigDataFlag = false
-    has = {bedroom:false,kitchen:false,dinningroom:false,bathroom:false}
-    superCell[13] =$('#living_place_kind').val()
-    superCell[14] =$('#living_place_wall_material').val()
-    superCell[15] =$('#living_place_roof_material').val()
-    superCell[16] =$('#living_place_floor_material').val()
-    has.bedroom = true if $('#living_place_has_beedroom').is(':checked')
-    has.kitchen = true if $('#living_place_has_kitchen').is(':checked')
-    has.dinningroom = true if $('#living_place_has_dinningroom').is(':checked')
-    has.bathroom = true if $('#living_place_has_bathroom').is(':checked')
+    vita[0] =$('#living_place_kind').val()
+    vita[1] =$('#living_place_wall_material').val()
+    vita[2] =$('#living_place_roof_material').val()
+    vita[3] =$('#living_place_floor_material').val()
     unless $('#living_place_number_of_rooms').val() == ''
-        superCell[17] =$('#living_place_number_of_rooms').val()
+        vita[4] =$('#living_place_number_of_rooms').val()
     else
         requestLivigDataFlag = true
         $('#living_place_number_of_rooms').css('color','red')
         $('#living_place_number_of_rooms').val(0)
+    has.bedroom = true if $('#living_place_has_beedroom').is(':checked')
+    has.kitchen = true if $('#living_place_has_kitchen').is(':checked')
+    has.dinningroom = true if $('#living_place_has_dinningroom').is(':checked')
+    has.bathroom = true if $('#living_place_has_bathroom').is(':checked')
     alert 'datos faltantes de capturar en Vivienda' if requestLivigDataFlag
     getServicesIDs() if $('#servicesTable tbody').children('tr').length > 0
-    console.log has
     return true unless requestLivigDataFlag
         
 getExpeditureIDs=->
     $('#otherExpedituresTable tbody tr').each ->
         console.log 'getting other expeditures ' + $(this).find('td').eq(3).text()
+        oexp.push($(this).find('td').eq(3).text())
 getBenefitsIDs=->
     $('#benefitsTable tbody tr').each ->
         console.log 'getting other benetits ' + $(this).find('td').eq(3).text()
+        bene.push($(this).find('td').eq(3).text())
 getServicesIDs=->
     $('#servicesTable tbody tr').each ->
         console.log 'getting other services ' + $(this).find('td').eq(2).text()
-         
+        serv.push($(this).find('td').eq(2).text())
          
          
          

@@ -26,17 +26,18 @@ class RequestsController < ApplicationController
   # POST /requests
   # POST /requests.json
   def create
-    @request = Request.new(request_params)
-
-    respond_to do |format|
-      if @request.save
-        format.html { redirect_to @request, notice: 'Request was successfully created.' }
-        format.json { render :show, status: :created, location: @request }
-      else
-        format.html { render :new }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
-      end
-    end
+    @request = Request.new
+    byebug
+    # @request = Request.new(request_params)
+    # respond_to do |format|
+    #   if @request.save
+    #     format.html { redirect_to @request, notice: 'Request was successfully created.' }
+    #     format.json { render :show, status: :created, location: @request }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @request.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /requests/1
