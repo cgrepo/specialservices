@@ -64,6 +64,7 @@ $(document).on 'turbolinks:load', ->
             error: (response) ->
                 alert response
     $('#addService').on 'click', ->
+        spinner('ON',$('#spinnerContainer4liv'))
         $.ajax
             type:'GET'
             url: '/requests/showmodal'
@@ -162,6 +163,7 @@ $(document).on 'turbolinks:load', ->
     $('#modal-window2').on 'hidden.bs.modal', ->
         spinner('OFF',$('#spinnerContainer4exp'))
     $('#modal-window3').on 'hidden.bs.modal', ->
+        spinner('OFF',$('#spinnerContainer4liv'))
         console.log $('h4').attr('id')
         if $('h4').attr('id') == 'newKind'
             console.log $('#textinput').val()
@@ -352,18 +354,20 @@ validExpensivesData=->
         $('#expediture_education').css('color','red')
         $('#expediture_education').val(0)
     alert 'faltan datos de capturar en Gastos' if requestExpensivesDataFlag
-    if $('#otherExpedituresTable tbody').children('tr').length > 0
-        getExpeditureIDs()
-    if $('#benefitsTable tbody').children('tr').length > 0
-        getBenefitsIDs()
+    getExpeditureIDs() if $('#otherExpedituresTable tbody').children('tr').length > 0
+    getBenefitsIDs() if $('#benefitsTable tbody').children('tr').length > 0
     return true unless requestExpensivesDataFlag
-    
 validLivingData=->
     requestLivigDataFlag = false
+    has = {bedroom:false,kitchen:false,dinningroom:false,bathroom:false}
     superCell[13] =$('#living_place_kind').val()
     superCell[14] =$('#living_place_wall_material').val()
     superCell[15] =$('#living_place_roof_material').val()
     superCell[16] =$('#living_place_floor_material').val()
+    has.bedroom = true if $('#living_place_has_beedroom').is(':checked')
+    has.kitchen = true if $('#living_place_has_kitchen').is(':checked')
+    has.dinningroom = true if $('#living_place_has_dinningroom').is(':checked')
+    has.bathroom = true if $('#living_place_has_bathroom').is(':checked')
     unless $('#living_place_number_of_rooms').val() == ''
         superCell[17] =$('#living_place_number_of_rooms').val()
     else
@@ -371,8 +375,8 @@ validLivingData=->
         $('#living_place_number_of_rooms').css('color','red')
         $('#living_place_number_of_rooms').val(0)
     alert 'datos faltantes de capturar en Vivienda' if requestLivigDataFlag
-    if $('#servicesTable tbody').children('tr').length > 0
-        getServicesIDs() 
+    getServicesIDs() if $('#servicesTable tbody').children('tr').length > 0
+    console.log has
     return true unless requestLivigDataFlag
         
 getExpeditureIDs=->
