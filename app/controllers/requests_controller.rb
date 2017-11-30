@@ -26,8 +26,25 @@ class RequestsController < ApplicationController
   # POST /requests
   # POST /requests.json
   def create
-    @request = Request.new
-    byebug
+    @request = fillRequest(Request.new)
+    @expediture = fillExpeditures(Expediture.new)
+    #check if has more expeditures
+    if @expediture.save
+      fillOtherExpediture(@expediture)
+      fillBenefits()
+    else
+      #error saving request
+    end
+    #check if has benefits
+    @livingPlace = fillLivigPlace(LivingPlace.new,@person)
+    if @livingPlace.save
+      fillOtherService(@livingPlace)
+    else
+      #error savign living place
+    end
+    #@request = 
+    #appRdata(@request)
+    
     # @request = Request.new(request_params)
     # respond_to do |format|
     #   if @request.save
@@ -111,5 +128,70 @@ class RequestsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
       params.require(:request).permit(:case, :rdate, :sent_by, :oriented, :service, :notes, :qualification, :person_id)
+    end
+    
+    def fillRequest(request)
+      request.case          = params[:rdata][0]
+      request.rdate         = params[:rdata][1]
+      request.sent_by       = params[:rdata][2]
+      request.oriented      = params[:rdata][3]
+      request.service       = params[:rdata][4]
+      request.notes         = params[:rdata][5]
+      request.qualification = params[:rdata][6]
+      request.person_id     = params[:pid]
+      return request
+    end
+    
+    def fillExpeditures(expediture)
+      expediture.feeding     = params[:edata][0]
+      expediture.rent        = params[:edata][1]
+      expediture.electricity = params[:edata][2]
+      expediture.water       = params[:edata][3]
+      expediture.fuel        = params[:edata][4]
+      expediture.education   = params[:edata][5]
+      expediture.person_id   = params[:pid]
+      return expediture
+    end
+    
+    def fillOtherExpediture(expediture)
+      params[:oedata].each do |oe|
+        otherExpediture = OtherExpediture.find(oe)
+        otherExpediture.expediture_id = expediture.id
+        # add code to rise error on not being able to update the info
+        otherExpediture.save
+      end
+    end
+    
+    def fillBenefits()
+      params[:bdata].each do |b|
+        benefit = Benefit.find(b)
+        benefit.person_id = params[:pid]
+        # add code to rise error on not being able to update the info
+        benefit.save
+      end
+    end
+    
+    def fillOtherService(livingPlace)
+      params[:osdata].each do |o|
+        otherService = OtherService.find(o)
+        otherService.living_place_id = livingPlace.id
+        # add code to rise error on not being able to update the info
+        otherService.save
+      end
+    end
+    
+    def fillLivigPlace(livingPlace,person)
+      livingPlace.kind            = params[:ldata][0]
+      livingPlace.wall_material   = params[:ldata][1]
+      livingPlace.roof_material   = params[:ldata][2]
+      livingPlace.floor_material  = params[:ldata][3]
+      livingPlace.number_of_rooms = params[:ldata][4]
+      #livingPlace.notes = params[:ldata][5]
+      livingPlace.has_beedroom    = params[:rooms][:beedroom]
+      livingPlace.has_kitchen     = params[:rooms][:kitchen]
+      livingPlace.has_dinningroom = params[:rooms][:dinningroom]
+      livingPlace.has_bathroom    = params[:rooms][:bathroom]
+      livingPlace.Person_id       = params[:pid]
+      return livingPlace
     end
 end

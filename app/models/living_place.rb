@@ -1,4 +1,4 @@
 class LivingPlace < ActiveRecord::Base
-  belongs_to :Person
+  belongs_to :person
   has_many :OtherService
 end

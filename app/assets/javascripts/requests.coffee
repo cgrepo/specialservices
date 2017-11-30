@@ -94,6 +94,10 @@ $(document).on 'turbolinks:load', ->
                     console.log 'living  data ' + vita
                     console.log 'oservic data ' + serv
                     spinner('ON',$('#spinnerContainer4liv'))
+                    oexp[0] = false if oexp.length == 0
+                    bene[0] = false if bene.length == 0
+                    serv[0] = false if serv.length == 0
+                    console.log oexp.length, bene.length,serv.length
                     $.ajax
                         type:'POST'
                         url:'/requests'
@@ -105,7 +109,7 @@ $(document).on 'turbolinks:load', ->
                             osdata:serv,
                             ldata:vita
                             rooms:has
-                            
+                            pid: personID
                         success: (response) ->
                         error: (response) ->
                             alert response
@@ -288,6 +292,7 @@ fillExp=->
     $('#expediture_fuel').val('100')
     $('#expediture_education').val('100')
 validCaseData=->
+    requ = []
     requestDataFlag = false
     unless $('#request_case').val() == ''
         requ[0] =  $('#request_case').val()
@@ -334,7 +339,9 @@ validCaseData=->
     requ[6] = $('#request_notes').val()
     alert 'Faltaron datos de llenar en Caso' if requestDataFlag
     return true unless requestDataFlag
+    
 validExpensivesData=->
+    expe = []
     requestExpensivesDataFlag = false
     unless $('#expediture_feeding').val() == ''
         expe[0] = $('#expediture_feeding').val()
@@ -381,7 +388,9 @@ validExpensivesData=->
     getExpeditureIDs() if $('#otherExpedituresTable tbody').children('tr').length > 0
     getBenefitsIDs() if $('#benefitsTable tbody').children('tr').length > 0
     return true unless requestExpensivesDataFlag
+    
 validLivingData=->
+    vita = []
     requestLivigDataFlag = false
     vita[0] =$('#living_place_kind').val()
     vita[1] =$('#living_place_wall_material').val()
@@ -402,14 +411,19 @@ validLivingData=->
     return true unless requestLivigDataFlag
         
 getExpeditureIDs=->
+    oexp = []
     $('#otherExpedituresTable tbody tr').each ->
         console.log 'getting other expeditures ' + $(this).find('td').eq(3).text()
         oexp.push($(this).find('td').eq(3).text())
+
 getBenefitsIDs=->
+    bene = []
     $('#benefitsTable tbody tr').each ->
         console.log 'getting other benetits ' + $(this).find('td').eq(3).text()
         bene.push($(this).find('td').eq(3).text())
+
 getServicesIDs=->
+    serv = []
     $('#servicesTable tbody tr').each ->
         console.log 'getting other services ' + $(this).find('td').eq(2).text()
         serv.push($(this).find('td').eq(2).text())
