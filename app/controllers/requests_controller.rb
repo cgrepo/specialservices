@@ -10,8 +10,11 @@ class RequestsController < ApplicationController
   # GET /requests/1
   # GET /requests/1.json
   def show
-    @expeditures = Expediture.find_by(person:@request.person)
-    ##byebug
+    @expediture = Expediture.find_by(person:@request.person)
+    @otherExpeditures = OtherExpediture.find_by(Expediture:@expediture)
+    @benefits = Benefit.find_by(person:@request.person)
+    @living = LivingPlace.find_by(person:@request.person)
+    @services = OtherService.find_by(living_place:@living)
   end
 
   # GET /requests/new
