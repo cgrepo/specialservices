@@ -1,44 +1,56 @@
-<p id="notice"><%= notice %></p>
+<div class='row'>
+  <p id="notice"><%= notice %></p>
+  <div class='col-xs col-md-6'>
+    <p>
+      <strong>Case:</strong>
+      <%= @request.case %>
+    </p>
+    
+    <p>
+      <strong>Rdate:</strong>
+      <%= @request.rdate %>
+    </p>
+    
+    <p>
+      <strong>Sent by:</strong>
+      <%= @request.sent_by %>
+    </p>
+    
+    <p>
+      <strong>Oriented:</strong>
+      <%= @request.oriented %>
+    </p>
+    
+    <p>
+      <strong>Service:</strong>
+      <%= @request.service %>
+    </p>
+    
+    <p>
+      <strong>Notes:</strong>
+      <%= @request.notes %>
+    </p>
+    
+    <p>
+      <strong>Qualification:</strong>
+      <%= @request.qualification %>
+    </p>
+    
+    <p>
+      <strong>Person:</strong>
+      <%= @request.person %>
+    </p>
+  </div>
+  <div class='col-xs col-md-6'>
+    <p>
+      <strong>Gastos:</strong>
+      <%# @expeditures.each do |e| %>
+        <p><%#= e %></p>
+      <%# end %>
+    </p>
+  </div>
+</div>
 
-<p>
-  <strong>Case:</strong>
-  <%= @request.case %>
-</p>
-
-<p>
-  <strong>Rdate:</strong>
-  <%= @request.rdate %>
-</p>
-
-<p>
-  <strong>Sent by:</strong>
-  <%= @request.sent_by %>
-</p>
-
-<p>
-  <strong>Oriented:</strong>
-  <%= @request.oriented %>
-</p>
-
-<p>
-  <strong>Service:</strong>
-  <%= @request.service %>
-</p>
-
-<p>
-  <strong>Notes:</strong>
-  <%= @request.notes %>
-</p>
-
-<p>
-  <strong>Qualification:</strong>
-  <%= @request.qualification %>
-</p>
-
-<p>
-  <strong>Person:</strong>
-  <%= @request.person %>
-</p>
 
 <%= link_to 'Edit', edit_request_path(@request) %> |
 <%= link_to 'Back', requests_path %>

@@ -10,6 +10,8 @@ class RequestsController < ApplicationController
   # GET /requests/1
   # GET /requests/1.json
   def show
+    @expeditures = Expediture.find_by(person:@request.person)
+    ##byebug
   end
 
   # GET /requests/new
@@ -26,27 +28,34 @@ class RequestsController < ApplicationController
   # POST /requests
   # POST /requests.json
   def create
-    @request = fillRequest(Request.new)
-    @expediture = fillExpeditures(Expediture.new)
-    #check if has more expeditures
-    if @expediture.save
-      fillOtherExpediture(@expediture)
-      fillBenefits()
-    else
-      #error saving request
-    end
-    #check if has benefits
-    @livingPlace = fillLivigPlace(LivingPlace.new,@person)
-    if @livingPlace.save
-      fillOtherService(@livingPlace)
-    else
-      #error savign living place
+    respond_to do |format|
+      @request = fillRequest(Request.new)
+      if @request.save
+        @expediture = fillExpeditures(Expediture.new)
+        #check if has more expeditures
+        if @expediture.save
+          fillOtherExpediture(@expediture)
+          fillBenefits()
+        else
+          #error saving request
+        end
+        #check if has benefits
+        @livingPlace = fillLivigPlace(LivingPlace.new,@person)
+        if @livingPlace.save
+          fillOtherService(@livingPlace)
+        else
+          #error savign living place
+        end
+        format.html { redirect_to @request, notice: 'Request was successfully created.' }
+      else
+        #error saving request
+      end
     end
     #@request = 
     #appRdata(@request)
     
     # @request = Request.new(request_params)
-    # respond_to do |format|
+    # 
     #   if @request.save
     #     format.html { redirect_to @request, notice: 'Request was successfully created.' }
     #     format.json { render :show, status: :created, location: @request }

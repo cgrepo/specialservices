@@ -26,7 +26,7 @@
         <td><%= request.service %></td>
         <td><%= request.notes %></td>
         <td><%= request.qualification %></td>
-        <td><%= request.person %></td>
+        <td><%= request.person.name %></td>
         <td><%= link_to request, :class=>"btn btn-default btn-md" do %>
               <%= octicon 'clippy', :height => 20 %>
             <% end %></td>
