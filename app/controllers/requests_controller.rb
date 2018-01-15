@@ -11,10 +11,23 @@ class RequestsController < ApplicationController
   # GET /requests/1.json
   def show
     @expediture = Expediture.find_by(person:@request.person)
-    @otherExpeditures = OtherExpediture.find_by(Expediture:@expediture)
-    @benefits = Benefit.find_by(person:@request.person)
+    
+    counter = OtherExpediture.where(Expediture:@expediture).count
+    if counter == 1
+      @otherExpeditures = [OtherExpediture.find_by(Expediture:@expediture)]
+    else
+      @otherExpeditures = OtherExpediture.find_by(Expediture:@expediture)
+    end
+    
+    counter = Benefit.where(person:@request.person).count
+    #byebug
+    if counter == 1
+      @benefits = [Benefit.find_by(person:@request.person)]
+    else
+      @benefits = Benefit.where(person:@request.person)
+    end
     @living = LivingPlace.find_by(person:@request.person)
-    @services = OtherService.find_by(living_place:@living)
+    @services = OtherService.where(living_place:@living)
   end
 
   # GET /requests/new

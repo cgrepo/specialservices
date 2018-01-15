@@ -25,7 +25,7 @@ gem 'bcrypt', '~> 3.1.7'
   gem 'spinjs-rails'
   #-------TESTING THIS GEMS
     gem 'bootswatch-rails'
-
+    
 #gem 'spinjs-rails' # spinners it seems it is alreay contained in jquery-turbolinks
 
 # See https://github.com/rails/execjs#readme for more supported runtimes

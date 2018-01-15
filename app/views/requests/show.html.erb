@@ -1,21 +1,54 @@
 <div class='row'>
   <p id="notice"><%= notice %></p>
-  <div class='col-xs col-md-5'>
-    <div class="card mb-5">
-      <h3 class="card-header">Caso <%= @request.case %><br><%= @request.person.name %></h3>
-      <div class="card-body">
+  <div class='col-xs col-md-4'>
+    <div class="card border-primary mb-3" >
+      <h3 class="card-header">Caso <%= @request.case %></h3>
+      <div class="card-body ">
         <h5 class="card-title">Fecha solicitud: <%= @request.rdate %></h5>
         <h6 class="card-subtitle text-muted">Enviado por: <%= @request.sent_by %> Orientado por: <%= @request.oriented %></h6>
       </div>
       <img style="height: 200px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image">
       <div class="card-body">
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <p class="card-text"><h3 align='center'><%= @request.person.name %></h3></p>
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-      </ul>
+       <p align='center'><strong>CONDICIONES DE VIVIENDA:</strong></p>
+    <div class="card border-primary mb-3">
+      <div class="card-header"></div>
+      <div class="card-body text-default">
+        <h5 class="card-title">TIPO VIVIENDA</h5>
+        <p class="card-text"><%= @living.kind %></p>
+      </div>
+    </div>
+    <p><strong>MATERIAL CONSTRUCCION</strong></p>
+    <table  class="table table-striped table-hover">
+      <thead>
+        <th>PARED</th>
+        <th>TECHO</th>
+        <th>PISO</th>
+        <th>CUARTOS</th>
+      </thead>
+      <tbody>
+        <td><%= @living.wall_material %></td>
+        <td><%= @living.roof_material %></td>
+        <td><%= @living.floor_material %></td>
+        <td><%= @living.number_of_rooms %></td>
+      </tbody>
+    </table>
+    <p><strong>CUENTA CON HABITACIONES:</strong></p>
+    <table  class="table table-striped table-hover">
+      <thead>
+        <th>HABITACION</th>
+        <th>COCINA</th>
+        <th>COMEDOR</th>
+        <th>BAÑO</th>
+      </thead>
+      <tbody>
+        <td><%= @living.has_beedroom ?  'SI' :  'NO'%></td>
+        <td><%= @living.has_kitchen ?  'SI' :  'NO' %></td>
+        <td><%= @living.has_dinningroom ?  'SI' :  'NO' %></td>
+        <td><%= @living.has_bathroom ?  'SI' :  'NO' %></td>
+      </tbody>
+    </table>
       <div class="card-body">
         <a href="#" class="card-link">Card link</a>
         <a href="#" class="card-link">Another link</a>
@@ -29,34 +62,78 @@
         <h4 class="card-title">Card title</h4>
         <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
         <p class="card-text">Notas: <%= @request.notes %></p>
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
       </div>
     </div>
   </div>
   <div class='col-xs col-md-6'>
-    <p>
-      <strong>Expediture:</strong>
-      <%= @expediture %>
+    <p align='center'>
+      <strong>GASTOS:</strong>
+      <table  class="table table-striped table-hover ">
+        <thead>
+          <th>alimentacion</th>
+          <th>renta</th>
+          <th>electricidad</th>
+          <th>agua</th>
+          <th>gasolina</th>
+          <th>educacion</th>
+        </thead>
+        <tbody>
+          <td><%= @expediture.feeding %></td>
+          <td><%= @expediture.rent %></td>
+          <td><%= @expediture.electricity %></td>
+          <td><%= @expediture.water %></td>
+          <td><%= @expediture.fuel %></td>
+          <td><%= @expediture.education %></td>
+        </tbody>
+      </table>
+      
     </p>
-    <p>
-      <strong>OtherExpedire:</strong>
-      <%= @otherExpeditures %>
+    <p align='center'>
+      <strong>OTROS GASTOS:</strong><br>
+      <table  class="table table-striped table-hover">
+        <thead>
+          <th>Descripcion</th>
+          <th>Cantidad</th>
+        </thead>
+        <% @otherExpeditures.each do |oe| %>
+          <tbody>
+            <td><%= oe.name %></td>
+            <td><%= oe.amount %></td>
+          </tbody>
+        <% end %>
+      </table>
     </p>
-    <p>
-      <strong>Benefit:</strong>
-      <%= @benefits %>
+    <p align='center'>
+      <strong>PRESTACIONES:</strong>
+      <table  class="table table-striped table-hover">
+        <thead>
+          <th>Descripcion</th>
+          <th>Cantidad</th>
+        </thead>
+        <% @benefits.each do |b| %>
+          <tbody>
+            <td><%= b.name %></td>
+            <td><%= b.amount %></td>
+          </tbody>
+        <% end %>
+      </table>
     </p>
-    <p>
-      <strong>LivingPlace:</strong>
-       <%= @living %>
-    </p>
-    <p>
-      <strong>Service:</strong>
-      <%= @services %>
+    <p align='center'><strong>SERVICIOS:</strong>
+      <table  class="table table-striped table-hover">
+        <thead>
+          <th>Descripcion</th>
+          
+        </thead>
+        <% @services.each do |s| %>
+          <tbody>
+            <td><%= d.name %></td>
+            
+          </tbody>
+        <% end %>
+      </table>
     </p>
   </div>
 </div>
 
-<%= link_to 'Edit', edit_request_path(@request) %> |
-<%= link_to 'Back', requests_path %>
+<%= link_to 'Editar', edit_request_path(@request) %> |
+s<%= link_to 'Regresar', requests_path %>
