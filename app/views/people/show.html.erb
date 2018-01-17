@@ -3,9 +3,6 @@
   <div class='col-xs col-md'>
     <p>
       <strong>Tipo persona:</strong>
-      <%= @person %>
-      <%= @person.responsable %>
-      <%= @person.relatives %>
     </p>
   </div>
 </div>
@@ -21,6 +18,9 @@
   </div>
   <div class="panel-body be-round_ligth_gray">
     <div class='row'>
+      <div class='col-xs col-md-2'>
+        <%= image_tag @person.picture, class:'img-fluid card'  %>
+      </div>
       <div class='col-xs col-md-4'>
         <strong>Nombre:</strong><br>
         <%= @person.name %>

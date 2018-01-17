@@ -160,5 +160,7 @@ class PeopleController < ApplicationController
       @person.current_residence= params[:person][11]
       @person.occupation= params[:person][12]
       @person.workplace= params[:person][13]
+      byebug
+      @person.picture= params[:person][14]
     end
 end

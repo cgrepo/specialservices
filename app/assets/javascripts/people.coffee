@@ -215,6 +215,9 @@ $(document).on "turbolinks:load", ->
             error: (data) ->
                 alert data
                 spinner('OFF')
+    $('#person_picture').change ->
+        prevPic this
+    
 setup=->
     $('a#save_relatives').attr('disabled',true)
     $('a#edit-person').attr('disabled',true)
@@ -320,6 +323,7 @@ personDataGet=->
     requester.push($('#person_current_residence').val())
     requester.push($('#person_occupation').val())
     requester.push($('#person_workplace').val())
+    requester.push($('#person_picture').val())
 responsableDataGet=->
     responsable.push($('#responsable_name').val())
     responsable.push($('#responsable_age').val())
@@ -364,3 +368,10 @@ fillREL=->
     $('#relative_occupation').val('FUXLOK')
     $('#relative_scolarship').val('UNIVERSIDAD')
     $('#relative_relationship').val('PATHER')
+prevPic = (input) ->
+  if input.files and input.files[0]
+    reader = new FileReader
+    reader.onload = (e) ->
+      $('#img_prev').attr 'src', e.target.result
+    reader.readAsDataURL input.files[0]
+
