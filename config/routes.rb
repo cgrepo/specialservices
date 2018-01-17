@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       put  'updatePerson/:id',      action:'updatePerson',      controller:'people', as:'updatePerson'
       put  'updateResponsable/:id', action:'updateResponsable', controller:'people', as:'updateResponsable'
       post 'addRelatives',          action:'addRelatives',      controller:'people', as:'addRelatives'
+      post 'addPicture',            action:'addPicture',        controller:'people', as:'addPicture'
     end
   end
   resources :expeditures, :living_places, :responsables, :relatives, only: [ :index ]

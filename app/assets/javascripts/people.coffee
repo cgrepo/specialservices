@@ -29,6 +29,7 @@ $(document).on "turbolinks:load", ->
                 spinner('OFF')
                 $('.badge').text('1')
                 $('a#edit-person').attr('disabled',false)
+                uploadPicture()
             error: (data) ->
                 alert data
                 spinner('OFF')
@@ -224,6 +225,35 @@ setup=->
     $('a#update-person').hide()
     $('a#edit-responsable').attr('disabled',true)
     $('a#update-responsable').hide()
+personDataGet=->
+    requester.push($('#person_name').val())
+    requester.push($('#person_age').val())
+    requester.push($('#person_gender').val())
+    requester.push($('#person_civil_status').val())
+    requester.push($('#person_salary').val())
+    requester.push($('#person_scolarship').val())
+    requester.push($('#person_phone').val())
+    requester.push($('#person_admission_date').val())
+    requester.push($('#person_birth_date').val())
+    requester.push($('#person_transportation').val())
+    requester.push($('#person_address').val())
+    requester.push($('#person_current_residence').val())
+    requester.push($('#person_occupation').val())
+    requester.push($('#person_workplace').val())
+    console.log requester
+uploadPicture=->
+    formData = new FormData
+    $input = $('#person_picture')
+    formData.append 'person[picture]', $input[0].files[0]
+    formData.append 'person[id]',personID
+    $.ajax
+        url: '/people/addPicture'
+        type: 'POST'
+        data: formData
+        processData: false
+        contentType: false
+        cache: false
+    
 checkRows=->
     rows = $('#relationshipTable tbody').children('tr').length
     if rows == 0
@@ -308,22 +338,6 @@ responsableDataUX=(opt) ->
         $('#responsable_occupation').attr('disabled',false)
         $('#responsable_workplace').attr('disabled',false)
         $('#responsable_relationship').attr('disabled',false)
-personDataGet=->
-    requester.push($('#person_name').val())
-    requester.push($('#person_age').val())
-    requester.push($('#person_gender').val())
-    requester.push($('#person_civil_status').val())
-    requester.push($('#person_salary').val())
-    requester.push($('#person_scolarship').val())
-    requester.push($('#person_phone').val())
-    requester.push($('#person_admission_date').val())
-    requester.push($('#person_birth_date').val())
-    requester.push($('#person_transportation').val())
-    requester.push($('#person_address').val())
-    requester.push($('#person_current_residence').val())
-    requester.push($('#person_occupation').val())
-    requester.push($('#person_workplace').val())
-    requester.push($('#person_picture').val())
 responsableDataGet=->
     responsable.push($('#responsable_name').val())
     responsable.push($('#responsable_age').val())

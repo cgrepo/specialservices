@@ -39,6 +39,10 @@ class PeopleController < ApplicationController
     end
   end
   
+  def addPicture
+    byebug
+  end
+  
   def addResponsable
     @responsable = Responsable.new
     @responsable.Person_id = params[:person]
@@ -160,7 +164,6 @@ class PeopleController < ApplicationController
       @person.current_residence= params[:person][11]
       @person.occupation= params[:person][12]
       @person.workplace= params[:person][13]
-      byebug
       @person.picture= params[:person][14]
     end
 end
