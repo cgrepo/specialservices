@@ -40,7 +40,17 @@ class PeopleController < ApplicationController
   end
   
   def addPicture
-    byebug
+    @person = Person.find_by(id:params[:person][:id])
+    @person.picture = params[:person][:picture]
+    respond_to do |format|
+      if @person.save
+        format.json { render json: @person.as_json(only: [:id] ) }
+      else
+       format.html { render :new }
+       format.json { render json: @person.errors, status: :unprocessable_entity }
+      end
+    end
+    
   end
   
   def addResponsable
