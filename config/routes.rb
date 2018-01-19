@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :people do
     collection do
       post 'addResponsable',        action:'addResponsable',    controller:'people', as:'addResponsable'
+      post 'actResponsable',        action:'actResponsable',    controller:'people', as:'actResponsable'
       put  'updatePerson/:id',      action:'updatePerson',      controller:'people', as:'updatePerson'
       put  'updateResponsable/:id', action:'updateResponsable', controller:'people', as:'updateResponsable'
       post 'addRelatives',          action:'addRelatives',      controller:'people', as:'addRelatives'

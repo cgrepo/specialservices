@@ -22,6 +22,8 @@ class PeopleController < ApplicationController
 
   # GET /people/1/edit
   def edit
+    @responsable = Responsable.new
+    @relative = Relative.new
   end
 
   # POST /people

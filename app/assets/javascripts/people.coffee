@@ -75,9 +75,11 @@ $(document).on "turbolinks:load", ->
     $('a#save-responsable').on 'click', ->
         spinner('ON')
         responsableDataGet()
+        if $('h1').text() == 'Agregar Persona'
+            theURL = '/people/addResponsable'
         $.ajax
             type:'POST'
-            url:'/people/addResponsable'
+            url: theURL
             dataType:'json'
             data:
                 responsable:responsable
@@ -218,13 +220,14 @@ $(document).on "turbolinks:load", ->
                 spinner('OFF')
     $('#person_picture').change ->
         prevPic this
-    
+        $('#img_prev').show()
 setup=->
     $('a#save_relatives').attr('disabled',true)
     $('a#edit-person').attr('disabled',true)
     $('a#update-person').hide()
     $('a#edit-responsable').attr('disabled',true)
     $('a#update-responsable').hide()
+    $('#img_prev').hide()
 personDataGet=->
     requester.push($('#person_name').val())
     requester.push($('#person_age').val())
@@ -254,6 +257,8 @@ uploadPicture=->
         processData: false
         contentType: false
         cache: false
+        success: (data) ->
+            
     
 checkRows=->
     rows = $('#relationshipTable tbody').children('tr').length
