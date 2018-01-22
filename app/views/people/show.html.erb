@@ -76,57 +76,71 @@
         </div>
       </div>
     </div>
+    <div class='row'>
+      <div class='col-xs col-md-4'>
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="panel-title">RESPONSABLE</h3>
+          </div>
+          <div class="panel-body">
+            <div class='row'>
+              <div class='col-xs col-md-12'>
+                <h4><%= @person.responsable.name %></h4>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-xs col-md-6'>
+                <p>
+                  <strong>Edad:</strong><br>
+                  <%= icon('history') %>  <%= @person.responsable.age %>
+                </p>
+                <p>
+                  <strong>Sexo:</strong><br>
+                  <% if @person.responsable.gender == 'M' %>
+                    <%= icon('male') %>
+                  <% else %>
+                    <%= icon('female') %>
+                  <% end %>
+                </p>
+                <p>
+                  <strong>Salario:</strong><br>  
+                  <%= icon('usd') %>    <%= @person.responsable.salary %>
+                </p>
+                <p>
+                  <strong>Estado Civil:</strong><br>
+                  <%= icon('street-view') %>    <%= @person.responsable.civil_status %>
+                </p>
+              </div>
+              <div class='col-xs col-md-6'>
+                <p>
+                  <strong>Ocupacion:</strong><br>  
+                  <%= @person.responsable.occupation %>
+                </p>
+                <p>
+                  <strong>Relacion:</strong><br>  
+                  <%= @person.responsable.relationship %>
+                </p>
+                <p>
+                  <strong>Lugar de Trabajo:</strong><br>
+                  <%= @person.responsable.workplace %>
+                </p>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-xs col-md-12'>
+                <p>
+                  <strong>Direccion:</strong><br>
+                  <small><cite><%= @person.responsable.address %><i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
   </div>
 </div>
-<div class="panel panel-success">
-  <div class="panel-heading">
-    <h3 class="panel-title">RESPONSABLE</h3>
-  </div>
-  <div class="panel-body be-round_ligth_gray">
-    <div class='row'>
-      <div class='col-xs col-md-4'>
-        <strong>Nombre:</strong><br>
-        <%= @person.responsable.name %>
-      </div>
-      <div class='col-xs col-md-2'>
-        <strong>Edad:</strong><br>
-        <%= @person.responsable.age %>
-      </div>
-      <div class='col-xs col-md-2'>
-        <strong>Sexo:</strong><br>
-        <%= @person.responsable.gender %>
-      </div>
-      <div class='col-xs col-md-3'>
-        <strong>Salario:</strong><br>  
-        <%= @person.responsable.salary %>
-      </div>
-    </div>
-    <div class='row'>
-      <div class='col-xs col-md-2'>
-        <strong>Estado Civil:</strong><br>  
-        <%= @person.responsable.civil_status %>
-      </div>
-      <div class='col-xs col-md-4'>
-        <strong>Ocupacion:</strong><br>  
-        <%= @person.responsable.occupation %>
-      </div>
-      <div class='col-xs col-md-4'>
-        <strong>Direccion:</strong><br>  
-        <%= @person.responsable.address %>
-      </div>
-      <div class='col-xs col-md-2'>
-        <strong>Relacion:</strong><br>  
-        <%= @person.responsable.relationship %>
-      </div>
-    </div>
-    <div class='row'>
-      <div class='col-xs col-md-4'>
-        <strong>Lugar de Trabajo:</strong><br>
-        <%= @person.responsable.workplace %>
-      </div>
-    </div>
-  </div>
-</div>
+
 <div class="panel panel-warning">
   <div class="panel-heading">
     <h3 class="panel-title">PARIENTES</h3></h3>
