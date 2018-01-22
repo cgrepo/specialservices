@@ -18,4 +18,5 @@
 //= require cafe
 //= require spin
 //= require jquery.spin
+//= require bootstrap
 //= require_tree .

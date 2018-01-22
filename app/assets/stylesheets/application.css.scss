@@ -5,16 +5,17 @@
  *= require_tree .
  */
 // Example using 'Cerulean' bootswatch
-//Import bootstrap-sprockets
-@import "bootstrap-sprockets";
+//@import "bootstrap-sprockets";
 // Import cerulean variables
-@import "bootswatch/cerulean/variables"; //<-------------------
+//@import "bootswatch/cerulean/variables"; //<-------------------
 // Then bootstrap itself
-@import "bootstrap";
+//@import "bootstrap";
 // Bootstrap body padding for fixed navbar
 body { padding-top: 60px; }
 // And finally bootswatch style itself
-@import "bootswatch/cerulean/bootswatch"; 
+//@import "bootswatch/cerulean/bootswatch"; 
+//TESTING bootswatch-sass
+@import 'bootstrap-cerulean';
 @import 'ionicons';
 .be-round_ligth_gray{ background-color: #efefef; color: black; }
 .full_borders{
