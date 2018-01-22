@@ -1,15 +1,13 @@
 <p id="notice"><%= notice %></p>
-<div class='row'>
-  <div class='col-xs col-md'>
-    <p>
-      <strong>Tipo persona:</strong>
-    </p>
-  </div>
-</div>
 <div class='btn-toolbar'>
   <div class='btn-group'>
     <%= link_to 'Editar', edit_person_path(@person), class:'btn btn-default' %>
     <%= link_to 'Regresar', people_path, class:'btn btn-default' %>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-xs col-md'>
+    <p><strong>Tipo persona:</strong></p>
   </div>
 </div>
 <div class="panel panel-primary">
@@ -18,79 +16,68 @@
   </div>
   <div class="panel-body be-round_ligth_gray">
     <div class='row'>
-      <div class='col-xs col-md-2'>
-        <%= image_tag @person.picture, class:'img-fluid card'  %>
-      </div>
       <div class='col-xs col-md-4'>
-        <strong>Nombre:</strong><br>
-        <%= @person.name %>
+        <%= image_tag @person.picture, class:'img-rounded img-responsive'  %>
       </div>
-      <div class='col-xs col-md-2'>
-        <strong>Edad:</strong><br>
-        <%= @person.age %>  
-      </div>
-      <div class='col-xs col-md-2'>
-        <strong>Sexo:</strong>
-        <%= @person.gender %><br>
-      </div>
-      <div class='col-xs col-md-2'>
-        <strong>Estado civil:</strong><br>
-        <%= @person.civil_status %>  
+      <div class='col-xs col-md-8'>
+        <div class='row'>
+          <div class='col-xs col-md-6'>
+            <h4><%= @person.name %></h4>
+          </div>
+          <div class='col-xs col-md-6'>
+            <h4>Fecha de admicion: <br><%= icon('calendar') %>  <%= @person.admission_date %><br></h4>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-xs col-md-6'>
+            <p>
+              <strong>Direccion</strong>
+              <small><cite><%= @person.address %><i class="glyphicon glyphicon-map-marker"></i></cite></small>
+              <strong>Telefono</strong><br>
+              <i class="glyphicon glyphicon-phone"></i><%= @person.phone %><br>
+              <strong>Edad</strong><br>
+              <i class="glyphicon glyphicon-info-sign"></i><%= @person.age %> años<br>
+              <strong>Genero</strong><br>
+              <% if @person.gender=='M' %>
+                <%= icon('male') %> Masculino
+              <% else %>
+                <%= icon('female') %> Femenino
+              <% end %>
+              <br>
+              <strong>Fecha de nacimiento:</strong><br>
+              <%= icon('birthday-cake') %>    <%= @person.birth_date.strftime("%d %B %Y") %><br>
+              <strong>Escolaridad</strong><br>
+              <%= icon('graduation-cap') %>    <%= @person.scolarship %><br>
+            </p>
+          </div>
+          <div class='col-xs col-md-6'>
+            <p>
+              <strong>Residencia actual</strong><br>
+              <small><cite><%= @person.current_residence %><i class="glyphicon glyphicon-map-marker"></i></cite></small>
+              <strong>Estado civil</strong><br>
+              <%= icon('street-view') %>   
+              <% if @person.gender == 'F' &&  @person.civil_status == 'SOLTERO' %>
+                SOLTERA
+              <% else %>
+                <%= @person.civil_status %>
+              <% end %>
+              <br>
+              <strong>Ocupacion</strong><br>
+              <%= octicon "tools", :height => 17,  :class => "right left" %>
+              <%= @person.occupation %><br>
+              <strong>Lugar de trabajo</strong><br>
+              <i class="glyphicon glyphicon-wrench"></i><%= @person.workplace %><br>
+              <strong>Salario</strong><br>
+              <i class="glyphicon glyphicon-usd"></i><%= @person.salary %><br>
+              <strong>Transporte</strong><br>
+              <%= icon('bus') %>    <%= @person.transportation %>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-    <br>
-    <div class='row'>
-      <div class='col-xs col-md-4'>
-        <strong>Ocupacion:</strong><br>
-        <%= @person.occupation %>  
-      </div>
-      <div class='col-xs col-md-2'>
-        <strong>Salario:</strong><br>
-        <%= @person.salary %>
-      </div>
-      <div class='col-xs col-md-3'>
-        <strong>Escolaridad:</strong><br>
-        <%= @person.scolarship %>
-      </div>
-    </div>
-    <br>
-    <div class='row'>
-      <div class='col-xs col-md-4'>
-        <strong>Direccion:</strong><br>
-        <%= @person.address %>  
-      </div>
-      <div class='col-xs col-md-4'>
-        <strong>Residencia actual:</strong><br>
-        <%= @person.current_residence %>
-      </div>
-      <div class='col-xs col-md-4'>
-        <strong>Lugar de Trabajo:</strong><br>
-        <%= @person.workplace %>
-      </div>
-    </div>
-    <br>
-    <div class='row'>
-      <div class='col-xs col-md-3'>
-        <strong>Telefono:</strong><br>
-        <%= @person.phone %>
-      </div>
-      <div class='col-xs col-md-3'>
-        <strong>Fecha de Admision:</strong><br>
-        <%= @person.admission_date %>
-      </div>
-      <div class='col-xs col-md-3'>
-        <strong>Fecha nacimiento:</strong><br>
-        <%= @person.birth_date %>
-      </div>
-      <div class='col-xs col-md-3'>
-        <strong>Transporte:</strong><br>
-        <%= @person.transportation %>
-      </div>
-    </div>
-    <br>
   </div>
 </div>
-
 <div class="panel panel-success">
   <div class="panel-heading">
     <h3 class="panel-title">RESPONSABLE</h3>
@@ -140,7 +127,6 @@
     </div>
   </div>
 </div>
-
 <div class="panel panel-warning">
   <div class="panel-heading">
     <h3 class="panel-title">PARIENTES</h3></h3>
