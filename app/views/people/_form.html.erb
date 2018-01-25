@@ -29,7 +29,7 @@
       <%= bootstrap_form_for(@person ) do |f| %>
       <div class='row be-round_ligth_gray'>
         <div class='col-xs col-md-3'>
-          <img id="img_prev" src="#" />
+          <img id="img_prev" src="#" width='210' height=230 />
           <%= image_tag @person.picture, class:'img-fluid card'  %>
           <%= f.file_field :picture, label:'Foto' %>
         </div>

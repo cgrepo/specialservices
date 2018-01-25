@@ -27,10 +27,12 @@ gem 'bcrypt', '~> 3.1.7'
     gem 'bootswatch-rails'
     #gem 'bootswatch-sass', '~> 3.3', '>= 3.3.7'
   gem 'font-awesome-sass', '~> 4.7.0'
+  gem 'mini_magick'
 #gem 'spinjs-rails' # spinners it seems it is alreay contained in jquery-turbolinks
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -2,7 +2,7 @@ class MyPictureUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -24,9 +24,9 @@ class MyPictureUploader < CarrierWave::Uploader::Base
 
   # Process files as they are uploaded:
   # process scale: [200, 300]
-  #
+  
   # def scale(width, height)
-  #   # do something
+    process resize_to_fill: [200, 200]
   # end
 
   # Create different versions of your uploaded files:
