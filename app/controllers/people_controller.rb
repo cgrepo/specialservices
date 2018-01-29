@@ -29,6 +29,7 @@ class PeopleController < ApplicationController
   # POST /people
   # POST /people.json
   def create
+    
     @person = Person.new
     setPersonVal
     respond_to do |format|
@@ -48,11 +49,10 @@ class PeopleController < ApplicationController
       if @person.save
         format.json { render json: @person.as_json(only: [:id] ) }
       else
-       format.html { render :new }
-       format.json { render json: @person.errors, status: :unprocessable_entity }
+       #format.html { render :new }
+       format.json { render json: 'PICTURE UPLOAD FAIL', status: :unprocessable_entity }
       end
     end
-    
   end
   
   def addResponsable
@@ -86,7 +86,6 @@ class PeopleController < ApplicationController
     end
   end
   def updateResponsable
-    byebug
     @responsable  = Responsable.find(params[:id])
     respond_to do |format|
       if @responsable.update(responsable_params)
@@ -104,13 +103,14 @@ class PeopleController < ApplicationController
         @relative = Relative.new
         @relative.Person_id = params[:requester]
         @relative.name = r[1][0]
-        @relative.age  = r[1][1]
-        @relative.gender = r[1][2]
-        @relative.civil_status = r[1][3]
-        @relative.salary = r[1][4]
-        @relative.occupation = r[1][5]
-        @relative.scolarship = r[1][6]
-        @relative.relationship = r[1][7]
+        @relative.relationship = r[1][1]
+        @relative.age  = r[1][2]
+        @relative.gender = r[1][3]
+        @relative.scolarship = r[1][4]
+        @relative.civil_status = r[1][5]
+        @relative.occupation = r[1][6]
+        @relative.salary = r[1][7]
+        
         if @relative.save
           @relations << @relative.id
         else

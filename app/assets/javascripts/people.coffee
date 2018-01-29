@@ -4,6 +4,7 @@ requester = []
 responsable = []
 relative = []
 relativeData = []
+picChange = null
 $(document).on "turbolinks:load", ->
     fillR()
     if personID == null
@@ -24,11 +25,12 @@ $(document).on "turbolinks:load", ->
                 $.each data, (element, value) ->
                     personID = value
                 tabsEnabled(true)
-                console.log personID
+                #console.log personID
                 fillRE()
                 spinner('OFF')
                 $('.badge').text('1')
                 $('a#edit-person').show()
+                $('#person_picture').hide()
                 uploadPicture()
             error: (data) ->
                 alert data
@@ -37,6 +39,7 @@ $(document).on "turbolinks:load", ->
         personDataUX('enable')
         $('a#update-person').fadeToggle('slow')
         $('a#edit-person').fadeToggle('slow')
+        $('#person_picture').show()
     $('a#update-person').on 'click', ->
         requester = []
         personDataGet()
@@ -62,13 +65,13 @@ $(document).on "turbolinks:load", ->
                     workplace:requester[13]
             success: (data) ->
                 personDataUX('disable')
-                tabsEnabled(true)
-                console.log personID
+                #console.log personID
                 fillRE()
                 spinner('OFF')
                 $('.badge').text('1')
                 $('a#edit-person').fadeToggle('slow')
                 $('a#update-person').fadeToggle('slow')
+                uploadPicture() if picChange
             error: (data) ->
                 alert data
                 spinner('OFF')
@@ -86,19 +89,19 @@ $(document).on "turbolinks:load", ->
                 person:personID
             success: (data) ->
                 responsableDataUX('disable')
-                $('a#save-responsable').fadeToggle('slow')
+                $('a#save-responsable').hide()
+                $('a#edit-responsable').show()
                 $.each data, (element, value) ->
                     responsableID = value
-                console.log 'person='+personID + 'responsable=' + responsableID
+                #console.log 'person='+personID + 'responsable=' + responsableID
                 spinner('OFF')
                 $('.badge').text('2')
-                $('a#edit-responsable').attr('disabled',false)
                 fillREL()
             error: (data) ->
                 alert data
                 spinner('OFF')
     $('a#edit-responsable').on 'click', ->
-        $('a#update-responsable').fadeToggle('slow')
+        $('a#update-responsable').show()
         $('a#edit-responsable').fadeToggle('slow')
         responsableDataUX('enable')
     $('a#update-responsable').on 'click', ->
@@ -110,9 +113,9 @@ $(document).on "turbolinks:load", ->
             url:'/people/updateResponsable/'+responsableID
             data:
                 responsable:
-                    name:requester[0]
-                    age:requester[1]
-                    gender:requester[2]
+                    name:responsable[0]
+                    age:responsable[1]
+                    gender:responsable[2]
                     civil_status:responsable[3]
                     salary:responsable[4]
                     address:responsable[5]
@@ -121,7 +124,6 @@ $(document).on "turbolinks:load", ->
                     relationship:responsable[8]
             success: (data) ->
                 responsableDataUX('disable')
-                tabsEnabled(true)
                 spinner('OFF')
                 $('a#edit-responsable').fadeToggle('slow')
                 $('a#update-responsable').fadeToggle('slow')
@@ -164,6 +166,7 @@ $(document).on "turbolinks:load", ->
                                     $gender.val()+'</td> <td>'+$scolar.val()+'</td><td>'+$civil.val()+'</td> <td>'+$occupation.val()+
                                     '</td><td><a class="btn btn-sm btn-default edrelative"><span class="glyphicon glyphicon-pencil"></span></a>'+
                                     '</td><td><a class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash delrelative"></span></a></td></tr>' )
+                                    $('a#save_relatives').show()
                                     $('#relative_name').val('')
                                     $('#relative_age').val('')
                                     $('#relative_gender').val('M')
@@ -197,9 +200,9 @@ $(document).on "turbolinks:load", ->
             $(this).find('td').each ->
                 relativeData.push($(this).text()) unless $(this).text() == ''
             relative.push(relativeData)
-        console.log 'relative--------->' + relative
-        console.log 'relative.length-->' + relative.length
-        console.log 'relative data' + relativeData
+        # console.log 'relative--------->' + relative
+        # console.log 'relative.length-->' + relative.length
+        # console.log 'relative data' + relativeData
         spinner('ON')
         $.ajax
             type:'POST'
@@ -222,12 +225,13 @@ $(document).on "turbolinks:load", ->
     $('#person_picture').change ->
         prevPic this
         $('#img_prev').show()
+        picChange = true
+        console.log picChange
 setup=->
-    $('a#save_relatives').attr('disabled',true)
     $('a#save_relatives').hide()
     $('a#edit-person').hide()
+    $('a#edit-responsable').hide()
     $('a#update-person').hide()
-    $('a#edit-responsable').attr('disabled',true)
     $('a#update-responsable').hide()
     $('#img_prev').hide()
 personDataGet=->
@@ -245,7 +249,7 @@ personDataGet=->
     requester.push($('#person_current_residence').val())
     requester.push($('#person_occupation').val())
     requester.push($('#person_workplace').val())
-    console.log requester
+    #console.log requester
 uploadPicture=->
     formData = new FormData
     $input = $('#person_picture')
@@ -260,8 +264,8 @@ uploadPicture=->
         contentType: false
         cache: false
         success: (data) ->
-            
-    
+            console.log data
+            picChange = false
 checkRows=->
     rows = $('#relationshipTable tbody').children('tr').length
     if rows == 0
