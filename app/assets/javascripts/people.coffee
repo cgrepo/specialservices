@@ -28,7 +28,7 @@ $(document).on "turbolinks:load", ->
                 fillRE()
                 spinner('OFF')
                 $('.badge').text('1')
-                $('a#edit-person').attr('disabled',false)
+                $('a#edit-person').show()
                 uploadPicture()
             error: (data) ->
                 alert data
@@ -199,6 +199,7 @@ $(document).on "turbolinks:load", ->
             relative.push(relativeData)
         console.log 'relative--------->' + relative
         console.log 'relative.length-->' + relative.length
+        console.log 'relative data' + relativeData
         spinner('ON')
         $.ajax
             type:'POST'
@@ -223,7 +224,8 @@ $(document).on "turbolinks:load", ->
         $('#img_prev').show()
 setup=->
     $('a#save_relatives').attr('disabled',true)
-    $('a#edit-person').attr('disabled',true)
+    $('a#save_relatives').hide()
+    $('a#edit-person').hide()
     $('a#update-person').hide()
     $('a#edit-responsable').attr('disabled',true)
     $('a#update-responsable').hide()
