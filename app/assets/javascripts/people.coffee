@@ -44,6 +44,7 @@ $(document).on "turbolinks:load", ->
         requester = []
         personDataGet()
         spinner('ON')
+        console.log requester
         $.ajax
             type:'PUT'
             url:'/people/updatePerson/'+personID
@@ -66,11 +67,12 @@ $(document).on "turbolinks:load", ->
             success: (data) ->
                 personDataUX('disable')
                 #console.log personID
-                fillRE()
                 spinner('OFF')
-                $('.badge').text('1')
-                $('a#edit-person').fadeToggle('slow')
-                $('a#update-person').fadeToggle('slow')
+                unless $('h1').text() == 'Edicion Solicitante'
+                    $('.badge').text('1')
+                    $('a#edit-person').fadeToggle('slow')
+                    $('a#update-person').fadeToggle('slow')
+                    fillRE()
                 uploadPicture() if picChange
             error: (data) ->
                 alert data
@@ -227,13 +229,25 @@ $(document).on "turbolinks:load", ->
         $('#img_prev').show()
         picChange = true
         console.log picChange
+        if picChange == true 
+            $('#actual_picture').fadeToggle('slow') if $('h1').text() == 'Edicion Solicitante'
 setup=->
-    $('a#save_relatives').hide()
-    $('a#edit-person').hide()
-    $('a#edit-responsable').hide()
-    $('a#update-person').hide()
-    $('a#update-responsable').hide()
-    $('#img_prev').hide()
+    if $('h1').text() == 'Edicion Solicitante'
+        $('a#save-person').hide()
+        $('a#edit-person').hide()
+        $('#img_prev').hide()
+        $('a#update-person').show()
+        personID = $('input#person_id').val()
+        console.log 'update'
+    else
+        $('a#save_relatives').hide()
+        $('a#edit-person').hide()
+        $('a#edit-responsable').hide()
+        $('a#update-person').hide()
+        $('a#update-responsable').hide()
+        $('#img_prev').hide()
+        $('#actual_picture').hide()
+        console.log 'insert'
 personDataGet=->
     requester.push($('#person_name').val())
     requester.push($('#person_age').val())

@@ -30,75 +30,71 @@
       <div class='row be-round_ligth_gray'>
         <div class='col-xs col-md-3'>
           <img id="img_prev" src="#" width='210' height=230 />
-          <%= image_tag @person.picture, class:'img-fluid card'  %>
+          <%= image_tag @person.picture, class:'img-fluid card thumbnail', size:'210x230', id:'actual_picture'  %>
           <%= f.file_field :picture, label:'Foto' %>
+          <%= hidden_field_tag(:person_id, @person.id) %>
+        </div>
+        <div class='col-xs col-md-6'>
+          <%= f.text_field_with_bootstrap :name, label:'Nombre', class:'ups' %>
+        </div>
+        <div class='col-xs col-md-1'>
+          <%= f.number_field_with_bootstrap :age, label:'Edad' %>
+        </div>
+        <div class='col-xs col-md-1'>
+          <%= f.select_with_bootstrap :gender, [['M'],['F']] ,label:'SEXO' %>
+        </div>
+        <div class='col-xs col-md-2'>
+          <%= f.select_with_bootstrap :civil_status,[['SOLTERO'],['CASADO'],['VIUDO(A)'],['UNION LIBRE'],['MS'],['OTRO'] ],label:'Edo. civil' %>
+        </div>
+        <div class='col-xs col-md-2'>
+          <%= f.text_field_with_bootstrap :salary, prepend:'$' ,label:'Salario', append:'.00', class:'ups' %>
+        </div>
+        <div class='col-xs col-md-2'>
+            <%= f.select_with_bootstrap :scolarship,[['PRIMARIA'],['SECUNDARIA'],['PREPARATORIA'],['UNIVERSIDAD'],['OTRO']]  ,label:'Escolaridad' %>
+        </div>
+        <div class='col-xs col-md-2'>
+          <%= f.text_field_with_bootstrap :phone, label:'Telefono', class:'ups' %>
+        </div>
+        <div class='col-xs col-md-2'>
+          <%= f.text_field_with_bootstrap :admission_date, label:'Fecha admision', class:'xdate' %>
+        </div>
+        <div class='col-xs col-md-2'>
+          <%= f.text_field_with_bootstrap :birth_date, label:'Fecha nacimiento', class:'xdate' %>
+        </div>
+        <div class='col-xs col-md-2'>
+          <%= f.select_with_bootstrap :transportation,[['PUBLICO'],['PRIVADO'],['OTRO']] ,label:'Transporte' %>
         </div>
       </div>
-        <div class='row be-round_ligth_gray'>
-          <div class='col-xs col-md-6'>
-            <%= f.text_field_with_bootstrap :name, label:'Nombre', class:'ups' %>
-          </div>
-          <div class='col-xs col-md-1'>
-            <%= f.number_field_with_bootstrap :age, label:'Edad' %>
-          </div>
-          <div class='col-xs col-md-1'>
-            <%= f.select_with_bootstrap :gender, [['M'],['F']] ,label:'SEXO' %>
-          </div>
-          <div class='col-xs col-md-2'>
-            <%= f.select_with_bootstrap :civil_status,[['SOLTERO'],['CASADO'],['VIUDO(A)'],['UNION LIBRE'],['MS'],['OTRO'] ],label:'Edo. civil' %>
-          </div>
-          <div class='col-xs col-md-2'>
-            <%= f.text_field_with_bootstrap :salary, prepend:'$' ,label:'Salario', append:'.00', class:'ups' %>
-          </div>
+      <div class='row be-round_ligth_gray'>
+        <div class='col-xs col-md-6'>
+          <%= f.text_field_with_bootstrap :address, label:'Direccion', class:'ups' %>
         </div>
-        <div class='row be-round_ligth_gray'>
-          <div class='col-xs col-md-2'>
-            <%= f.select_with_bootstrap :scolarship,[['PRIMARIA'],['SECUNDARIA'],['PREPARATORIA'],['UNIVERSIDAD'],['OTRO']]  ,label:'Escolaridad' %>
-          </div>
-          <div class='col-xs col-md-2'></div>
-          <div class='col-xs col-md-2'>
-            <%= f.text_field_with_bootstrap :phone, label:'Telefono', class:'ups' %>
-          </div>
-          <div class='col-xs col-md-2'>
-            <%= f.text_field_with_bootstrap :admission_date, label:'Fecha admision', class:'xdate' %>
-          </div>
-          <div class='col-xs col-md-2'>
-            <%= f.text_field_with_bootstrap :birth_date, label:'Fecha nacimiento', class:'xdate' %>
-          </div>
-          <div class='col-xs col-md-2'>
-            <%= f.select_with_bootstrap :transportation,[['PUBLICO'],['PRIVADO'],['OTRO']] ,label:'Transporte' %>
-          </div>
+        <div class='col-xs col-md-6'>
+          <%= f.text_field_with_bootstrap :current_residence, label:'Residencia actual', class:'ups' %>
         </div>
-        <div class='row be-round_ligth_gray'>
-          <div class='col-xs col-md-6'>
-            <%= f.text_field_with_bootstrap :address, label:'Direccion', class:'ups' %>
-          </div>
-          <div class='col-xs col-md-6'>
-            <%= f.text_field_with_bootstrap :current_residence, label:'Residencia actual', class:'ups' %>
-          </div>
+      </div>
+      <div class='row be-round_ligth_gray'>
+        <div class='col-xs col-md-6'>
+          <%= f.text_field_with_bootstrap :occupation, label:'Ocupacion', class:'ups' %>
         </div>
-        <div class='row be-round_ligth_gray'>
-          <div class='col-xs col-md-6'>
-            <%= f.text_field_with_bootstrap :occupation, label:'Ocupacion', class:'ups' %>
-          </div>
-          <div class='col-xs col-md-6'>
-            <%= f.text_field_with_bootstrap :workplace, label:'Lugar de Trabajo', class:'ups' %>
-          </div>
+        <div class='col-xs col-md-6'>
+          <%= f.text_field_with_bootstrap :workplace, label:'Lugar de Trabajo', class:'ups' %>
         </div>
-        <div class='row be-round_ligth_gray'>
-          <div class='col-xs col-md-1'>
-            <a  id="save-person" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-floppy-open"></span></a> 
-            <br>
-          </div>
-          <div class='col-xs col-md-1'>
-            <a  id="edit-person" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-pencil"></span></a> 
-            <br>
-          </div>
-          <div class='col-xs col-md-1'>
-            <a  id="update-person" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-ok-circle"></span></a>
-            <br>
-          </div>
+      </div>
+      <div class='row be-round_ligth_gray'>
+        <div class='col-xs col-md-1'>
+          <a  id="save-person" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-floppy-open"></span></a> 
+          <br>
         </div>
+        <div class='col-xs col-md-1'>
+          <a  id="edit-person" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-pencil"></span></a> 
+          <br>
+        </div>
+        <div class='col-xs col-md-1'>
+          <a  id="update-person" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-ok-circle"></span></a>
+          <br>
+        </div>
+      </div>
       <% end %>
     </div>
     <div class="tab-pane fade" id="responsables">
