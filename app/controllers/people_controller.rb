@@ -22,9 +22,7 @@ class PeopleController < ApplicationController
 
   # GET /people/1/edit
   def edit
-    
     @responsable = Responsable.find_by(person_id:@person.id)
-    #byebug
     @relative = Relative.new
   end
 

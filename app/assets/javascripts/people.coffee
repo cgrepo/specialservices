@@ -242,6 +242,9 @@ setup=->
         tabsEnabled(true)
         personID = $('input#person_id').val()
         responsableID = $('input#responsable_id').val()
+        $('.nav li#relative').addClass('disabled')
+        $('.nav li#relative').find('a').removeAttr("data-toggle")
+        $('.nav li#relative').hide()
         console.log 'update'
     else
         $('a#save_relatives').hide()
