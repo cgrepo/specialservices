@@ -235,9 +235,13 @@ setup=->
     if $('h1').text() == 'Edicion Solicitante'
         $('a#save-person').hide()
         $('a#edit-person').hide()
-        $('#img_prev').hide()
         $('a#update-person').show()
+        $('a#save-responsable').hide()
+        $('a#edit-responsable').hide()
+        $('#img_prev').hide()
+        tabsEnabled(true)
         personID = $('input#person_id').val()
+        responsableID = $('input#responsable_id').val()
         console.log 'update'
     else
         $('a#save_relatives').hide()

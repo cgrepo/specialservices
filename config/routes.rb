@@ -13,15 +13,16 @@ Rails.application.routes.draw do
   end
   resources :people do
     collection do
+      put  'updatePerson/:id',      action:'updatePerson',      controller:'people', as:'updatePerson'
       post 'addResponsable',        action:'addResponsable',    controller:'people', as:'addResponsable'
       post 'actResponsable',        action:'actResponsable',    controller:'people', as:'actResponsable'
-      put  'updatePerson/:id',      action:'updatePerson',      controller:'people', as:'updatePerson'
       put  'updateResponsable/:id', action:'updateResponsable', controller:'people', as:'updateResponsable'
       post 'addRelatives',          action:'addRelatives',      controller:'people', as:'addRelatives'
       post 'addPicture',            action:'addPicture',        controller:'people', as:'addPicture'
     end
   end
-  resources :expeditures, :living_places, :responsables, :relatives, only: [ :index ]
+  
+  resources :expeditures, :living_places, :relatives, :responsables, only: [ :index, :update ]
   resources :other_expeditures, :benefits, :other_services, only: [ :index, :show, :create, :destroy ]
   resources :sessions, only:[:new, :create, :destroy]
   get "/login" => "sessions#new", as: "login"

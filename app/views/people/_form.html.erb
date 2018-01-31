@@ -94,7 +94,7 @@
           <a  id="update-person" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-ok-circle"></span></a>
           <br>
         </div>
-      </div>
+        </div>
       <% end %>
     </div>
     <div class="tab-pane fade" id="responsables">
@@ -102,6 +102,7 @@
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-6'>
             <%= f.text_field_with_bootstrap :name, label:'Nombre', class:'ups' %>
+            <%= hidden_field_tag(:responsable_id, @responsable.id) %>
           </div>
           <div class='col-xs col-md-1'>
             <%= f.number_field_with_bootstrap :age, label:'Edad' %>
