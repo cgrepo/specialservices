@@ -109,7 +109,7 @@ GEM
       octicons (= 5.2.0)
       rails
     pdf-core (0.7.0)
-    pg (1.0.0)
+    pg (0.21.0)
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
@@ -218,7 +218,7 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails
   octicons_helper
-  pg
+  pg (~> 0.18)
   prawn
   pry
   puma
