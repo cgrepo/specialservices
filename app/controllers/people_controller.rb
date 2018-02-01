@@ -1,35 +1,26 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy, :updatePerson, :showPDF]
 
-  # GET /people
-  # GET /people.json
   def index
     @people = Person.all
   end
 
-  # GET /people/1
-  # GET /people/1.json
   def show
     @relatives = @person.relatives
   end
-  
-  # GET /people/new
+
   def new
     @person = Person.new
     @responsable = Responsable.new
     @relative = Relative.new
   end
 
-  # GET /people/1/edit
   def edit
     @responsable = Responsable.find_by(person_id:@person.id)
     @relative = Relative.new
   end
 
-  # POST /people
-  # POST /people.json
   def create
-    
     @person = Person.new
     setPersonVal
     respond_to do |format|
@@ -39,6 +30,26 @@ class PeopleController < ApplicationController
        format.html { render :new }
        format.json { render json: @person.errors, status: :unprocessable_entity }
       end
+    end
+  end
+  
+  def update
+    respond_to do |format|
+      if @person.update(person_params)
+        format.html { redirect_to @person, notice: 'Person was successfully updated.' }
+        format.json { render :show, status: :ok, location: @person }
+      else
+        format.html { render :edit }
+        format.json { render json: @person.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @person.destroy
+    respond_to do |format|
+      format.html { redirect_to people_url, notice: 'Person was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
   
@@ -76,6 +87,7 @@ class PeopleController < ApplicationController
       end
     end
   end
+  
   def updatePerson
     respond_to do |format|
       if @person.update(person_params)
@@ -85,6 +97,7 @@ class PeopleController < ApplicationController
       end
     end
   end
+  
   def updateResponsable
     @responsable  = Responsable.find(params[:id])
     respond_to do |format|
@@ -95,6 +108,7 @@ class PeopleController < ApplicationController
       end
     end
   end
+  
   def addRelatives
     @relations = []
     problems = false
@@ -124,30 +138,17 @@ class PeopleController < ApplicationController
       end
     end
   end
-  # PATCH/PUT /people/1
-  # PATCH/PUT /people/1.json
-  def update
-    respond_to do |format|
-      if @person.update(person_params)
-        format.html { redirect_to @person, notice: 'Person was successfully updated.' }
-        format.json { render :show, status: :ok, location: @person }
-      else
-        format.html { render :edit }
-        format.json { render json: @person.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
-  # DELETE /people/1
-  # DELETE /people/1.json
-  def destroy
-    @person.destroy
-    respond_to do |format|
-      format.html { redirect_to people_url, notice: 'Person was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
 
+  
+  # def getRelatives
+  #   @relatives = Relative.where :Person_id => params[:id]
+  #   byebug
+  #   respond_to do |format|
+  #     format.js {render :partial => 'getRelatives'}
+  #   end
+  # end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person

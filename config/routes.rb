@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'relatives/index'
+
+  get 'relatives/update'
+
+  get 'relatives/destroy'
+
   resources :users, only:[:new, :create, :destroy] do
     collection do
       get 'editPass/:id', action:'editPass', controller:'users', as:'editPass'
@@ -21,8 +27,8 @@ Rails.application.routes.draw do
       post 'addPicture',            action:'addPicture',        controller:'people', as:'addPicture'
     end
   end
-  
-  resources :expeditures, :living_places, :relatives, :responsables, only: [ :index, :update ]
+  resources :relatives, only: [ :index, :update, :destroy, :edit ]
+  resources :expeditures, :living_places,  :responsables, only: [ :index, :update ]
   resources :other_expeditures, :benefits, :other_services, only: [ :index, :show, :create, :destroy ]
   resources :sessions, only:[:new, :create, :destroy]
   get "/login" => "sessions#new", as: "login"

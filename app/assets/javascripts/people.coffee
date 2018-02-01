@@ -231,6 +231,7 @@ $(document).on "turbolinks:load", ->
         console.log picChange
         if picChange == true 
             $('#actual_picture').fadeToggle('slow') if $('h1').text() == 'Edicion Solicitante'
+    
 setup=->
     if $('h1').text() == 'Edicion Solicitante'
         $('a#save-person').hide()
