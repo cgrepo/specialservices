@@ -1,0 +1,37 @@
+<%= bootstrap_form_for(@relative) do |f| %>
+    <div class='row be-round_ligth_gray'>
+        <div class='col-xs col-md-6'>
+            <%= f.text_field_with_bootstrap :name, label:'Nombre', class:'ups' %>
+        </div>
+        <div class='col-xs col-md-1'>
+            <%= f.number_field_with_bootstrap :age, label:'Edad' %>
+        </div>
+        <div class='col-xs col-md-1'>
+            <%= f.select_with_bootstrap :gender, [['M'],['F']] ,label:'SEXO' %>
+        </div>
+        <div class='col-xs col-md-2'>
+            <%= f.select_with_bootstrap :civil_status,[['SOLTERO'],['CASADO'],['VIUDO(A)'],['UNION LIBRE'],['MS'],['OTRO'] ],label:'Edo. civil' %>
+        </div>
+        <div class='col-xs col-md-2'>
+            <%= f.text_field_with_bootstrap :salary, prepend:'$' ,label:'Salario', append:'.00' %>
+          </div>
+        </div>
+    <div class='row be-round_ligth_gray'>
+        <div class='col-xs col-md-4'>
+            <%= f.text_field_with_bootstrap :occupation, label:'Ocupacion', class:'ups' %>
+        </div>
+        <div class='col-xs col-md-4'>
+            <%= f.text_field_with_bootstrap :scolarship, label:'Escolaridad', class:'ups' %>
+        </div>
+        <div class='col-xs col-md-4'>
+            <%= f.text_field_with_bootstrap :relationship, label:'Parentesco', class:'ups' %>
+        </div>
+    </div>
+    <div class='row be-round_ligth_gray'>
+        <div class='col-xs col-md-1'>
+            <br>
+            <%= f.submit %>
+            <br>
+          </div>
+    </div>
+<% end %>

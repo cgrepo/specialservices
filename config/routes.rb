@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       post 'addPicture',            action:'addPicture',        controller:'people', as:'addPicture'
     end
   end
-  resources :relatives, only: [ :index, :update, :destroy, :edit ]
+  resources :relatives, only: [ :index, :update, :destroy, :edit, :create, :new ]
   resources :expeditures, :living_places,  :responsables, only: [ :index, :update ]
   resources :other_expeditures, :benefits, :other_services, only: [ :index, :show, :create, :destroy ]
   resources :sessions, only:[:new, :create, :destroy]

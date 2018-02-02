@@ -10,7 +10,7 @@ $(document).on "turbolinks:load", ->
     if personID == null
         tabsEnabled(false)
     setup()
-    $('a#save-person').on 'click', ->
+    $('#save-person').on 'click', ->
         spinner('ON')
         personDataGet()
         $.ajax
@@ -25,11 +25,10 @@ $(document).on "turbolinks:load", ->
                 $.each data, (element, value) ->
                     personID = value
                 tabsEnabled(true)
-                #console.log personID
                 fillRE()
                 spinner('OFF')
                 $('.badge').text('1')
-                $('a#edit-person').show()
+                $('#edit-person').show()
                 $('#person_picture').hide()
                 uploadPicture()
             error: (data) ->
@@ -195,7 +194,7 @@ $(document).on "turbolinks:load", ->
                                         $row = $(this).closest('tr')
                                         $row.remove()
                                         checkRows()
-    $('a#save_relatives').on 'click', ->
+    $('#save_relatives').on 'click', ->
         relative = []
         $('#relationshipTable tbody tr').each ->
             relativeData = []
@@ -234,11 +233,11 @@ $(document).on "turbolinks:load", ->
     
 setup=->
     if $('h1').text() == 'Edicion Solicitante'
-        $('a#save-person').hide()
-        $('a#edit-person').hide()
-        $('a#update-person').show()
-        $('a#save-responsable').hide()
-        $('a#edit-responsable').hide()
+        $('#save-person').hide()
+        $('#edit-person').hide()
+        $('#update-person').show()
+        $('#save-responsable').hide()
+        $('#edit-responsable').hide()
         $('#img_prev').hide()
         tabsEnabled(true)
         personID = $('input#person_id').val()
@@ -248,11 +247,13 @@ setup=->
         $('.nav li#relative').hide()
         console.log 'update'
     else
-        $('a#save_relatives').hide()
-        $('a#edit-person').hide()
-        $('a#edit-responsable').hide()
-        $('a#update-person').hide()
-        $('a#update-responsable').hide()
+        $('#save_relatives').hide()
+        #$("input[type='submit']").hide()
+        $('#edit-person').hide()
+        $('#edit-responsable').hide()
+        $('#update-person').hide()
+        $('#update-responsable').hide()
+        $('#addRelative').show()
         $('#img_prev').hide()
         $('#actual_picture').hide()
         console.log 'insert'
