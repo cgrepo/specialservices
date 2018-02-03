@@ -248,7 +248,7 @@ setup=->
         console.log 'update'
     else
         $('#save_relatives').hide()
-        #$("input[type='submit']").hide()
+        $('#relativeSubmit').hide() if $('h1').text() == 'Agregar Persona'
         $('#edit-person').hide()
         $('#edit-responsable').hide()
         $('#update-person').hide()

@@ -30,7 +30,8 @@
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-1'>
             <br>
-            <%#= f.submit %>
+            <%= f.submit id:'relativeSubmit', class:'btn btn-primary' %>
+            <%= f.hidden_field :Person_id, value:@person.id %>
             <a  id='addRelative', class="btn btn-primary btn-block"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
             <br>
           </div>

@@ -1,5 +1,6 @@
 class RelativesController < ApplicationController
-  before_action :set_person, only: [ :update, :destroy, :edit]
+  before_action :set_relative, only: [ :update, :destroy, :edit]
+  #before_action :set_person,   only: [ :new, :create]
   def index
   end
 
@@ -8,12 +9,19 @@ class RelativesController < ApplicationController
   
   def new
     @relative = Relative.new
+    @person = Person.find_by(id:params[:Person_id])
   end
   
   def create
-    @person = Person.find_by :id => params[:idPerson]
-    
-    byebug
+    @relative = Relative.new(relative_params)
+    @person = Person.find_by(id:params[:relative][:Person_id])
+    respond_to do |format|
+      if @relative.save
+        format.html { redirect_to @person, notice: 'Pariente relacionado correctamente!' }
+      else
+        format.html { render :new }
+      end
+    end
   end
 
   def destroy
@@ -27,13 +35,13 @@ class RelativesController < ApplicationController
   end
   
   private
-    def set_person
+    def set_relative
       @relative = Relative.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def relative_params
-      params.require(:relative).permit(:name, :age, :gender, :civil_status, :salary,:occupation, :scolarship, :relationship, :person_id)
+      params.require(:relative).permit(:name, :age, :gender, :civil_status, :salary,:occupation, :scolarship, :relationship, :Person_id)
     end
     # def responsable_params
     #   params.require(:responsable).permit(:name, :age, :gender, :civil_status, :salary, :address, :occupation, :workplace, :relationship)
