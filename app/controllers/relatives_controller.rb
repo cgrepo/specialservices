@@ -4,12 +4,22 @@ class RelativesController < ApplicationController
   def index
   end
 
-  def update
-  end
-  
   def new
     @relative = Relative.new
     @person = Person.find_by(id:params[:Person_id])
+  end
+  
+  def update
+    @person = Person.find_by(id:@relative.Person_id)
+    respond_to do |format|
+      if @relative.update(relative_params)
+        format.html { redirect_to @person, notice: 'Pariente actualizado.' }
+        #format.json { render :show, status: :ok, location: @person }
+      else
+        format.html { render :edit }
+        #format.json { render json: @person.errors, status: :unprocessable_entity }
+      end
+    end
   end
   
   def create
