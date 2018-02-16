@@ -15,12 +15,14 @@ class BenefitsController < ApplicationController
   # POST /benefits.json
   def create
     @benefit = Benefit.new(benefit_params)
+    
     respond_to do |format|
       if @benefit.save
         #format.html
         format.js 
       else
-        format.js { render :new }
+        #byebug
+        format.js { render :fail }
         format.json { render json: @benefit.errors, status: :unprocessable_entity }
       end
     end

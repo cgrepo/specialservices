@@ -56,7 +56,7 @@ $(document).on 'turbolinks:load', ->
                 $('#modal-window2').modal('show')
             error: (response) ->
                 alert response
-    $('#addBenefit').on 'click', ->
+    $('#showBenefit').on 'click', ->
         spinner('ON',$('#spinnerContainer4exp'))
         $.ajax
             type:'GET'
@@ -113,7 +113,7 @@ $(document).on 'turbolinks:load', ->
                         success: (response) ->
                         error: (response) ->
                             alert response
-
+    
     $('#living_place_kind').on 'change', ->
         if $('#living_place_kind').val() == 'OTROS'
             $.ajax
