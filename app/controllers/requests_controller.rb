@@ -1,17 +1,13 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :edit, :update, :destroy]
 
-  # GET /requests
-  # GET /requests.json
   def index
     @requests = Request.all
   end
 
-  # GET /requests/1
-  # GET /requests/1.json
   def show
     @expediture = Expediture.find_by(person:@request.person)
-    
+    @person = @request.person
     counter = OtherExpediture.where(Expediture:@expediture).count
     if counter == 1
       @otherExpeditures = [OtherExpediture.find_by(Expediture:@expediture)]
@@ -20,29 +16,24 @@ class RequestsController < ApplicationController
     end
     
     counter = Benefit.where(person:@request.person).count
-    #byebug
     if counter == 1
       @benefits = [Benefit.find_by(person:@request.person)]
     else
       @benefits = Benefit.where(person:@request.person)
     end
     @living = LivingPlace.find_by(person:@request.person)
-    @services = OtherService.where(living_place:@living)
+    @otherservices = OtherService.where(living_place:@living)
   end
 
-  # GET /requests/new
   def new
     @request = Request.new
     @expediture = Expediture.new
     @livingPlace = LivingPlace.new
   end
-
-  # GET /requests/1/edit
+  
   def edit
   end
 
-  # POST /requests
-  # POST /requests.json
   def create
     respond_to do |format|
       @request = fillRequest(Request.new)
@@ -82,8 +73,6 @@ class RequestsController < ApplicationController
     # end
   end
 
-  # PATCH/PUT /requests/1
-  # PATCH/PUT /requests/1.json
   def update
     respond_to do |format|
       if @request.update(request_params)
@@ -96,8 +85,6 @@ class RequestsController < ApplicationController
     end
   end
 
-  # DELETE /requests/1
-  # DELETE /requests/1.json
   def destroy
     @request.destroy
     respond_to do |format|

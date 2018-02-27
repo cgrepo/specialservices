@@ -190,6 +190,8 @@ $(document).on 'turbolinks:load', ->
                 $('#benefit_amount').attr('disabled',false)
                 $('.addBenefit').attr('disabled',false)
                 $('#benefit_name').attr('disabled',false)
+        # $('#benefit_name').on 'change', ->
+        #     console.log $(this).attr('disabled','disabled')
     $('#modal-window2').on 'hidden.bs.modal', ->
         spinner('OFF',$('#spinnerContainer4exp'))
     $('#modal-window3').on 'hidden.bs.modal', ->
@@ -226,6 +228,7 @@ $(document).on 'turbolinks:load', ->
             if event.keyCode == 13
                 event.preventDefault()
     
+        
 tabsEnabled=(opt) ->
     if opt
         $('.nav li#expedit').removeClass('disabled')
