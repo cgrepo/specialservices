@@ -27,6 +27,10 @@
             <li><%= link_to 'Solicitantes ', people_path %></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to gears_index_path do %>
+                  <%= icon('cogs') %>
+                <% end %>
+            </li>
             <li><%= link_to 'Logout', logout_path, method: :delete %></li>
           </ul>
         </div>
