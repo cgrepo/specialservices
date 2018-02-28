@@ -46,4 +46,12 @@ color: #999;
 .showme {
   display:block;
 }
-
+.boll {
+  border-style: solid;
+  border-width: 0.02em;
+}
+.bosides {
+  border-width: 0.02em;
+  border-right-style: solid;
+  border-left-style: solid;
+}

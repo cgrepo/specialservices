@@ -32,6 +32,8 @@ class RequestsController < ApplicationController
   end
   
   def edit
+    #byebug
+    @person = Person.find(@request.person)
   end
 
   def create
