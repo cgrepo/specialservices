@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
-  get 'relatives/index'
-
-  get 'relatives/update'
-
-  get 'relatives/destroy'
-
+  get 'gears/index'
+  get 'gears/nuke'
   resources :users, only:[:new, :create, :destroy] do
     collection do
       get 'editPass/:id', action:'editPass', controller:'users', as:'editPass'

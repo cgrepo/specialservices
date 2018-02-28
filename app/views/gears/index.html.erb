@@ -2,53 +2,73 @@
 <div class='row'>
     <div class='col-xs col-md-3'>
         <h4>Otros Servicios sin ligas</h4>
-        <table class="table table-striped table-hover ">
-            <thead>
-                <tr class='info'>
-                    <th>Nombre de servicio</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @phantomOServices.each do |os| %>
-                    <tr class='danger'>
-                        <td><%= os.name %></td>
+        <% if @phantomOServices == nil %>
+            TODOS LOS DATOS ESTAN LIGADOS CORRECTAMENTE
+        <% else %>
+            <table class="table table-striped table-hover ">
+                <thead>
+                    <tr class='info'>
+                        <th>Nombre de servicio</th>
                     </tr>
-                <% end %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <% @phantomOServices.each do |os| %>
+                        <tr class='danger'>
+                            <td><%= os.name %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        <% end %>
     </div>
     <div class='col-xs col-md-3'>
         <h4>Beneficios sin ligas</h4>
-        <table class="table table-striped table-hover ">
-            <thead>
-                <tr class='info'>
-                    <th>Nombre de servicio</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @phantomBenefits.each do |b| %>
-                    <tr class='danger'>
-                        <td><%= b.name %></td>
+        <% if @phantomBenefits == nil %>
+            TODOS LOS DATOS ESTAN LIGADOS CORRECTAMENTE
+        <% else %>
+            <table class="table table-striped table-hover ">
+                <thead>
+                    <tr class='info'>
+                        <th>Nombre de servicio</th>
+                        <th>Cantidad</th>
                     </tr>
-                <% end %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <% @phantomBenefits.each do |b| %>
+                        <tr class='danger'>
+                            <td><%= b.name %></td>
+                            <td><%= b.amount %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        <% end %>
     </div>
     <div class='col-xs col-md-3'>
         <h4>Otros Gastos sin ligas</h4>
-        <table class="table table-striped table-hover ">
-            <thead>
-                <tr class='info'>
-                    <th>Nombre de servicio</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @phantomOExpeditures.each do |oe| %>
-                    <tr class='danger'>
-                        <td><%= oe.name %></td>
+        <% if @phantomOExpeditures == nil %>
+            TODOS LOS DATOS ESTAN LIGADOS CORRECTAMENTE
+        <% else %>
+            <table class="table table-striped table-hover ">
+                <thead>
+                    <tr class='info'>
+                        <th>Nombre de servicio</th>
+                        <th>Cantidad</th>
                     </tr>
-                <% end %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <% @phantomOExpeditures.each do |oe| %>
+                        <tr class='danger'>
+                            <td><%= oe.name %></td>
+                            <td><%= oe.amount %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        <% end %>
+    </div>
+    <div class='col-xs col-md-3'>
+        <br><br>
+        <a href="/gears/nuke" class="btn btn-block btn-danger"><span class="glyphicon glyphicon-trash"></span> DESTROY THEM ALL</a>
     </div>
 </div>
