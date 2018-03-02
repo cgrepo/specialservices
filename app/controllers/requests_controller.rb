@@ -22,7 +22,12 @@ class RequestsController < ApplicationController
       @benefits = Benefit.where(person:@request.person)
     end
     @living = LivingPlace.find_by(person:@request.person)
-    @otherservices = OtherService.where(living_place:@living)
+    counter = OtherService.where(living_place:@living)
+    if counter == 1
+      @otherservices = [OtherService.where(living_place:@living)]
+    else
+      @otherservices = OtherService.where(living_place:@living)
+    end
   end
 
   def new
@@ -32,8 +37,30 @@ class RequestsController < ApplicationController
   end
   
   def edit
-    #byebug
     @person = Person.find(@request.person)
+    @expediture = Expediture.find_by(person_id:@person)
+    # check how more expeditures are 
+      counter = OtherExpediture.where(Expediture:@expediture).count
+      if counter == 1
+        @otherExpeditures = [OtherExpediture.find_by(Expediture:@expediture)]
+      else
+        @otherExpeditures = OtherExpediture.find_by(Expediture:@expediture)
+      end
+    # check how more benefits are
+      counter = Benefit.where(person:@request.person).count
+      if counter == 1
+        @benefits = [Benefit.find_by(person:@request.person)]
+      else
+        @benefits = Benefit.where(person:@request.person)
+      end
+    # check how many other services
+      @living = LivingPlace.find_by(person_id:@person)
+      counter = OtherService.where(living_place:@living)
+      if counter == 1
+        @otherservices = [OtherService.where(living_place:@living)]
+      else
+        @otherservices = OtherService.where(living_place:@living)
+      end
   end
 
   def create
@@ -131,6 +158,12 @@ class RequestsController < ApplicationController
             type: 'application/pdf',
             disposition: 'inline'
         end
+      end
+    end
+    def edOExpediture
+      @otherExpediture = OtherExpediture.find(params[:id])
+      respond_to do |format|
+        format.js# {render :partial => 'modal4EditOtherExpediture'}
       end
     end
   private

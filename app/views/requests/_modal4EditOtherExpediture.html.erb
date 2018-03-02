@@ -1,0 +1,18 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">EDITAR GASTO</h4>
+        </div>
+        <div class="modal-body">
+          <%= bootstrap_form_for(@otherExpediture, layout: :horizontal, remote:true, :html => {id:'addExpeditureCommit', format:'js'}) do |f| %>
+            <%= f.text_field_with_bootstrap :name,   label:'Gasto' %>
+            <%= f.text_field_with_bootstrap :amount, label:'Monto', prepend:'$', append:'.00' %>
+            <%= f.submit 'Guardar', class:'btn btn-md btn-primary' %>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>

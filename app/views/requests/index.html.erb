@@ -30,7 +30,7 @@
         <td><%= link_to request, :class=>"btn btn-default btn-md" do %>
               <%= octicon 'clippy', :height => 20 %>
             <% end %></td>
-        <td><%= link_to edit_request_path(request), :class=>"btn btn-default btn-md" do %>
+        <td><%= link_to edit_request_path(id:request), :class=>"btn btn-default btn-md" do %>
               <%= octicon 'pencil', :height => 20 %>
             <% end %></td>
         <td><%= link_to request, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-default btn-md"  do %>

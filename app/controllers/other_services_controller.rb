@@ -8,6 +8,8 @@ class OtherServicesController < ApplicationController
   def show
   end
 
+  def udpate
+  end
   def create
     @other_service = OtherService.new(other_service_params)
     respond_to do |format|

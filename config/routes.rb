@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     collection do
       get 'showmodal', to: 'requests#showmodal'
       get 'showPDF',   to: 'requests#showPDF'
+      get 'edOExpediture/:id', action:'edOExpediture', controller:'requests', as:'edOExpediture'
     end
   end
   resources :people do
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
   end
   resources :relatives, only: [ :index, :update, :destroy, :edit, :create, :new ]
   resources :expeditures, :living_places,  :responsables, only: [ :index, :update ]
-  resources :other_expeditures, :benefits, :other_services, only: [ :index, :show, :create, :destroy ]
+  resources :other_expeditures, :benefits, :other_services, only: [ :index, :show, :create, :destroy, :update ]
   resources :sessions, only:[:new, :create, :destroy]
   get "/login" => "sessions#new", as: "login"
   get 'welcome/index'
