@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get 'showmodal', to: 'requests#showmodal'
       get 'showPDF',   to: 'requests#showPDF'
       get 'edOExpediture/:id', action:'edOExpediture', controller:'requests', as:'edOExpediture'
+      get 'edBenefit/:id', action:'edBenefit', controller:'requests', as:'edBenefit'
     end
   end
   resources :people do

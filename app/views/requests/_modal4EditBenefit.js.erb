@@ -5,7 +5,7 @@
             <h4 class="modal-title">EDITAR GASTO</h4>
         </div>
         <div class="modal-body">
-          <%= bootstrap_form_for(@otherExpediture, layout: :horizontal, remote:true, :html => {id:'edOExpeditureCommit', format:'js'}) do |f| %>
+          <%= bootstrap_form_for(@benefit, layout: :horizontal, remote:true, :html => {id:'edBenefitCommit', format:'js'}) do |f| %>
             <%= f.text_field_with_bootstrap :name,   label:'Gasto' %>
             <%= f.text_field_with_bootstrap :amount, label:'Monto', prepend:'$', append:'.00' %>
             <%= f.submit 'Guardar', class:'btn btn-md btn-primary' %>

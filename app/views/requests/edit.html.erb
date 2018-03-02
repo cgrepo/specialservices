@@ -125,7 +125,9 @@
                                     <tbody>
                                       <td><%= b.name %></td>
                                       <td><%= b.amount %></td>
-                                      <td><%= icon('pencil') %></td>
+                                      <td><%= link_to edBenefit_requests_path(b), remote:true, class:'bnt btn-xs btn-primary' do %>
+                                              <%= icon('pencil') %></td>
+                                          <% end %>
                                       <td><%= icon('trash-o') %></td>
                                     </tbody>
                                     <% end %>

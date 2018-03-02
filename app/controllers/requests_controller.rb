@@ -166,6 +166,12 @@ class RequestsController < ApplicationController
         format.js# {render :partial => 'modal4EditOtherExpediture'}
       end
     end
+    def edBenefit
+      @benefit = Benefit.find(params[:id])
+      respond_to do |format|
+        format.js# {render :partial => 'modal4EditOtherExpediture'}
+      end
+    end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_request
