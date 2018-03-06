@@ -37,15 +37,17 @@ class RequestsController < ApplicationController
   end
   
   def edit
+    
     @person = Person.find(@request.person)
     @expediture = Expediture.find_by(person_id:@person)
     # check how more expeditures are 
       counter = OtherExpediture.where(Expediture:@expediture).count
       if counter == 1
-        @otherExpeditures = [OtherExpediture.find_by(Expediture:@expediture)]
+        @otherExpeditures = [OtherExpediture.where(Expediture:@expediture)]
       else
-        @otherExpeditures = OtherExpediture.find_by(Expediture:@expediture)
+        @otherExpeditures = OtherExpediture.where(Expediture:@expediture)
       end
+      
     # check how more benefits are
       counter = Benefit.where(person:@request.person).count
       if counter == 1

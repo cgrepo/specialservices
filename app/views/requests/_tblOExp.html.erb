@@ -1,0 +1,22 @@
+<table id="tblEdOExpeditures" class="table table-striped table-hover">
+    <thead>
+        <th>Descripcion</th>
+        <th>Cantidad</th>
+        <th colspan=2></th>
+    </thead>
+    <tbody>
+        <% @otherExpeditures.each do |oe| %>
+        <tr>
+            <td><%= oe.name %></td>
+            <td><%= oe.amount %></td>
+            <td><%= link_to edOExpediture_requests_path(oe), remote:true, class:'bnt btn-xs btn-primary' do %>
+                    <%= icon('pencil') %>
+                <% end %>
+            </td>
+            <td><%= icon('trash-o') %></td>
+        </tr>
+        <% end %>
+        
+    </tbody>
+    
+</table>

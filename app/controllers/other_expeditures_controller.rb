@@ -36,6 +36,16 @@ class OtherExpedituresController < ApplicationController
   end
   
   def update
+    
+    counter = OtherExpediture.where(expediture_id:@other_expediture.expediture_id).count
+    if counter == 1
+      @otherExpeditures = [OtherExpediture.where(expediture_id:@other_expediture.expediture_id)]
+    elsif counter > 1
+      @otherExpeditures = OtherExpediture.where(expediture_id:@other_expediture.expediture_id)
+    else
+      @otherExpeditures = ['err','0']
+    end
+    
     respond_to do |format|
       if @other_expediture.update(other_expediture_params)
         format.js 

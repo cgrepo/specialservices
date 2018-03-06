@@ -1,1 +1,3 @@
 $("#modal-window4edOExp").modal('hide');
+$(".exp table").remove();
+$(".exp").html("<%= escape_javascript render(:partial => 'requests/tblOExp') %>");
