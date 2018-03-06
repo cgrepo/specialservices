@@ -27,13 +27,21 @@ class OtherExpedituresController < ApplicationController
       end
     end
   end
-
-  # DELETE /other_expeditures/1
-  # DELETE /other_expeditures/1.json
+  
   def destroy
     @other_expediture.destroy
     respond_to do |format|
       format.js
+    end
+  end
+  
+  def update
+    respond_to do |format|
+      if @other_expediture.update(other_expediture_params)
+        format.js 
+      else
+        format.html { render :edit }
+      end
     end
   end
 

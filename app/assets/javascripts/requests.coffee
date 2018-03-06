@@ -227,8 +227,7 @@ $(document).on 'turbolinks:load', ->
         $('.badBoy').keypress (event) ->
             if event.keyCode == 13
                 event.preventDefault()
-    
-        
+            
 tabsEnabled=(opt) ->
     if opt
         $('.nav li#expedit').removeClass('disabled')
