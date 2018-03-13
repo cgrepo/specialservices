@@ -15,7 +15,6 @@ class BenefitsController < ApplicationController
   # POST /benefits.json
   def create
     @benefit = Benefit.new(benefit_params)
-    
     respond_to do |format|
       if @benefit.save
         #format.html
@@ -33,11 +32,10 @@ class BenefitsController < ApplicationController
   def update
     respond_to do |format|
       if @benefit.update(benefit_params)
-        format.html { redirect_to @benefit, notice: 'Other expediture was successfully updated.' }
-        format.json { render :show, status: :ok, location: @benefit }
+        @benefits = Benefit.where(person:@benefit.person)
+        format.js
       else
-        format.html { render :edit }
-        format.json { render json: @benefit.errors, status: :unprocessable_entity }
+        format.html {render :edit }
       end
     end
   end

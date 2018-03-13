@@ -37,32 +37,33 @@ class RequestsController < ApplicationController
   end
   
   def edit
-    
     @person = Person.find(@request.person)
     @expediture = Expediture.find_by(person_id:@person)
     # check how more expeditures are 
-      counter = OtherExpediture.where(Expediture:@expediture).count
-      if counter == 1
-        @otherExpeditures = [OtherExpediture.where(Expediture:@expediture)]
-      else
-        @otherExpeditures = OtherExpediture.where(Expediture:@expediture)
-      end
-      
+      # counter = OtherExpediture.where(Expediture:@expediture).count
+      # if counter == 1
+      #   @otherExpeditures = [OtherExpediture.where(Expediture:@expediture)]
+      # else
+      #   @otherExpeditures = OtherExpediture.where(Expediture:@expediture)
+      # end
+      @otherExpeditures = OtherExpediture.where(Expediture:@expediture)
     # check how more benefits are
-      counter = Benefit.where(person:@request.person).count
-      if counter == 1
-        @benefits = [Benefit.find_by(person:@request.person)]
-      else
-        @benefits = Benefit.where(person:@request.person)
-      end
+      # counter = Benefit.where(person:@request.person).count
+      # if counter == 1
+      #   @benefits = [Benefit.find_by(person:@request.person)]
+      # else
+      #   @benefits = Benefit.where(person:@request.person)
+      # end
+      @benefits = Benefit.where(person:@request.person)
     # check how many other services
       @living = LivingPlace.find_by(person_id:@person)
-      counter = OtherService.where(living_place:@living)
-      if counter == 1
-        @otherservices = [OtherService.where(living_place:@living)]
-      else
-        @otherservices = OtherService.where(living_place:@living)
-      end
+      # counter = OtherService.where(living_place:@living)
+      # if counter == 1
+      #   @otherservices = [OtherService.where(living_place:@living)]
+      # else
+      #   @otherservices = OtherService.where(living_place:@living)
+      # end
+      @otherservices = OtherService.where(living_place:@living)
   end
 
   def create
@@ -162,12 +163,14 @@ class RequestsController < ApplicationController
         end
       end
     end
+    
     def edOExpediture
       @otherExpediture = OtherExpediture.find(params[:id])
       respond_to do |format|
         format.js# {render :partial => 'modal4EditOtherExpediture'}
       end
     end
+    
     def edBenefit
       @benefit = Benefit.find(params[:id])
       respond_to do |format|
