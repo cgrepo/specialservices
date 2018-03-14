@@ -40,8 +40,6 @@ class BenefitsController < ApplicationController
     end
   end
 
-  # DELETE /benefits/1
-  # DELETE /benefits/1.json
   def destroy
     @benefit.destroy
     respond_to do |format|

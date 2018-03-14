@@ -7,12 +7,18 @@
     </thead>
     <% @benefits.each do |b| %>
     <tbody>
-        <td><%= b.name %></td>
-        <td><%= b.amount %></td>
-        <td><%= link_to edBenefit_requests_path(b), remote:true, class:'bnt btn-xs btn-primary' do %>
-                    <%= icon('pencil') %></td>
-            <% end %>
-            <td><%= icon('trash-o') %></td>
+        <tr id="<%= b.id %>">
+            <td><%= b.name %></td>
+            <td align='center'><%= b.amount %></td>
+            <td><%= link_to edBenefit_requests_path(b), remote:true, class:'bnt btn-xs btn-primary' do %>
+                    <%= icon('pencil') %>
+                <% end %>
+            </td>
+            <td><%= link_to b, method: :delete, remote:true, data: { confirm: 'Eliminara esta prestacion esta seguro?' }, class:'btn btn-primary btn-xs' do %>
+                    <%= icon('trash-o') %>
+                <% end %>
+            </td>
+        </tr>
     </tbody>
     <% end %>
 </table>

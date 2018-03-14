@@ -7,14 +7,17 @@
     </thead>
     <tbody>
         <% @otherExpeditures.each do |oe| %>
-        <tr>
+        <tr id="<%= oe.id %>" >
             <td><%= oe.name %></td>
-            <td><%= oe.amount %></td>
+            <td align='center'><%= oe.amount %></td>
             <td><%= link_to edOExpediture_requests_path(oe), remote:true, class:'bnt btn-xs btn-primary' do %>
                     <%= icon('pencil') %>
                 <% end %>
             </td>
-            <td><%= icon('trash-o') %></td>
+            <td><%= link_to oe, method: :delete, remote:true, data: { confirm: 'Eliminara esta prestacion esta seguro?' }, class:'btn btn-primary btn-xs' do %>
+                    <%= icon('trash-o') %>
+                <% end %>
+            </td>
         </tr>
         <% end %>
         

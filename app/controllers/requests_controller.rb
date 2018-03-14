@@ -8,26 +8,29 @@ class RequestsController < ApplicationController
   def show
     @expediture = Expediture.find_by(person:@request.person)
     @person = @request.person
-    counter = OtherExpediture.where(Expediture:@expediture).count
-    if counter == 1
-      @otherExpeditures = [OtherExpediture.find_by(Expediture:@expediture)]
-    else
-      @otherExpeditures = OtherExpediture.find_by(Expediture:@expediture)
-    end
+    # counter = OtherExpediture.where(Expediture:@expediture).count
+    # if counter == 1
+    #   @otherExpeditures = [OtherExpediture.find_by(Expediture:@expediture)]
+    # else
+    #   @otherExpeditures = OtherExpediture.find_by(Expediture:@expediture)
+    # end
+    @otherExpeditures = OtherExpediture.where(Expediture:@expediture)
     
-    counter = Benefit.where(person:@request.person).count
-    if counter == 1
-      @benefits = [Benefit.find_by(person:@request.person)]
-    else
-      @benefits = Benefit.where(person:@request.person)
-    end
+    # counter = Benefit.where(person:@request.person).count
+    # if counter == 1
+    #   @benefits = [Benefit.find_by(person:@request.person)]
+    # else
+    #   @benefits = Benefit.where(person:@request.person)
+    # end
+    @benefits = Benefit.where(person:@request.person)
     @living = LivingPlace.find_by(person:@request.person)
-    counter = OtherService.where(living_place:@living)
-    if counter == 1
-      @otherservices = [OtherService.where(living_place:@living)]
-    else
-      @otherservices = OtherService.where(living_place:@living)
-    end
+    # counter = OtherService.where(living_place:@living)
+    # if counter == 1
+    #   @otherservices = [OtherService.where(living_place:@living)]
+    # else
+    #   @otherservices = OtherService.where(living_place:@living)
+    # end
+    @otherservices = OtherService.where(living_place:@living)
   end
 
   def new

@@ -1,25 +1,16 @@
 class OtherExpedituresController < ApplicationController
   before_action :set_other_expediture, only: [:show, :update, :destroy]
-
-  # GET /other_expeditures
-  # GET /other_expeditures.json
   def index
     @other_expeditures = OtherExpediture.all
   end
-
-  # GET /other_expeditures/1
-  # GET /other_expeditures/1.json
+  
   def show
   end
-
-  # POST /other_expeditures
-  # POST /other_expeditures.json
+  
   def create
     @other_expediture = OtherExpediture.new(other_expediture_params)
-    #byebug
     respond_to do |format|
       if @other_expediture.save
-        #format.html
         format.js 
       else
         format.js   { render :createFail }
