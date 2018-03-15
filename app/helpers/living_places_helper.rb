@@ -1,0 +1,2 @@
+module LivingPlacesHelper
+end
