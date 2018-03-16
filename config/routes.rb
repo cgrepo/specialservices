@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'other_services/update'
+
   get 'gears/index'
   get 'gears/nuke'
   resources :users, only:[:new, :create, :destroy] do
@@ -11,8 +13,9 @@ Rails.application.routes.draw do
     collection do
       get 'showmodal', to: 'requests#showmodal'
       get 'showPDF',   to: 'requests#showPDF'
-      get 'edOExpediture/:id', action:'edOExpediture', controller:'requests', as:'edOExpediture'
-      get 'edBenefit/:id', action:'edBenefit', controller:'requests', as:'edBenefit'
+      get 'edOExpediture/:id',  action:'edOExpediture', controller:'requests', as:'edOExpediture'
+      get 'edBenefit/:id',      action:'edBenefit',     controller:'requests', as:'edBenefit'
+      get 'edOService/:id',     action:'edOService',    controller:'requests', as:'edOService'
     end
   end
   resources :people do
