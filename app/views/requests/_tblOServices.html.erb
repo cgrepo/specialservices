@@ -1,0 +1,21 @@
+<table  class="table table-striped table-hover">
+    <thead>
+        <th>Descripcion</th>
+        <th colspan=2></th>
+    </thead>
+    <tbody>
+        <% @otherServices.each do |os| %>
+            <tr id="<%= os.id %>">
+                <td><%= os.name %></td>
+                <td><%= link_to edOService_requests_path(os), remote:true, class:'bnt btn-xs btn-primary' do %>
+                        <%= icon('pencil') %>
+                    <% end %>
+                </td>
+                <td><%= link_to os, method: :delete, remote:true, data: { confirm: 'Eliminara esta prestacion esta seguro?' }, class:'btn btn-primary btn-xs' do %>
+                        <%= icon('trash-o') %>
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>                                              
+    </tbody>                                                  
+</table>

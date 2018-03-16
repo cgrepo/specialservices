@@ -1,2 +1,1 @@
-alert("destroyed"+<%= @other_service.id %>);
-$("#servicesTable tbody td:contains(<%= @other_service.id %>)").closest("tr").remove();
+$("#<%= @otherService.id %>").remove();

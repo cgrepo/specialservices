@@ -1,7 +1,12 @@
-$('#modal-window2').modal('hide')
+$('#modal-window2').modal('hide');
+$('#otherExpedituresTable tbody').append("<tr id='<%=  @other_expediture.id %>'><td><%= @other_expediture.name %></td><td>"+
+"<td>$ <%= @other_expediture.amount %></td>"+
+"<td align='center'><%= escape_javascript render(:partial => 'link2DeleteOExpediture') %></td></tr>");
 
-$('#otherExpedituresTable tbody').append("<tr><td><%= @other_expediture.name %></td><td>"+
-    "$ <%= @other_expediture.amount %></td>"+
-    "<td><a href='/other_expeditures/<%= @other_expediture.id %>' data-method='delete' class='btn btn-sm btn-danger' rel='nofollow' data-remote='true'><span class='glyphicon glyphicon-trash'></span></a></td>"+
-    "<td style='display:none;'><%= @other_expediture.id %></td></tr>")
-$('#otherExpedituresTable').show()
+
+
+//$('#otherExpedituresTable tbody').append("<tr><td><%= @other_expediture.name %></td><td>"+
+//    "$ <%= @other_expediture.amount %></td>"+
+//    "<td><a href='/other_expeditures/<%= @other_expediture.id %>' data-method='delete' class='btn btn-sm btn-danger' rel='nofollow' data-remote='true'><span class='glyphicon glyphicon-trash'></span></a></td>"+
+//    "<td style='display:none;'><%= @other_expediture.id %></td></tr>")
+$('#otherExpedituresTable').show();
