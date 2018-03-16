@@ -1,6 +1,7 @@
 $('#modal-window2').modal('hide');
-$('#otherExpedituresTable tbody').append("<tr id='<%=  @other_expediture.id %>'><td><%= @other_expediture.name %></td><td>"+
-"<td>$ <%= @other_expediture.amount %></td>"+
+$('#otherExpedituresTable tbody').append("<tr id='<%=  @other_expediture.id %>'>"+
+"<td><%= @other_expediture.name %></td>"+
+"<td>$<%= @other_expediture.amount %></td>"+
 "<td align='center'><%= escape_javascript render(:partial => 'link2DeleteOExpediture') %></td></tr>");
 
 

@@ -87,17 +87,17 @@ $(document).on 'turbolinks:load', ->
         if validCaseData()
             if validExpensivesData()
                 if validLivingData()
-                    console.log 'request data ' + requ
-                    console.log 'expedit data ' + expe
-                    console.log 'oexpedi data ' + oexp
-                    console.log 'benefit data ' + bene
-                    console.log 'living  data ' + vita
-                    console.log 'oservic data ' + serv
+                    # console.log 'request data ' + requ
+                    # console.log 'expedit data ' + expe
+                    # console.log 'oexpedi data ' + oexp
+                    # console.log 'benefit data ' + bene
+                    # console.log 'living  data ' + vita
+                    # console.log 'oservic data ' + serv
                     spinner('ON',$('#spinnerContainer4liv'))
                     oexp[0] = false if oexp.length == 0
                     bene[0] = false if bene.length == 0
                     serv[0] = false if serv.length == 0
-                    console.log oexp.length, bene.length,serv.length
+                    # console.log oexp.length, bene.length,serv.length
                     $.ajax
                         type:'POST'
                         url:'/requests'
@@ -415,20 +415,26 @@ validLivingData=->
 getExpeditureIDs=->
     oexp = []
     $('#otherExpedituresTable tbody tr').each ->
-        console.log 'getting other expeditures ' + $(this).find('td').eq(3).text()
-        oexp.push($(this).find('td').eq(3).text())
+        # console.log 'getting other expeditures ' + $(this).attr('id')
+        oexp.push($(this).attr('id'))
+        #console.log 'getting other expeditures ' + $(this).find('td').eq(3).text()
+        #oexp.push($(this).find('td').eq(3).text())
 
 getBenefitsIDs=->
     bene = []
     $('#benefitsTable tbody tr').each ->
-        console.log 'getting other benetits ' + $(this).find('td').eq(3).text()
-        bene.push($(this).find('td').eq(3).text())
+        # console.log 'getting other benetits ' + $(this).attr('id')
+        bene.push($(this).attr('id'))
+        ## console.log 'getting other benetits ' + $(this).find('td').eq(3).text()
+        #bene.push($(this).find('td').eq(3).text())
 
 getServicesIDs=->
     serv = []
     $('#servicesTable tbody tr').each ->
-        console.log 'getting other services ' + $(this).find('td').eq(2).text()
-        serv.push($(this).find('td').eq(2).text())
+        # console.log 'getting other services ' + $(this).attr('id')
+        serv.push($(this).attr('id'))
+        #console.log 'getting other services ' + $(this).find('td').eq(2).text()
+        #serv.push($(this).find('td').eq(2).text())
          
          
          

@@ -43,7 +43,7 @@ $(document).on "turbolinks:load", ->
         requester = []
         personDataGet()
         spinner('ON')
-        console.log requester
+        # console.log requester
         $.ajax
             type:'PUT'
             url:'/people/updatePerson/'+personID
@@ -227,7 +227,7 @@ $(document).on "turbolinks:load", ->
         prevPic this
         $('#img_prev').show()
         picChange = true
-        console.log picChange
+        # console.log picChange
         if picChange == true 
             $('#actual_picture').fadeToggle('slow') if $('h1').text() == 'Edicion Solicitante'
     
@@ -245,7 +245,7 @@ setup=->
         $('.nav li#relative').addClass('disabled')
         $('.nav li#relative').find('a').removeAttr("data-toggle")
         $('.nav li#relative').hide()
-        console.log 'update'
+        # console.log 'update'
     else
         $('#save_relatives').hide()
         $('#relativeSubmit').hide() if $('h1').text() == 'Agregar Persona'
@@ -256,7 +256,7 @@ setup=->
         $('#addRelative').show()
         $('#img_prev').hide()
         $('#actual_picture').hide()
-        console.log 'insert'
+        # console.log 'insert'
 personDataGet=->
     requester.push($('#person_name').val())
     requester.push($('#person_age').val())
@@ -287,7 +287,7 @@ uploadPicture=->
         contentType: false
         cache: false
         success: (data) ->
-            console.log data
+            # console.log data
             picChange = false
 checkRows=->
     rows = $('#relationshipTable tbody').children('tr').length
