@@ -1,2 +1,3 @@
-<h1>OtherServices#update</h1>
-<p>Find me in app/views/other_services/update.html.erb</p>
+$("#modal-window4Edit").modal('hide');
+$(".serv table").remove();
+$(".serv").html("<%= escape_javascript render(:partial => 'requests/tblOServices') %>");

@@ -1,24 +1,23 @@
 class OtherServicesController < ApplicationController
-  before_action :set_other_service, only: [:show, :update, :destroy]
+   before_action :set_other_service, only: [:show, :update, :destroy]
   
-  # def index
-  #   @other_services = OtherService.all
-  # end
+  def index
+    @other_services = OtherService.all
+  end
 
-  # def show
-  # end
+  def show
+  end
 
-  # # def udpate
-  # #   byebug
-  # #   respond_to do |format|
-  # #     if @otherService.update(other_service_params)
-  # #       @otherServices = OtherService.where(living_place_id:@other_service.living_place_id)
-  # #       format.js 
-  # #     else
-  # #       #format.js { render :edit }
-  # #     end
-  # #   end
-  # # end
+  def update
+    respond_to do |format|
+      if @otherService.update(other_service_params)
+        @otherServices = OtherService.where(living_place_id:@otherService.living_place_id)
+        format.js 
+      else
+        #format.js { render :edit }
+      end
+    end
+  end
   
   def create
     @otherService = OtherService.new(other_service_params)
