@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :requests do
     collection do
       get 'showmodal', to: 'requests#showmodal'
-      get 'showPDF',   to: 'requests#showPDF'
+      get 'showPDF/:id',        action:'showPDF',       controller:'requests', as:'showPDF'
       get 'edOExpediture/:id',  action:'edOExpediture', controller:'requests', as:'edOExpediture'
       get 'edBenefit/:id',      action:'edBenefit',     controller:'requests', as:'edBenefit'
       get 'edOService/:id',     action:'edOService',    controller:'requests', as:'edOService'

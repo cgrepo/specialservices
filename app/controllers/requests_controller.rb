@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:show, :edit, :update, :destroy]
+  before_action :set_request, only: [:show, :edit, :update, :destroy, :showPDF]
 
   def index
     @requests = Request.all
@@ -122,9 +122,10 @@ class RequestsController < ApplicationController
     def showPDF
       respond_to do |format|
         format.pdf do
-          pdf = ServiceRequestPdf.new(@service_request)
+          
+          pdf = Prawn::Document.new
           send_data pdf.render, 
-            filename: "reques#{@person.id}.pdf",
+            filename: "reques#{@request.id}.pdf",
             type: 'application/pdf',
             disposition: 'inline'
         end
@@ -154,6 +155,7 @@ class RequestsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_request
+      byebug
       @request = Request.find(params[:id])
     end
 
