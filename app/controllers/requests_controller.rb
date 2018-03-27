@@ -123,7 +123,8 @@ class RequestsController < ApplicationController
       respond_to do |format|
         format.pdf do
           
-          pdf = Prawn::Document.new
+          #pdf = Prawn::Document.new
+          pdf = RequestPdf.new(@request)
           send_data pdf.render, 
             filename: "reques#{@request.id}.pdf",
             type: 'application/pdf',
@@ -155,7 +156,6 @@ class RequestsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_request
-      byebug
       @request = Request.find(params[:id])
     end
 
