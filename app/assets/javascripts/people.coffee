@@ -43,7 +43,6 @@ $(document).on "turbolinks:load", ->
         requester = []
         personDataGet()
         spinner('ON')
-        # console.log requester
         $.ajax
             type:'PUT'
             url:'/people/updatePerson/'+personID
@@ -62,7 +61,8 @@ $(document).on "turbolinks:load", ->
                     address:requester[10]
                     current_residence:requester[11]
                     occupation:requester[12]
-                    workplace:requester[13]
+                    born_place:requester[13]
+                    workplace:requester[14]
             success: (data) ->
                 personDataUX('disable')
                 #console.log personID
@@ -271,6 +271,7 @@ personDataGet=->
     requester.push($('#person_address').val())
     requester.push($('#person_current_residence').val())
     requester.push($('#person_occupation').val())
+    requester.push($('#person_born_place').val())
     requester.push($('#person_workplace').val())
     #console.log requester
 uploadPicture=->
@@ -336,6 +337,7 @@ personDataUX=(opt) ->
         $('#person_address').attr('disabled',true)
         $('#person_current_residence').attr('disabled',true)
         $('#person_occupation').attr('disabled',true)
+        $('#person_born_place').attr('disabled',true)
         $('#person_workplace').attr('disabled',true)
     else
         $('#person_name').attr('disabled',false)
@@ -351,6 +353,7 @@ personDataUX=(opt) ->
         $('#person_address').attr('disabled',false)
         $('#person_current_residence').attr('disabled',false)
         $('#person_occupation').attr('disabled',false)
+        $('#person_born_place').attr('disabled',false)
         $('#person_workplace').attr('disabled',false)
 responsableDataUX=(opt) ->
     if opt == 'disable'

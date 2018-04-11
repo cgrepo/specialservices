@@ -43,12 +43,12 @@ class RequestPdf < Prawn::Document
                 	    size:9, style:[:bold], color:'000000'}, 
     	       ], at:[120,580], width:280, height:30
     	   formatted_text_box [
-                	    { :text => "Lugar de nacimiento:    #{@request.person}", size:9, style:[:bold], color:'000000'}, 
-    	       ], at:[17,580], width:200, height:30
+                	    { :text => "Lugar de nacimiento:    #{@request.person.born_place}", size:9, style:[:bold], color:'000000'}, 
+    	       ], at:[17,560], width:200, height:30
     	   formatted_text_box [
                 	    { :text => "Estado Civil:   Soltero( )  Casado( )   Union Libre( )  Viudo( )    Otro( ) ", 
                 	    size:9, style:[:bold], color:'000000'}, 
-    	       ], at:[120,580], width:280, height:30
+    	       ], at:[120,540], width:280, height:30
     	   
         end
 end

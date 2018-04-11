@@ -23,6 +23,8 @@ class PeopleController < ApplicationController
   def create
     @person = Person.new
     setPersonVal
+    
+      byebug
     respond_to do |format|
       if @person.save
         format.json { render json: @person.as_json(only: [:id] ) }
@@ -138,9 +140,6 @@ class PeopleController < ApplicationController
       end
     end
   end
-
-
-  
   # def getRelatives
   #   @relatives = Relative.where :Person_id => params[:id]
   #   byebug
@@ -157,7 +156,7 @@ class PeopleController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:name, :age, :gender, :civil_status, :occupation, :salary, :scolarship, :address, :workplace, :current_residence, :phone, :admission_date, :birth_date, :transportation)
+      params.require(:person).permit(:name, :age, :gender, :civil_status, :occupation, :salary, :scolarship, :address, :workplace, :current_residence, :phone, :admission_date, :birth_date, :born_place, :transportation)
     end
     def responsable_params
       params.require(:responsable).permit(:name, :age, :gender, :civil_status, :salary, :address, :occupation, :workplace, :relationship)
@@ -176,7 +175,8 @@ class PeopleController < ApplicationController
       @person.address= params[:person][10]
       @person.current_residence= params[:person][11]
       @person.occupation= params[:person][12]
-      @person.workplace= params[:person][13]
-      @person.picture= params[:person][14]
+      @person.born_place= params[:person][13]
+      @person.workplace= params[:person][14]
+      @person.picture= params[:person][15]
     end
 end
