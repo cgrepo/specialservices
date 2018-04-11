@@ -11,7 +11,9 @@ class RequestPdf < Prawn::Document
         def printHeaders
             Prawn::Font::AFM.hide_m17n_warning = true
 			imgdif = "#{Rails.root.to_s}/app/assets/images/diflog.jpg"
-			image imgdif, at: [17,720], fit:[110,110]
+			image imgdif, at: [17,720], fit:[70,70]
+			photo = "#{Rails.root.to_s}/public/#{@request.person.picture.to_s}"
+			image photo, at: [17,667], fit:[80,80]
 			
             formatted_text_box [
                 	    { :text => "DESARROLLO INTEGRAL DE LA FAMILIA", size:16, style:[:bold], color:'000000'}, 
@@ -33,5 +35,20 @@ class RequestPdf < Prawn::Document
     	   formatted_text_box [
                 	    { :text => "Nombre del beneficiario:   #{@request.person.name}", size:9, style:[:bold], color:'000000'}, 
     	       ], at:[17,600], width:200, height:30
+    	   formatted_text_box [
+                	    { :text => "Sexo:   M( )    F( ) ", size:9, style:[:bold], color:'000000'}, 
+    	       ], at:[17,580], width:200, height:30
+    	   formatted_text_box [
+                	    { :text => "Estado Civil:   Soltero( )  Casado( )   Union Libre( )  Viudo( )    Otro( ) ", 
+                	    size:9, style:[:bold], color:'000000'}, 
+    	       ], at:[120,580], width:280, height:30
+    	   formatted_text_box [
+                	    { :text => "Lugar de nacimiento:    #{@request.person}", size:9, style:[:bold], color:'000000'}, 
+    	       ], at:[17,580], width:200, height:30
+    	   formatted_text_box [
+                	    { :text => "Estado Civil:   Soltero( )  Casado( )   Union Libre( )  Viudo( )    Otro( ) ", 
+                	    size:9, style:[:bold], color:'000000'}, 
+    	       ], at:[120,580], width:280, height:30
+    	   
         end
 end
