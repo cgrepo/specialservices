@@ -20,7 +20,8 @@ gem 'bcrypt', '~> 3.1.7'
   gem 'ionicons-rails'
   gem 'octicons_helper' # add svg icons not used in this stage
   gem 'carrierwave', '~> 1.0' # upload files and pictures
-  gem 'prawn' # pdf creation 
+  gem 'prawn' # pdf creation
+  gem 'prawn-table'
   gem 'pry' # debugging
   gem 'spinjs-rails'
   #-------TESTING THIS GEMS
