@@ -150,7 +150,7 @@ class RequestPdf < Prawn::Document
                 data += [[relative.name,relative.relationship,relative.age,relative.gender,relative.scolarship,relative.civil_status,relative.occupation]]
                 # rowcount+=1
             end
-            table( data,header:true, :position=> 17,:cell_style=>{size:7, :padding=>[64,0,0,90]}) do
+            table( data,header:true, :position=> :center,:cell_style=>{size:7, :padding=>[64,0,0,90]}) do
                 cells.padding = 12
                 #cells.borders = [:left, :right]
                 cells.borders = []
@@ -217,75 +217,158 @@ class RequestPdf < Prawn::Document
             end
         end
         
+        def filledRectangles(x,y)
+                fill_color 'cfd0cb'
+        		stroke_color '9f9a9a'
+                fill {rectangle [x,y], 15,15}
+        end
+        
+        def print_livingConditions
+            case @request.person.LivingPlace.kind
+                when "PROPIA"
+                    filledRectangles(112,515)
+                when "RENTADA"
+                    filledRectangles(112,500) 
+                when "PRESTADA"
+                    filledRectangles(112,485) 
+                when "OTROS"
+                    filledRectangles(112,470) 
+            end
+            case @request.person.LivingPlace.wall_material
+                when "BLOCK"
+                    filledRectangles(235,515)
+                when "LADRILLO"
+                    filledRectangles(235,500)
+                when "CARTON"
+                    filledRectangles(235,485)
+                when "MADERA"
+                    filledRectangles(235,470)
+                when "OTROS"
+                    filledRectangles(235,555)
+            end
+            case @request.person.LivingPlace.roof_material
+                when "CONCRETO"
+                    filledRectangles(365,515)
+                when "CARTON"
+                    filledRectangles(365,500) 
+                when "PALMA"
+                    filledRectangles(365,485) 
+                when "OTROS"
+                    filledRectangles(365,470) 
+            end
+            case @request.person.LivingPlace.floor_material
+                when "MOSAICO"
+                    filledRectangles(510,515)
+                when "CEMENTO"
+                    filledRectangles(510,500) 
+                when "TIERRA"
+                    filledRectangles(510,485) 
+                when "OTROS"
+                    filledRectangles(510,470) 
+            end
+            
+            case @request.person.LivingPlace.ligth_service
+                when "ELECTRICO"
+                    filledRectangles(150,388)
+                when "LAMPARA DE PETROLEO"
+                    filledRectangles(150,373) 
+                when "VELA"
+                    filledRectangles(150,358) 
+                when "OTROS"
+                    filledRectangles(150,343) 
+            end
+            
+            case @request.person.LivingPlace.water_service
+                when "INTERDOMICILIARIA"
+                    filledRectangles(315,403)
+                when "PILA"
+                    filledRectangles(315,388) 
+                when "POZO"
+                    filledRectangles(315,373) 
+                when "OTROS"
+                    filledRectangles(315,358) 
+            end
+        end
+        
         def printLines_Page2
-            stroke do
+		    stroke do
                 self.line_width = 0.5
                 horizontal_line 100,285, at:702
                 horizontal_line 430,530, at:702
-                
                 horizontal_line 74,285, at:687
                 horizontal_line 338,530, at:687
-                
                 horizontal_line 83,285, at:672
                 horizontal_line 347,530, at:672
-                
                 horizontal_line 70,285, at:657
                 horizontal_line 370,530, at:657
-                
                 horizontal_line 43,285, at:642
                 horizontal_line 330,530, at:642
-                
                 horizontal_line 70,285, at:627
                 horizontal_line 340,530, at:627
-                
                 horizontal_line 67,285, at:612
                 horizontal_line 43,285, at:597
                 horizontal_line 220,380, at:572
-                rounded_rectangle [17,565],530,20,8
-                rounded_rectangle [17,540],530,20,8
-                rounded_rectangle [17,565],530,20,8
-                rounded_rectangle [17,520],530,90,8
+                #---------------------FILLED HEADERS------------------------------------------------------------------------------------------------------------------------
                 
+                fill_color 'cfd0cb'
+    		    stroke_color '9f9a9a'
+                
+                rounded_rectangle [17,565],530,20,8 # condiciones de la vivienda
+                rounded_rectangle [17,540],530,20,8 # habitacion paredes techo ....
+                rounded_rectangle [17,420],530,20,8 # alumbrado servicio de agua ...
+                
+                fill_and_stroke
+                
+                formatted_text_box [ { :text => "CONDICIONES DE LA VIVIENDA: ", size:10, style:[:bold], color:'000000'} ], at:[200,558], width:180, height:20
+                formatted_text_box [ { :text => "HABITACION", size:10, style:[:bold], color:'000000'} ], at:[50,534], width:80, height:20
+                formatted_text_box [ { :text => "PAREDES", size:10, style:[:bold], color:'000000'} ], at:[187,534], width:80, height:20
+                formatted_text_box [ { :text => "TECHO", size:10, style:[:bold], color:'000000'} ], at:[325,534], width:80, height:20
+                formatted_text_box [ { :text => "PISO ", size:10, style:[:bold], color:'000000'} ], at:[475,534], width:80, height:20
+                formatted_text_box [ { :text => "ALUMBRADO", size:10, style:[:bold], color:'000000'} ], at:[70,410], width:80, height:20
+                formatted_text_box [ { :text => "SERVICIO DE AGUA", size:10, style:[:bold], color:'000000'} ], at:[240,410], width:100, height:20
+                formatted_text_box [ { :text => "TRANSPORTE", size:10, style:[:bold], color:'000000'} ], at:[435,410], width:80, height:20
+                #----------------------------------------------------------------------------------------------------------------------------------------------------------
+                rounded_rectangle [17,520],530,90,8 # contenido
                 vertical_line 540,430, at:145
-                rectangle [112,515],15,60
+                
+                rectangle [112,515],15,60 # para habitacion
                 horizontal_line 112,127, at:500
                 horizontal_line 112,127, at:485
                 horizontal_line 112,127, at:470
                 
                 vertical_line 540,430, at:270
-                rectangle [235,515],15,75
+                rectangle [235,515],15,75 # para paredes
                 horizontal_line 235,250, at:500
                 horizontal_line 235,250, at:485
                 horizontal_line 235,250, at:470
                 horizontal_line 235,250, at:455
                 
                 vertical_line 540,430, at:420
-                rectangle [365,515],15,60
+                rectangle [365,515],15,60 # para techo
                 horizontal_line 365,380, at:500
                 horizontal_line 365,380, at:485
                 horizontal_line 365,380, at:470
                 
-                rectangle [510,515],15,60
+                rectangle [510,515],15,60 # piso
                 horizontal_line 510,525, at:500
                 horizontal_line 510,525, at:485
                 horizontal_line 510,525, at:470
                 
-                rounded_rectangle [17,420],530,20,8
-                rounded_rectangle [17,400],530,90,8
+                rounded_rectangle [17,400],530,90,8 # contenido
                 vertical_line 420,310, at:199
                 vertical_line 420,310, at:381
                 
-                rectangle [150,388],15,60
+                rectangle [150,388],15,60 # alumbrado
                 horizontal_line 150,165, at:373
                 horizontal_line 150,165, at:358
                 horizontal_line 150,165, at:343
                 
-                rectangle [315,388],15,60
+                rectangle [315,388],15,60 # agua
                 horizontal_line 315,330, at:373
                 horizontal_line 315,330, at:358
                 horizontal_line 315,330, at:343
                 
-                rectangle [480,388],15,60
+                rectangle [480,388],15,60 # transporte
                 horizontal_line 480,495, at:373
                 horizontal_line 480,495, at:358
                 horizontal_line 480,495, at:343
@@ -305,6 +388,8 @@ class RequestPdf < Prawn::Document
                 horizontal_line 17,209, at:33
                 horizontal_line 350,545, at:33
             end
+            
+            print_livingConditions
         end
         
         def printpage2
@@ -326,11 +411,8 @@ class RequestPdf < Prawn::Document
                 formatted_text_box [ { :text => "DIF: ", size:9, style:[:bold], color:'000000'} ], at:[310,650], width:120, height:30
                 formatted_text_box [ { :text => "OTRO: ", size:9, style:[:bold], color:'000000'} ], at:[310,635], width:120, height:30
                 formatted_text_box [ { :text => "TOTAL: ", size:10, style:[:bold], color:'000000'} ], at:[180,580], width:120, height:30
-                formatted_text_box [ { :text => "CONDICIONES DE LA VIVIENDA: ", size:10, style:[:bold], color:'000000'} ], at:[200,558], width:180, height:20
-                formatted_text_box [ { :text => "HABITACION", size:10, style:[:bold], color:'000000'} ], at:[50,534], width:80, height:20
-                formatted_text_box [ { :text => "PAREDES", size:10, style:[:bold], color:'000000'} ], at:[187,534], width:80, height:20
-                formatted_text_box [ { :text => "TECHO", size:10, style:[:bold], color:'000000'} ], at:[325,534], width:80, height:20
-                formatted_text_box [ { :text => "PISO ", size:10, style:[:bold], color:'000000'} ], at:[475,534], width:80, height:20
+                
+                
             #----------------------------------------------------------------------------------------------------------------------------------------------
                 formatted_text_box [ { :text => "PROPIA ", size:9, style:[:bold], color:'000000'} ], at:[40,510], width:80, height:20
                 formatted_text_box [ { :text => "RENTADA ", size:9, style:[:bold], color:'000000'} ], at:[40,495], width:80, height:20
@@ -353,9 +435,7 @@ class RequestPdf < Prawn::Document
                 formatted_text_box [ { :text => "TIERRA ", size:9, style:[:bold], color:'000000'} ], at:[450, 480], width:80, height:20
                 formatted_text_box [ { :text => "OTROS ", size:9, style:[:bold], color:'000000'} ], at:[450, 465], width:80, height:20
             #----------------------------------------------------------------------------------------------------------------------------------------------
-                formatted_text_box [ { :text => "ALUMBRADO", size:10, style:[:bold], color:'000000'} ], at:[70,410], width:80, height:20
-                formatted_text_box [ { :text => "SERVICIO DE AGUA", size:10, style:[:bold], color:'000000'} ], at:[240,410], width:100, height:20
-                formatted_text_box [ { :text => "TRANSPORTE", size:10, style:[:bold], color:'000000'} ], at:[435,410], width:80, height:20
+                
             #----------------------------------------------------------------------------------------------------------------------------------------------
                 formatted_text_box [ { :text => "ELECTRICO ", size:9, style:[:bold], color:'000000'} ], at:[87,385], width:80, height:20
                 formatted_text_box [ { :text => "LAMPARA DE PETROLEO ", size:9, style:[:bold], color:'000000'} ], at:[30,370], width:140, height:20

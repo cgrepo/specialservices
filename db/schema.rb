@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180411173915) do
+ActiveRecord::Schema.define(version: 20180605191626) do
 
   create_table "benefits", force: :cascade do |t|
     t.string   "name"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20180411173915) do
     t.integer  "Person_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "ligth_service"
+    t.string   "water_service"
   end
 
   add_index "living_places", ["Person_id"], name: "index_living_places_on_Person_id"
