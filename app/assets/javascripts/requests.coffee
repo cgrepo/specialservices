@@ -398,12 +398,16 @@ validLivingData=->
     vita[1] =$('#living_place_wall_material').val()
     vita[2] =$('#living_place_roof_material').val()
     vita[3] =$('#living_place_floor_material').val()
+    
     unless $('#living_place_number_of_rooms').val() == ''
         vita[4] =$('#living_place_number_of_rooms').val()
     else
         requestLivigDataFlag = true
         $('#living_place_number_of_rooms').css('color','red')
         $('#living_place_number_of_rooms').val(0)
+    
+    vita[5] =$('#living_place_water_service').val()
+    vita[6] =$('#living_place_notes').val()
     has.bedroom = true if $('#living_place_has_beedroom').is(':checked')
     has.kitchen = true if $('#living_place_has_kitchen').is(':checked')
     has.dinningroom = true if $('#living_place_has_dinningroom').is(':checked')

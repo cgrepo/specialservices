@@ -23,8 +23,6 @@ class PeopleController < ApplicationController
   def create
     @person = Person.new
     setPersonVal
-    
-      byebug
     respond_to do |format|
       if @person.save
         format.json { render json: @person.as_json(only: [:id] ) }

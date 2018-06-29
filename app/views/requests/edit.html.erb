@@ -164,6 +164,15 @@
                                                     <br>
                                                     <%= f.submit class:'btn btn-xs btn-primary' %>
                                                 </div>
+                                                <div class='row'>
+                                                    <div class='col-xs col-md-6'>
+                                                        <%= f.select_with_bootstrap :ligth_service,[['ELECTRICO'],['LAMPARA DE PETROLEO'],['VELA'],['OTROS']] ,label:'ALUMBRADO' %>
+                                
+                                                    </div>
+                                                    <div class='col-xs col-md-6'>
+                                                        <%= f.select_with_bootstrap :water_service,[['INTERDOMICILIARIA'],['PILA'],['POZO'],['OTROS']] ,label:'SERVICIO DE AGUA' %>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class='row'>
                                                 <div class='col-xs col-md-2'>

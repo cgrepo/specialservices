@@ -188,29 +188,35 @@ class RequestsController < ApplicationController
     end
     
     def fillOtherExpediture(expediture)
-      params[:oedata].each do |oe|
-        otherExpediture = OtherExpediture.find(oe)
-        otherExpediture.expediture_id = expediture.id
-        # add code to rise error on not being able to update the info
-        otherExpediture.save
+      unless params[:oedata][0] == 'false'
+        params[:oedata].each do |oe|
+          otherExpediture = OtherExpediture.find(oe)
+          otherExpediture.expediture_id = expediture.id
+          # add code to rise error on not being able to update the info
+          otherExpediture.save
+        end
       end
     end
     
     def fillBenefits()
-      params[:bdata].each do |b|
-        benefit = Benefit.find(b)
-        benefit.person_id = params[:pid]
-        # add code to rise error on not being able to update the info
-        benefit.save
+      unless params[:bdata][0] == 'false'
+        params[:bdata].each do |b|
+          benefit = Benefit.find(b)
+          benefit.person_id = params[:pid]
+          # add code to rise error on not being able to update the info
+          benefit.save
+        end
       end
     end
     
     def fillOtherService(livingPlace)
-      params[:osdata].each do |o|
-        otherService = OtherService.find(o)
-        otherService.living_place_id = livingPlace.id
-        # add code to rise error on not being able to update the info
-        otherService.save
+      unless params[:osdata][0] == 'false'
+        params[:osdata].each do |o|
+          otherService = OtherService.find(o)
+          otherService.living_place_id = livingPlace.id
+          # add code to rise error on not being able to update the info
+          otherService.save
+        end
       end
     end
     
@@ -220,7 +226,9 @@ class RequestsController < ApplicationController
       livingPlace.roof_material   = params[:ldata][2]
       livingPlace.floor_material  = params[:ldata][3]
       livingPlace.number_of_rooms = params[:ldata][4]
-      #livingPlace.notes = params[:ldata][5]
+      byebug
+      livingPlace.water_service   = params[:ldata][5]
+      livingPlace.notes           = params[:ldata][6]
       livingPlace.has_beedroom    = params[:rooms][:beedroom]
       livingPlace.has_kitchen     = params[:rooms][:kitchen]
       livingPlace.has_dinningroom = params[:rooms][:dinningroom]

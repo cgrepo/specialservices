@@ -154,9 +154,12 @@
           </div>
         </div>
         <div class='row be-round_ligth_gray'>
-          <div class='col-xs col-md-4'></div>
+          <div class='col-xs col-md-4'>
+            <%= f.select_with_bootstrap :ligth_service,[['ELECTRICO'],['LAMPARA DE PETROLEO'],['VELA'],['OTROS']] ,label:'ALUMBRADO' %>
+            <%= f.select_with_bootstrap :water_service,[['INTERDOMICILIARIA'],['PILA'],['POZO'],['OTROS']] ,label:'SERVICIO DE AGUA' %>
+          </div>
           <div class='col-xs col-md-8'>
-            <%= f.text_area_with_bootstrap :notes, label:'Comentarios' %>
+            <%= f.text_area_with_bootstrap :notes, label:'Comentarios', size:'1x4' %>
           </div>
         </div>
         <div class='row be-round_ligth_gray'>
