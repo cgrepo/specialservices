@@ -170,8 +170,8 @@ class RequestsController < ApplicationController
       request.sent_by       = params[:rdata][2]
       request.oriented      = params[:rdata][3]
       request.service       = params[:rdata][4]
-      request.notes         = params[:rdata][5]
-      request.qualification = params[:rdata][6]
+      request.qualification = params[:rdata][5]
+      request.notes         = params[:rdata][6]
       request.person_id     = params[:pid]
       return request
     end
@@ -226,9 +226,8 @@ class RequestsController < ApplicationController
       livingPlace.roof_material   = params[:ldata][2]
       livingPlace.floor_material  = params[:ldata][3]
       livingPlace.number_of_rooms = params[:ldata][4]
-      byebug
       livingPlace.water_service   = params[:ldata][5]
-      livingPlace.notes           = params[:ldata][6]
+      livingPlace.ligth_service   = params[:ldata][6]
       livingPlace.has_beedroom    = params[:rooms][:beedroom]
       livingPlace.has_kitchen     = params[:rooms][:kitchen]
       livingPlace.has_dinningroom = params[:rooms][:dinningroom]

@@ -156,11 +156,13 @@
         <div class='row be-round_ligth_gray'>
           <div class='col-xs col-md-4'>
             <%= f.select_with_bootstrap :ligth_service,[['ELECTRICO'],['LAMPARA DE PETROLEO'],['VELA'],['OTROS']] ,label:'ALUMBRADO' %>
+          </div>
+          <div class='col-xs col-md-4'>
             <%= f.select_with_bootstrap :water_service,[['INTERDOMICILIARIA'],['PILA'],['POZO'],['OTROS']] ,label:'SERVICIO DE AGUA' %>
           </div>
-          <div class='col-xs col-md-8'>
-            <%= f.text_area_with_bootstrap :notes, label:'Comentarios', size:'1x4' %>
-          </div>
+          <div class='col-xs col-md-4'>
+            <br>
+            <a id='saveAll' class="btn btn-block btn-success"><span class="glyphicon glyphicon-floppy-open"></span> Guardar Datos</a></div>
         </div>
         <div class='row be-round_ligth_gray'>
           <%= f.form_group do %>
@@ -193,8 +195,6 @@
               <tbody id="servicesTblBody"></tbody>
             </table>
           </div>
-          <div class='col-xs col-md-2'></div>
-          <div class='col-xs col-md-4'><a id='saveAll' class="btn btn-block btn-success"><span class="glyphicon glyphicon-floppy-open"></span> Guardar Datos</a></div>
         </div>
       <% end %>
     </div>

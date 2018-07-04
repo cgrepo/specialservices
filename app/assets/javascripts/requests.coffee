@@ -87,12 +87,12 @@ $(document).on 'turbolinks:load', ->
         if validCaseData()
             if validExpensivesData()
                 if validLivingData()
-                    # console.log 'request data ' + requ
-                    # console.log 'expedit data ' + expe
-                    # console.log 'oexpedi data ' + oexp
-                    # console.log 'benefit data ' + bene
-                    # console.log 'living  data ' + vita
-                    # console.log 'oservic data ' + serv
+                     console.log 'request data ' + requ
+                     console.log 'expedit data ' + expe
+                     console.log 'oexpedi data ' + oexp
+                     console.log 'benefit data ' + bene
+                     console.log 'living  data ' + vita
+                     console.log 'oservic data ' + serv
                     spinner('ON',$('#spinnerContainer4liv'))
                     oexp[0] = false if oexp.length == 0
                     bene[0] = false if bene.length == 0
@@ -407,7 +407,7 @@ validLivingData=->
         $('#living_place_number_of_rooms').val(0)
     
     vita[5] =$('#living_place_water_service').val()
-    vita[6] =$('#living_place_notes').val()
+    vita[6] =$('#living_place_ligth_service').val()
     has.bedroom = true if $('#living_place_has_beedroom').is(':checked')
     has.kitchen = true if $('#living_place_has_kitchen').is(':checked')
     has.dinningroom = true if $('#living_place_has_dinningroom').is(':checked')

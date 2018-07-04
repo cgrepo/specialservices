@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180605191626) do
+ActiveRecord::Schema.define(version: 20180704194242) do
 
   create_table "benefits", force: :cascade do |t|
     t.string   "name"
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20180605191626) do
     t.boolean  "has_kitchen"
     t.boolean  "has_dinningroom"
     t.boolean  "has_bathroom"
-    t.text     "notes"
     t.integer  "Person_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
