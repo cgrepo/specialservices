@@ -280,13 +280,23 @@ class RequestPdf < Prawn::Document
             
             case @request.person.LivingPlace.water_service
                 when "INTERDOMICILIARIA"
-                    filledRectangles(315,403)
+                    filledRectangles(315,388)
                 when "PILA"
-                    filledRectangles(315,388) 
-                when "POZO"
                     filledRectangles(315,373) 
-                when "OTROS"
+                when "POZO"
                     filledRectangles(315,358) 
+                when "OTROS"
+                    filledRectangles(315,343) 
+            end
+            case @request.person.transportation
+                when "PRIVADO"
+                    filledRectangles(480,388)
+                when "PUBLICO/TAXI"
+                    filledRectangles(480,373) 
+                when "PUBLICO/CAMION"
+                    filledRectangles(480,358) 
+                when "OTROS"
+                    filledRectangles(480,343) 
             end
         end
         

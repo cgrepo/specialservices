@@ -87,12 +87,12 @@ $(document).on 'turbolinks:load', ->
         if validCaseData()
             if validExpensivesData()
                 if validLivingData()
-                     console.log 'request data ' + requ
-                     console.log 'expedit data ' + expe
-                     console.log 'oexpedi data ' + oexp
-                     console.log 'benefit data ' + bene
-                     console.log 'living  data ' + vita
-                     console.log 'oservic data ' + serv
+                     #console.log 'request data ' + requ
+                     #console.log 'expedit data ' + expe
+                     #console.log 'oexpedi data ' + oexp
+                     #console.log 'benefit data ' + bene
+                     #console.log 'living  data ' + vita
+                     #console.log 'oservic data ' + serv
                     spinner('ON',$('#spinnerContainer4liv'))
                     oexp[0] = false if oexp.length == 0
                     bene[0] = false if bene.length == 0
