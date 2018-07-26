@@ -462,9 +462,32 @@ class RequestPdf < Prawn::Document
                 formatted_text_box [ { :text => "CAMION ", size:9, style:[:bold], color:'000000'} ], at:[435, 355], width:80, height:20
                 formatted_text_box [ { :text => "OTROS ", size:9, style:[:bold], color:'000000'} ], at:[440,340], width:80, height:20
             
-            formatted_text_box [ { :text => "OBSERVACIONES :", size:9, style:[:bold], color:'000000'} ], at:[17,280], width:90, height:10
+            formatted_text_box [ { :text => "OBSERVACIONES :", size:9, style:[:bold], color:'000000'} ], at:[17,280], width:90, height:10 
+            
+            print_notes
             formatted_text_box [ { :text => "FIRMA DEL BENEFICIARIO", size:9, style:[:bold], color:'000000'} ], at:[50,25], width:120, height:10
             formatted_text_box [ { :text => "FIRMA DEL TRABAJADOR SOCIAL", size:9, style:[:bold], color:'000000'} ], at:[380,25], width:150, height:10
             printLines_Page2
         end
+        def print_notes
+            #75 bytes
+            first_line=@request.notes.slice!(0,75)
+            formatted_text_box [ { :text => first_line, size:9, style:[:bold], color:'000000'} ], at:[110,280], width:430, height:10 
+            #92 bytes
+            row = 260
+            @request.notes.scan(/.{92}/).each do |chunck|
+              formatted_text_box [ { :text => chunck, size:9, style:[:bold], color:'000000'} ], at:[17,row], width:530, height:10 
+              row = row - 20
+            end
+            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,260], width:530, height:10 
+            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,240], width:530, height:10 
+            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,220], width:530, height:10 
+            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,200], width:530, height:10 
+            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,180], width:530, height:10 
+            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,160], width:530, height:10 
+            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,140], width:530, height:10 
+            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,120], width:530, height:10 
+            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,100], width:530, height:10 
+            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,80],  width:530, height:10 
+        end        
 end
