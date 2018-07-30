@@ -465,10 +465,12 @@ class RequestPdf < Prawn::Document
             formatted_text_box [ { :text => "OBSERVACIONES :", size:9, style:[:bold], color:'000000'} ], at:[17,280], width:90, height:10 
             
             print_notes
+            doMaths
             formatted_text_box [ { :text => "FIRMA DEL BENEFICIARIO", size:9, style:[:bold], color:'000000'} ], at:[50,25], width:120, height:10
             formatted_text_box [ { :text => "FIRMA DEL TRABAJADOR SOCIAL", size:9, style:[:bold], color:'000000'} ], at:[380,25], width:150, height:10
             printLines_Page2
         end
+        
         def print_notes
             #75 bytes
             first_line=@request.notes.slice!(0,75)
@@ -479,15 +481,63 @@ class RequestPdf < Prawn::Document
               formatted_text_box [ { :text => chunck, size:9, style:[:bold], color:'000000'} ], at:[17,row], width:530, height:10 
               row = row - 20
             end
-            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,260], width:530, height:10 
-            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,240], width:530, height:10 
-            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,220], width:530, height:10 
-            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,200], width:530, height:10 
-            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,180], width:530, height:10 
-            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,160], width:530, height:10 
-            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,140], width:530, height:10 
-            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,120], width:530, height:10 
-            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,100], width:530, height:10 
-            # formatted_text_box [ { :text => "!BCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJABCDEFGHIJA?", size:9, style:[:bold], color:'000000'} ], at:[17,80],  width:530, height:10 
-        end        
+        end
+        
+        def doMaths
+            fe  = @request.person.Expediture.first.fuel
+            ed  = @request.person.Expediture.first.education
+            f = @request.person.Expediture.first.feeding
+            r = @request.person.Expediture.first.rent
+            e  = @request.person.Expediture.first.electricity
+            w = @request.person.Expediture.first.water
+            oes = OtherExpediture.where(Expediture:Expediture.find_by(person:@request.person))
+            @total_other_expeditures = 0
+            oes.each { |oe| @total_other_expeditures = @total_other_expeditures + oe.amount}
+            total_expeditures = fe+ed+f+r+e+w+@total_other_expeditures
+            
+            benefits = Benefit.where :person => @request.person
+            @total_other_benefits = 0
+            benefits.each do |benefit|
+                
+                case benefit.name
+                    when 'IMSS'
+                        @ims = benefit.amount
+                    when 'ISSSTE'
+                        @iste = benefit.amount
+                    when 'PARTICULAR'
+                        @pri = benefit.amount
+                    when 'DIF'
+                        @dif = benefit.amount
+                    else
+                        @total_other_benefits = @total_other_benefits + benefit.amount
+                end
+            end
+            
+            @ims = 0.0 unless @ims
+            @iste = 0.0 unless @iste
+            @pri = 0.0 unless @pri
+            @dif = 0.0 unless @dif
+            
+            total_benefits = @ims + @iste + @pri + @dif + @total_other_benefits
+            
+            total = total_benefits + total_expeditures
+            
+            formatted_text_box [ { :text => "$#{total.to_s}", size:9, style:[:bold], color:'000000'} ], at:[250,580], width:80, height:10
+            formatted_text_box [ { :text => "$#{total_benefits.to_s}", size:9, style:[:bold], color:'000000'} ], at:[450,709], width:80, height:10
+            formatted_text_box [ { :text => "$#{@ims.to_s}", size:9, style:[:bold], color:'000000'} ], at:[450,694], width:80, height:10
+            formatted_text_box [ { :text => "$#{@iste.to_s}", size:9, style:[:bold], color:'000000'} ], at:[450,679], width:80, height:10
+            formatted_text_box [ { :text => "$#{@pri.to_s}", size:9, style:[:bold], color:'000000'} ], at:[450,664], width:80, height:10
+            formatted_text_box [ { :text => "$#{@dif.to_s}", size:9, style:[:bold], color:'000000'} ], at:[450,649], width:80, height:10
+            formatted_text_box [ { :text => "$#{@total_other_benefits.to_s}", size:9, style:[:bold], color:'000000'} ], at:[450,634], width:80, height:10
+            
+            formatted_text_box [ { :text => "$#{total_expeditures.to_s}", size:9, style:[:bold], color:'000000'} ], at:[120,709], width:80, height:10
+            formatted_text_box [ { :text => "$#{f.to_s}", size:9, style:[:bold], color:'000000'} ], at:[120,694], width:80, height:10
+            formatted_text_box [ { :text => "$#{r.to_s}", size:9, style:[:bold], color:'000000'} ], at:[120,679], width:80, height:10
+            formatted_text_box [ { :text => "$#{e.to_s}", size:9, style:[:bold], color:'000000'} ], at:[120,664], width:80, height:10
+            formatted_text_box [ { :text => "$#{w.to_s}", size:9, style:[:bold], color:'000000'} ], at:[120,649], width:80, height:10
+            formatted_text_box [ { :text => "$#{fe.to_s}", size:9, style:[:bold], color:'000000'} ], at:[120,634], width:80, height:10
+            formatted_text_box [ { :text => "$#{ed.to_s}", size:9, style:[:bold], color:'000000'} ], at:[120,619], width:80, height:10
+            formatted_text_box [ { :text => "$#{@total_other_expeditures.to_s}", size:9, style:[:bold], color:'000000'} ], at:[120,604], width:80, height:10
+        end
+        
 end
